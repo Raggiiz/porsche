@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wheel
+* source:	https://sketchfab.com/3d-models/wheel-44223c0adba8449b8438ede3441b256d
+* author:	Serjogasan (https://sketchfab.com/Serjogasan)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wheel" (https://sketchfab.com/3d-models/wheel-44223c0adba8449b8438ede3441b256d) by Serjogasan (https://sketchfab.com/Serjogasan) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

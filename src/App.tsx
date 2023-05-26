@@ -1,23 +1,18 @@
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import "./App.css";
-
-function ThreeScene() {
-  return (
-    <>
-      <ambientLight />
-      <pointLight position={[5, 5, 5]} intensity={1} />
-      <pointLight position={[-3, -3, 2]} />
-      <OrbitControls />
-    </>
-  );
-}
+import Maclaren from "./Maclaren";
+import Porsche from './Porsche'
 
 function App() {
   return (
     <div className="App h-screen">
       <Canvas>
-        <ThreeScene />
+      <Stage environment={"city"}>
+        <OrbitControls />
+        {/* <Maclaren /> */}
+        <Porsche />
+      </Stage>
       </Canvas>
     </div>
   );

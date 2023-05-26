@@ -1,0 +1,11 @@
+Model Information:
+* title:	Free Car Wheel
+* source:	https://sketchfab.com/3d-models/free-car-wheel-e0fd5582e2bc402594bc8e40f5c68609
+* author:	Serjogasan (https://sketchfab.com/Serjogasan)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Free Car Wheel" (https://sketchfab.com/3d-models/free-car-wheel-e0fd5582e2bc402594bc8e40f5c68609) by Serjogasan (https://sketchfab.com/Serjogasan) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
