@@ -1,19 +1,15 @@
-import { OrbitControls, Stage } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+
 import "./App.css";
 import Maclaren from "./Maclaren";
-import Porsche from './Porsche'
+import { useState } from "react";
+import { Car } from "./components/car/Car";
 
 function App() {
+  
+
   return (
     <div className="App h-screen">
-      <Canvas>
-      <Stage environment={"city"}>
-        <OrbitControls />
-        {/* <Maclaren /> */}
-        <Porsche />
-      </Stage>
-      </Canvas>
+      <Car />
     </div>
   );
 }
