@@ -1,16 +1,22 @@
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import "./App.css";
-import Maclaren from "./Maclaren";
-import { useState } from "react";
+import { Home } from "./components/home/Home";
+import { NavBar } from "./components/nav-bar/NavBar";
 import { Car } from "./components/car/Car";
 
 function App() {
-  
+
 
   return (
-    <div className="App h-screen">
-      <Car />
-    </div>
+    <>
+      <NavBar />
+      <div className="container w-full overflow-x-hidden">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/customize" element={<Car />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { OrbitControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Porsche from './scene/Porsche';
+import bg from '../../assets/custom-bg.png'
 
 export const Car = () => {
 
@@ -12,7 +13,7 @@ export const Car = () => {
   const [brakesColor, setbrakeColor] = useState<string>("green");
 
   return (
-    <div className='w-screen h-screen'>
+    <div className="w-full h-[80vh] flex justify-center bg-customize bg-no-repeat" >
       <Canvas>
         <Stage environment={"city"}>
           <OrbitControls />
