@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <div className="container w-full overflow-x-hidden">
+      <div className="w-full overflow-x-hidden">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/customize" element={<Car />} />

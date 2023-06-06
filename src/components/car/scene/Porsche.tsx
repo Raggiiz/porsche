@@ -15,7 +15,7 @@ import { useLoader } from '@react-three/fiber'
 import Wheel from './Wheel'
 import Wheel2 from './Wheel2'
 import Tire from './Tire'
-import { CarConfig } from '../interfaces'
+import { CarConfigs } from '../interfaces'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -118,26 +118,25 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function Model({wheel, primaryColor, secondaryColor, internalColor, brakesColor}: CarConfig) {
+export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   const { nodes, materials } = useGLTF('/porsche/scene.gltf') as GLTFResult
 
-  const primaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: primaryColor, roughness: 0.2, metalness: 0.8 });
-  const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: secondaryColor, roughness: 0.2, metalness: 0.8 });
+  const primaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.primaryColor, roughness: 0.2, metalness: 0.8 });
+  const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor === 'carbon' ? 'white' : exteriorDesign.secondaryColor, roughness: 0.2, metalness: 0.8 });
   const wheelMaterial = new THREE.MeshStandardMaterial({ color: 'silver', roughness: 0.2, metalness: 0.8, side: THREE.DoubleSide  });
-  const braksMaterial = new THREE.MeshStandardMaterial({ color: brakesColor, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide });
+  const braksMaterial = new THREE.MeshStandardMaterial({ color: exteriorDesign.brakesColor, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide });
 
-  console.log(wheel)
 
   const [normalMap] = useLoader(THREE.TextureLoader, [
     '/textures/Leather_010_Normal.jpg',
   ])
   
-  const internalColorMaterial = new THREE.MeshStandardMaterial({ normalMap: normalMap, color: internalColor});
+  const internalColorMaterial = new THREE.MeshStandardMaterial({ normalMap: normalMap, color: interiorDesign.interiorColor});
 
   function wheelSeter(){
-    return wheel === 'originalWheel' && <mesh geometry={nodes.Object_42.geometry} material={wheelMaterial} /> 
-    || wheel === 'wheelExtra' && <Wheel /> 
-    || wheel === 'wheelExtra2' && <Wheel2 />
+    return exteriorDesign.wheel === 'originalWheel' && <mesh geometry={nodes.Object_42.geometry} material={wheelMaterial} /> 
+    || exteriorDesign.wheel === 'wheelExtra' && <Wheel /> 
+    || exteriorDesign.wheel === 'wheelExtra2' && <Wheel2 />
   }
   
   return (
@@ -149,7 +148,7 @@ export default function Model({wheel, primaryColor, secondaryColor, internalColo
         <mesh geometry={nodes.Object_12.geometry} material={materials.wire_141007058} />
         <mesh geometry={nodes.Object_13.geometry} material={materials.Base} />
 
-        {secondaryColor === 'carbon' ?<mesh geometry={nodes.Object_14.geometry} material={materials.Carbon1} /> :
+        {exteriorDesign.secondaryColor === 'carbon' ?<mesh geometry={nodes.Object_14.geometry} material={materials.Carbon1} /> :
         <mesh geometry={nodes.Object_14.geometry} material={secondaryColorMaterial} />}
 
         <mesh geometry={nodes.Object_15.geometry} material={materials.Carbon1M} />
