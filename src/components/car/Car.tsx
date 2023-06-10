@@ -7,9 +7,7 @@ import { CarConfigs } from "./interfaces";
 import { motion } from "framer-motion";
 
 export const Car = () => {
-  const [wheel, setWheel] = useState<
-    "originalWheel" | "wheelExtra" | "wheelExtra2"
-  >("originalWheel");
+  const [wheel, setWheel] = useState<"originalWheel" | "wheelExtra" | "wheelExtra2">("originalWheel");
   const [primaryColor, setPrimaryColor] = useState<string>("silver");
   const [secondaryColor, setSecondaryColor] = useState<string>("carbon");
   const [internalColor, setInternalColor] = useState<string>("black");
@@ -56,10 +54,7 @@ export const Car = () => {
           exterior design
           <motion.div
             className="arrow"
-            variants={{
-              open: { rotate: 180 },
-              closed: { rotate: 0 },
-            }}
+            variants={rotateArrowAnimation}
             transition={{ duration: 0.2 }}
             style={{ originY: 0.55 }}
           >
@@ -85,10 +80,7 @@ export const Car = () => {
           interior design
           <motion.div
             className="arrow"
-            variants={{
-              open: { rotate: 180 },
-              closed: { rotate: 0 },
-            }}
+            variants={rotateArrowAnimation}
             transition={{ duration: 0.2 }}
             style={{ originY: 0.55 }}
           >
@@ -106,26 +98,7 @@ export const Car = () => {
       <motion.div
         className="py-4 px-10 bg-white/10 absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[25rem]"
         animate={exteriorDesignToggle ? "open" : "closed"}
-        variants={{
-          open: {
-            clipPath: "inset(0% 0% 0% 0% round 10px)",
-            transition: {
-              type: "spring",
-              bounce: 0,
-              duration: 0.7,
-              delayChildren: 0.3,
-              staggerChildren: 0.05,
-            },
-          },
-          closed: {
-            clipPath: "inset(10% 50% 90% 50% round 10px)",
-            transition: {
-              type: "spring",
-              bounce: 0,
-              duration: 0.3,
-            },
-          },
-        }}
+        variants={customBlockAnimation}
       >
         <motion.div
           variants={{
@@ -143,26 +116,7 @@ export const Car = () => {
       <motion.div
         className="py-4 px-10 bg-white/10 absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[25rem]"
         animate={interiorDesignToggle ? "open" : "closed"}
-        variants={{
-          open: {
-            clipPath: "inset(0% 0% 0% 0% round 10px)",
-            transition: {
-              type: "spring",
-              bounce: 0,
-              duration: 0.7,
-              delayChildren: 0.3,
-              staggerChildren: 0.05,
-            },
-          },
-          closed: {
-            clipPath: "inset(10% 50% 90% 50% round 10px)",
-            transition: {
-              type: "spring",
-              bounce: 0,
-              duration: 0.3,
-            },
-          },
-        }}
+        variants={customBlockAnimation}
       >
         <motion.div
           variants={{
@@ -189,3 +143,29 @@ export const Car = () => {
     </div>
   );
 };
+
+const customBlockAnimation = {
+  open: {
+    clipPath: "inset(0% 0% 0% 0% round 10px)",
+    transition: {
+      type: "spring",
+      bounce: 0,
+      duration: 0.7,
+      delayChildren: 0.3,
+      staggerChildren: 0.05,
+    },
+  },
+  closed: {
+    clipPath: "inset(10% 50% 90% 50% round 10px)",
+    transition: {
+      type: "spring",
+      bounce: 0,
+      duration: 0.3,
+    },
+  },
+}
+
+const rotateArrowAnimation = {
+  open: { rotate: 180 },
+  closed: { rotate: 0 },
+}
