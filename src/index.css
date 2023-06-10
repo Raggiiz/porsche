@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "porscheregular";
+  src: url("assets/fonts/porsche_regular-webfont.woff") format("woff2"),
+    url("assets/fonts/porsche_regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -18,10 +26,30 @@ body {
     @apply font-inter uppercase font-semibold text-sm text-white/50 flex items-center cursor-pointer p-2 relative;
   }
   .btn-custom-menu .arrow {
-    @apply ml-2
+    @apply ml-2;
   }
 
-  .active-border{
-    @apply h-px border-[#E95652] absolute right-0 left-0 m-auto bottom-0
+  .active-border {
+    @apply h-px border-[#E95652] absolute right-0 left-0 m-auto bottom-0;
   }
+
+  .primary-btn {
+    @apply py-3 px-8 text-white bg-[#E2B558] w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
+  }
+  .primary-btn .arrow {
+    @apply ml-2;
+  }
+}
+
+/* .main-content{
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
+} */
+
+video::-webkit-media-controls {
+  display: none;
+}
+
+#lucid-mode-button,
+#video-detach-button {
+  display: none;
 }

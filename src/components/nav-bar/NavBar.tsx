@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   return (
-    <div className="flex justify-between items-center w-full py-4 px-10">
+    <div className="flex justify-between items-center w-full py-4 px-10 bg-white relative z-20">
       <div className="w-16 cursor-pointer">
         <Menu />
       </div>
