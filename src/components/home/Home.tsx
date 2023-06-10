@@ -3,10 +3,15 @@ import video from "../../assets/video-bg.webm";
 import ArrowRight from '../../assets/icons/arrow-right.svg'
 import { Link } from "react-router-dom";
 import CustomCar from '../../assets/custom-car.png'
+import { motion } from "framer-motion";
 
 export const Home = () => {
   return (
-    <div>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}>
       <div
         className="main-content absolute left-0 right-0 top-0 bottom-0 h-screen w-screen 
         object-cover z-10 flex flex-col justify-center bg-gradient-to-r from-[#00000066] to-50%"
@@ -63,6 +68,6 @@ export const Home = () => {
       >
         <source src={video} type="video/mp4" />
       </video>
-    </div>
+    </motion.div>
   );
 };

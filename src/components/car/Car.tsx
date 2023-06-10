@@ -40,7 +40,11 @@ export const Car = () => {
   }
 
   return (
-    <div className="w-full h-[80vh] flex justify-center bg-customize bg-no-repeat bg-contain flex-col relative">
+    <motion.div className="w-full h-[80vh] flex justify-center bg-customize bg-no-repeat bg-contain flex-col relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1  }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}>
       <div className="flex justify-center items-center w-full h-14 bg-white/10 absolute top-0 backdrop-blur-sm z-10">
         <motion.span
           className="btn-custom-menu"
@@ -140,7 +144,7 @@ export const Car = () => {
           />
         </Stage>
       </Canvas>
-    </div>
+    </motion.div>
   );
 };
 
