@@ -1,18 +1,18 @@
 import React from "react";
 import Menu from "../../assets/icons/menu.svg";
-import Logo from "../../assets/porscha-logo.png";
+import Logo from "../../assets/porscha-logo-white.png";
 import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   return (
-    <div className="flex justify-between items-center w-full py-4 px-10 bg-white relative z-20">
-      <div className="w-16 cursor-pointer">
+    <div className="flex justify-between items-center w-full py-4 px-10 bg-[#161616] relative z-20">
+      <div className="w-16 cursor-pointer text-white">
         <Menu />
       </div>
       <Link to={"/"}>
         <img className="h-10" src={Logo} alt="Logo" />
       </Link>
-      <Link to={"/customize"} className="font-space uppercase text-xs h16">
+      <Link to={"/customize"} className="font-space uppercase text-xs text-white h16">
         customize
       </Link>
     </div>
