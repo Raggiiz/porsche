@@ -69,11 +69,11 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         <meshStandardMaterial map={SteelDoor} />
       </mesh>
 
-      <group position={[6.6, 0, 3.6]} rotation-y={-Math.PI / 2}>
+      <group position={[7.259, 0, 3.6]} rotation-y={-Math.PI / 2}>
         <Workbench />
       </group>
 
-      <group rotation-y={-Math.PI / 0.8} position={[6, 0, -5]}>
+      <group rotation-y={-Math.PI / 0.8} position={[5.5, 0, -5]}>
         <Chair />
       </group>
 
