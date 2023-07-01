@@ -29,12 +29,12 @@ const rubber = new THREE.MeshPhysicalMaterial({ color: 'black', roughness: 1, me
 export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/tire/scene.gltf') as GLTFResult
   return (
-    <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 1.55]} scale={0.515}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <mesh geometry={nodes.polySurface9_RUBBER_TIRE_0.geometry} material={rubber} />
-          <mesh geometry={nodes.polySurface9_RUBBER_TIRE_0_1.geometry} material={rubber} />
-          <mesh geometry={nodes.polySurface9_RUBBER_DUST_0.geometry} material={rubber} />
+    <group {...props} dispose={null} castShadow receiveShadow>
+      <group rotation={[-Math.PI / 2, 0, 1.55]} scale={0.515} castShadow receiveShadow>
+        <group rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
+          <mesh geometry={nodes.polySurface9_RUBBER_TIRE_0.geometry} material={rubber} castShadow receiveShadow/>
+          <mesh geometry={nodes.polySurface9_RUBBER_TIRE_0_1.geometry} material={rubber} castShadow receiveShadow/>
+          <mesh geometry={nodes.polySurface9_RUBBER_DUST_0.geometry} material={rubber} castShadow receiveShadow/>
         </group>
       </group>
     </group>

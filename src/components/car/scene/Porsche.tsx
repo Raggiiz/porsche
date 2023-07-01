@@ -16,6 +16,7 @@ import Wheel from './Wheel'
 import Wheel2 from './Wheel2'
 import Tire from './Tire'
 import { CarConfigs } from '../interfaces'
+import { Garage } from './Garage'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -140,95 +141,95 @@ export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   }
   
   return (
-    <group dispose={null}>
+    <group dispose={null} position={[0, 0, 0]} scale={1.4} castShadow receiveShadow>
       
-      <group position={[0, 0, -0.92]} rotation={[1.57, 0, 0]} scale={0.33}>
-        <mesh geometry={nodes.Object_10.geometry} material={primaryColorMaterial} />
-        <mesh geometry={nodes.Object_11.geometry} material={primaryColorMaterial} />
-        <mesh geometry={nodes.Object_12.geometry} material={materials.wire_141007058} />
-        <mesh geometry={nodes.Object_13.geometry} material={materials.Base} />
+      <group position={[0, 0, -0.92]} rotation={[1.57, 0, 0]} scale={0.33} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_10.geometry} material={primaryColorMaterial} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_11.geometry} material={primaryColorMaterial} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_12.geometry} material={materials.wire_141007058} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_13.geometry} material={materials.Base} castShadow receiveShadow/>
 
-        {exteriorDesign.secondaryColor === 'carbon' ?<mesh geometry={nodes.Object_14.geometry} material={materials.Carbon1} /> :
-        <mesh geometry={nodes.Object_14.geometry} material={secondaryColorMaterial} />}
+        {exteriorDesign.secondaryColor === 'carbon' ?<mesh geometry={nodes.Object_14.geometry} material={materials.Carbon1} castShadow receiveShadow/> :
+        <mesh geometry={nodes.Object_14.geometry} material={secondaryColorMaterial} castShadow receiveShadow/>}
 
-        <mesh geometry={nodes.Object_15.geometry} material={materials.Carbon1M} />
-        <mesh geometry={nodes.Object_16.geometry} material={materials.Carbon2} />
-        <mesh geometry={nodes.Object_17.geometry} material={materials.Coloured} />
-        <mesh geometry={nodes.Object_18.geometry} material={materials.Coloured} />
-        <mesh geometry={nodes.Object_19.geometry} material={materials.Coloured} />
-        <mesh geometry={nodes.Object_20.geometry} material={materials.Spiegels} />
-        <mesh geometry={nodes.Object_21.geometry} material={materials.GlassMtl} />
-        <mesh geometry={nodes.Object_22.geometry} material={materials.GlassRedMtl} />
-        <mesh geometry={nodes.Object_23.geometry} material={materials.GlassDarkMtl} />
-        <mesh geometry={nodes.Object_24.geometry} material={materials.Grille1A} />
-        <mesh geometry={nodes.Object_25.geometry} material={materials.Grille2A} />
-        <mesh geometry={nodes.Object_26.geometry} material={materials.Grille3A} />
-        <mesh geometry={nodes.Object_27.geometry} material={materials.Grille4A} />
-        <mesh geometry={nodes.Object_28.geometry} material={materials.interior_o} />
-        <mesh geometry={nodes.Object_29.geometry} material={materials.interior} />
-        <mesh geometry={nodes.Object_30.geometry} material={materials.interior} />
-        <mesh geometry={nodes.Object_31.geometry} material={materials.color2_o} />
-        {/* <mesh geometry={nodes.Object_32.geometry} material={materials.color2} /> */}
-        <mesh geometry={nodes.Object_32.geometry} material={internalColorMaterial} />
-        <mesh geometry={nodes.Object_33.geometry} material={materials.Lights} />
-        <mesh geometry={nodes.Object_34.geometry} material={materials.Achterlichten} />
-        <mesh geometry={nodes.Object_35.geometry} material={materials.kentekenlicht} />
-        <mesh geometry={nodes.Object_36.geometry} material={materials.Angle_eye_binnen} />
-        <mesh geometry={nodes.Object_37.geometry} material={materials.Angle_eye} />
-        <mesh geometry={nodes.Object_38.geometry} material={materials.knipperlichten} />
-        <mesh geometry={nodes.Object_39.geometry} material={materials.Achterlicht_wit} />
+        <mesh geometry={nodes.Object_15.geometry} material={materials.Carbon1M} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_16.geometry} material={materials.Carbon2} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_17.geometry} material={materials.Coloured} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_18.geometry} material={materials.Coloured} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_19.geometry} material={materials.Coloured} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_20.geometry} material={materials.Spiegels} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_21.geometry} material={materials.GlassMtl} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_22.geometry} material={materials.GlassRedMtl} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_23.geometry} material={materials.GlassDarkMtl} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_24.geometry} material={materials.Grille1A} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_25.geometry} material={materials.Grille2A} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_26.geometry} material={materials.Grille3A} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_27.geometry} material={materials.Grille4A} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_28.geometry} material={materials.interior_o} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_29.geometry} material={materials.interior} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_30.geometry} material={materials.interior} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_31.geometry} material={materials.color2_o} castShadow receiveShadow/>
+        {/* <mesh geometry={nodes.Object_32.geometry} material={materials.color2} castShadow receiveShadow/> */}
+        <mesh geometry={nodes.Object_32.geometry} material={internalColorMaterial} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_33.geometry} material={materials.Lights} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_34.geometry} material={materials.Achterlichten} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_35.geometry} material={materials.kentekenlicht} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_36.geometry} material={materials.Angle_eye_binnen} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_37.geometry} material={materials.Angle_eye} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_38.geometry} material={materials.knipperlichten} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_39.geometry} material={materials.Achterlicht_wit} castShadow receiveShadow/>
       </group>
       
-      <group position={[2.93, 1.13, 3.05]} rotation={[1.57, -0.02, 0]} scale={0.33}>
-        <mesh geometry={nodes.Object_56.geometry} material={materials['Wheel1A.003']} />
-        <group position={[-1.09, 0, 0]}>
+      <group position={[2.93, 1.13, 3.05]} rotation={[1.57, -0.02, 0]} scale={0.33} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_56.geometry} material={materials['Wheel1A.003']} castShadow receiveShadow/>
+        <group position={[-1.09, 0, 0]} castShadow receiveShadow>
           <Tire />
         </group>
         {wheelSeter()}
-        <mesh geometry={nodes.Object_43.geometry} material={materials.brakes} />
+        <mesh geometry={nodes.Object_43.geometry} material={materials.brakes} castShadow receiveShadow/>
       </group>
       
-      <group position={[-2.93, 1.13, 3.05]} rotation={[1.57, 0.02, 0]} scale={[-0.33, 0.33, 0.33]}>
-        <mesh geometry={nodes.Object_56.geometry} material={materials['Wheel1A.003']} />
-        <group position={[-1.09, 0, 0]}>
+      <group position={[-2.93, 1.13, 3.05]} rotation={[1.57, 0.02, 0]} scale={[-0.33, 0.33, 0.33]} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_56.geometry} material={materials['Wheel1A.003']} castShadow receiveShadow/>
+        <group position={[-1.09, 0, 0]} castShadow receiveShadow>
           <Tire />
         </group>
         {wheelSeter()}
-        <mesh geometry={nodes.Object_47.geometry} material={materials['brakes.001']} />
+        <mesh geometry={nodes.Object_47.geometry} material={materials['brakes.001']} castShadow receiveShadow/>
       </group>
       
-      <group position={[-2.95, 1.18, -4.91]} rotation={[1.57, 0.02, 0]} scale={[-0.39, 0.34, 0.34]}>
-        <mesh geometry={nodes.Object_56.geometry} material={materials['Wheel1A.003']} />
-        <group position={[-1.09, 0, 0]}>
+      <group position={[-2.95, 1.18, -4.91]} rotation={[1.57, 0.02, 0]} scale={[-0.39, 0.34, 0.34]} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_56.geometry} material={materials['Wheel1A.003']} castShadow receiveShadow/>
+        <group position={[-1.09, 0, 0]} castShadow receiveShadow>
           <Tire />
         </group>
         {wheelSeter()}
-        <mesh geometry={nodes.Object_54.geometry} material={materials['brakes.002']} />
+        <mesh geometry={nodes.Object_54.geometry} material={materials['brakes.002']} castShadow receiveShadow/>
       </group>
-      <group position={[2.97, 1.18, -4.91]} rotation={[1.57, -0.02, 0]} scale={[0.39, 0.34, 0.34]}>
-        <mesh geometry={nodes.Object_56.geometry} material={materials['Wheel1A.003']} />
-        <group position={[-1.09, 0, 0]}>
+      <group position={[2.97, 1.18, -4.91]} rotation={[1.57, -0.02, 0]} scale={[0.39, 0.34, 0.34]} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_56.geometry} material={materials['Wheel1A.003']} castShadow receiveShadow/>
+        <group position={[-1.09, 0, 0]} castShadow receiveShadow>
           <Tire />
         </group>
         {wheelSeter()}
-        <mesh geometry={nodes.Object_58.geometry} material={materials['brakes.003']} />
+        <mesh geometry={nodes.Object_58.geometry} material={materials['brakes.003']} castShadow receiveShadow/>
       </group>
 
-      <group position={[0, 0, -0.92]} rotation={[1.57, 0, 0]} scale={[-0.33, 0.33, 0.33]}>
-        <mesh geometry={nodes.Object_49.geometry} material={braksMaterial} />
-        <mesh geometry={nodes.Object_50.geometry} material={braksMaterial} />
+      <group position={[0, 0, -0.92]} rotation={[1.57, 0, 0]} scale={[-0.33, 0.33, 0.33]} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_49.geometry} material={braksMaterial} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_50.geometry} material={braksMaterial} castShadow receiveShadow/>
       </group>
-      <group position={[0.05, 0, -0.86]} rotation={[1.57, 0, 0]} scale={[-0.32, 0.32, 0.32]}>
-        <mesh geometry={nodes.Object_60.geometry} material={braksMaterial} />
-        <mesh geometry={nodes.Object_61.geometry} material={braksMaterial} />
+      <group position={[0.05, 0, -0.86]} rotation={[1.57, 0, 0]} scale={[-0.32, 0.32, 0.32]} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_60.geometry} material={braksMaterial} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_61.geometry} material={braksMaterial} castShadow receiveShadow/>
       </group>
-      <group position={[0, 0, -0.92]} rotation={[1.57, 0, 0]} scale={0.33}>
-        <mesh geometry={nodes.Object_4.geometry} material={braksMaterial} />
-        <mesh geometry={nodes.Object_5.geometry} material={braksMaterial} />
+      <group position={[0, 0, -0.92]} rotation={[1.57, 0, 0]} scale={0.33} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_4.geometry} material={braksMaterial} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_5.geometry} material={braksMaterial} castShadow receiveShadow/>
       </group>
-      <group position={[-0.03, 0, -0.86]} rotation={[1.57, 0, 0]} scale={0.32}>
-        <mesh geometry={nodes.Object_7.geometry} material={braksMaterial} />
-        <mesh geometry={nodes.Object_8.geometry} material={braksMaterial} />
+      <group position={[-0.03, 0, -0.86]} rotation={[1.57, 0, 0]} scale={0.32} castShadow receiveShadow>
+        <mesh geometry={nodes.Object_7.geometry} material={braksMaterial} castShadow receiveShadow/>
+        <mesh geometry={nodes.Object_8.geometry} material={braksMaterial} castShadow receiveShadow/>
       </group>
     </group>
   )

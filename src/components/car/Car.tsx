@@ -1,10 +1,17 @@
-import React, { useState } from "react";
-import { OrbitControls, Stage } from "@react-three/drei";
+import React, { useMemo, useRef, useState } from "react";
+import { OrbitControls, Stage, useHelper } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Porsche from "./scene/Porsche";
 import ArrowDown from "../../assets/icons/arrow-down.svg";
 import { CarConfigs } from "./interfaces";
 import { motion } from "framer-motion";
+import { Garage } from "./scene/Garage";
+import { DirectionalLightHelper, PointLightHelper, SpotLightHelper } from "three";
+import Room from "./scene/Room";
+import Warehouse from "./scene/Warehouse";
+import * as THREE from 'three'
+import Wareroom from "./scene/Wareroom";
+import { InteriorGarage } from "./scene/InteriorGarage";
 
 export const Car = () => {
   const [wheel, setWheel] = useState<"originalWheel" | "wheelExtra" | "wheelExtra2">("originalWheel");
@@ -39,13 +46,15 @@ export const Car = () => {
     setInteriorDesignToggle(!interiorDesignToggle);
   }
 
+  
+
   return (
-    <motion.div className="w-full h-[80vh] flex justify-center bg-customize bg-no-repeat bg-contain flex-col relative"
+    <motion.div className="w-full h-[calc(100vh-72px)] bg-[#e4f3f5] flex justify-center flex-col relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1  }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}>
-      <div className="flex justify-center items-center w-full h-14 bg-white/10 absolute top-0 backdrop-blur-sm z-10">
+      <div className="flex justify-center items-center w-full h-14 bg-black/70 absolute top-0 backdrop-blur-sm z-10">
         <motion.span
           className="btn-custom-menu"
           onClick={activeExterior}
@@ -135,18 +144,56 @@ export const Car = () => {
           Internal
         </motion.div>
       </motion.div>
-      <Canvas>
-        <Stage environment={"city"}>
+      <Canvas shadows >
+        <Stage environment={"night"} intensity={0.5} castShadow adjustCamera>
           <OrbitControls />
           <Porsche
             exteriorDesign={configs.exteriorDesign}
             interiorDesign={configs.interiorDesign}
           />
+          <Lights />
+          
+          {/* <Garage /> */}
+          {/* <Room /> */}
+          {/* <Warehouse /> */}
+          {/* <Wareroom /> */}
+          <InteriorGarage />
         </Stage>
       </Canvas>
     </motion.div>
   );
 };
+
+export const Lights = () => {
+  const pointLightRef = useRef<any>(null);
+  useHelper(pointLightRef, PointLightHelper, 1, "red");
+
+  const directionalRef = useRef<any>(null);
+  useHelper(directionalRef, DirectionalLightHelper, 1)
+
+  const spotLightHelper = useRef<any>(null);
+  useHelper(spotLightHelper, SpotLightHelper, 1)
+
+  const spotlight = useMemo(() => new THREE.SpotLight('#ede7d3'), []);
+
+  return (
+    <>
+      {/* <pointLight position={[0,8,5]} intensity={1} castShadow ref={pointLightRef}/> */}
+      {/* <directionalLight position={[0,18,0]} intensity={0.5} castShadow ref={directionalRef}/> */}
+      {/* <spotLight position={[0,18,0]} intensity={0.7} angle={0.8} castShadow penumbra={1} ref={spotLightHelper} /> */}
+
+      <group>
+        <primitive
+          object={spotlight}
+          position={[0,14,0]} intensity={1} angle={1} castShadow penumbra={0.9} ref={spotLightHelper}
+          shadow-radius={10}
+          shadow-bias={-0.0001}
+          />
+        <primitive object={spotlight.target} position={[0, 0, 0]} />
+      </group>
+    </>
+  )
+}
 
 const customBlockAnimation = {
   open: {

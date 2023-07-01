@@ -1,0 +1,83 @@
+import React from "react";
+import TireRack from "./TireRack";
+import { useLoader } from "@react-three/fiber";
+import textureWall from "../../../../public/textures/grunge-wall-texture.jpg";
+import textureFloor from "../../../../public/textures/old-grunge-concrete.jpg";
+import textureBrick from "../../../../public/textures/bricks.jpg";
+import textureBrickGraffiti from "../../../../public/textures/brick-graffiti.jpg";
+import steelDoor from "../../../../public/textures/steeldoor.jpg";
+import roof from "../../../../public/textures/roof.jpg";
+import * as THREE from "three";
+import Lamp from "./Lamp";
+
+export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
+  const textureWall1 = useLoader(THREE.TextureLoader, textureWall);
+  const textureFloor1 = useLoader(THREE.TextureLoader, textureFloor);
+  const textureBricks = useLoader(THREE.TextureLoader, textureBrick);
+  const textureBricksGraffiti = useLoader(THREE.TextureLoader, textureBrickGraffiti);
+
+  const SteelDoor = useLoader(THREE.TextureLoader, steelDoor);
+  const Roof = useLoader(THREE.TextureLoader, roof);
+  return (
+    <group {...props} dispose={null} scale={3} receiveShadow>
+      <mesh position={[0, 2.5, -7]} receiveShadow castShadow>
+        <planeGeometry args={[15, 5]} />
+        <meshStandardMaterial map={textureWall1} />
+      </mesh>
+
+      <mesh
+        position={[-7.3, 2.5, 0]}
+        rotation={[-Math.PI / 1, 1.565, 0]}
+        receiveShadow
+        castShadow>
+        <planeGeometry args={[15, 5]} />
+        <meshStandardMaterial map={textureBricksGraffiti} />
+      </mesh>
+
+      <mesh
+        position={[7.3, 2.5, 0]}
+        rotation={[-Math.PI / 1, -1.565, 0]}
+        receiveShadow
+        castShadow>
+        <planeGeometry args={[15, 5]} />
+        <meshStandardMaterial map={textureBricks} />
+      </mesh>
+
+      <mesh
+        position={[0, 2.5, 7]}
+        rotation={[-Math.PI / 1, 0, 0]}
+        receiveShadow
+        castShadow>
+        <planeGeometry args={[15, 5]} />
+        <meshStandardMaterial map={SteelDoor} />
+      </mesh>
+
+      <group position={[6.8, 0, 0]}>
+        <TireRack />
+      </group>
+
+      <mesh
+        position={[0, 0, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        castShadow
+        receiveShadow>
+        <planeGeometry args={[15, 15]} />
+        <meshStandardMaterial map={textureFloor1} />
+      </mesh>
+
+    <group position={[0, 5, 0]}>
+        <Lamp />
+    </group>
+      
+
+      <mesh
+        position={[0, 5, 0]}
+        rotation={[-Math.PI / -2, 0, 0]}
+        castShadow
+        receiveShadow>
+        <planeGeometry args={[15, 15]} />
+        <meshStandardMaterial map={Roof} />
+      </mesh>
+    </group>
+  );
+};
