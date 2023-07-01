@@ -9,12 +9,18 @@ import steelDoor from "../../../../public/textures/steeldoor.jpg";
 import roof from "../../../../public/textures/roof.jpg";
 import * as THREE from "three";
 import Lamp from "./Lamp";
+import HangingLight from "./HangingLight";
+import Workbench from "./Workbench";
+import Chair from "./Chair";
 
 export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
   const textureWall1 = useLoader(THREE.TextureLoader, textureWall);
   const textureFloor1 = useLoader(THREE.TextureLoader, textureFloor);
   const textureBricks = useLoader(THREE.TextureLoader, textureBrick);
-  const textureBricksGraffiti = useLoader(THREE.TextureLoader, textureBrickGraffiti);
+  const textureBricksGraffiti = useLoader(
+    THREE.TextureLoader,
+    textureBrickGraffiti
+  );
 
   const SteelDoor = useLoader(THREE.TextureLoader, steelDoor);
   const Roof = useLoader(THREE.TextureLoader, roof);
@@ -29,7 +35,8 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         position={[-7.3, 2.5, 0]}
         rotation={[-Math.PI / 1, 1.565, 0]}
         receiveShadow
-        castShadow>
+        castShadow
+      >
         <planeGeometry args={[15, 5]} />
         <meshStandardMaterial map={textureBricksGraffiti} />
       </mesh>
@@ -38,7 +45,8 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         position={[7.3, 2.5, 0]}
         rotation={[-Math.PI / 1, -1.565, 0]}
         receiveShadow
-        castShadow>
+        castShadow
+      >
         <planeGeometry args={[15, 5]} />
         <meshStandardMaterial map={textureBricks} />
       </mesh>
@@ -47,34 +55,56 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         position={[0, 2.5, 7]}
         rotation={[-Math.PI / 1, 0, 0]}
         receiveShadow
-        castShadow>
+        castShadow
+      >
         <planeGeometry args={[15, 5]} />
         <meshStandardMaterial map={SteelDoor} />
       </mesh>
 
-      <group position={[6.8, 0, 0]}>
+      <group position={[6.6, 0, 5]}>
         <TireRack />
+      </group>
+
+      <group rotation-y={-Math.PI / 2} position={[7.3, 0, 0]}>
+        <Workbench />
+      </group>
+
+      <group rotation-y={-Math.PI / 0.8} position={[6, 0, -5]}>
+        <Chair />
       </group>
 
       <mesh
         position={[0, 0, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         castShadow
-        receiveShadow>
+        receiveShadow
+      >
         <planeGeometry args={[15, 15]} />
         <meshStandardMaterial map={textureFloor1} />
       </mesh>
 
-    <group position={[0, 5, 0]}>
+      <group position={[0, 5, 0]}>
         <Lamp />
-    </group>
-      
+      </group>
+
+      <group position={[6.6, 4, -5]} scale={0.15}>
+        <HangingLight />
+      </group>
+
+      <group position={[6.6, 4, 0]} scale={0.15}>
+        <HangingLight />
+      </group>
+
+      <group position={[6.6, 4, 5]} scale={0.15}>
+        <HangingLight />
+      </group>
 
       <mesh
         position={[0, 5, 0]}
         rotation={[-Math.PI / -2, 0, 0]}
         castShadow
-        receiveShadow>
+        receiveShadow
+      >
         <planeGeometry args={[15, 15]} />
         <meshStandardMaterial map={Roof} />
       </mesh>

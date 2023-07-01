@@ -7,31 +7,39 @@ Source: https://sketchfab.com/3d-models/hanging-lamp-3aaa2376dec14c3fa2579b34d43
 Title: Hanging Lamp
 */
 
-import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import * as THREE from "three";
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
+import { GLTF } from "three-stdlib";
 
 type GLTFResult = GLTF & {
   nodes: {
-    defaultMaterial: THREE.Mesh
-  }
+    defaultMaterial: THREE.Mesh;
+  };
   materials: {
-    lambert1: THREE.MeshStandardMaterial
-  }
-}
+    lambert1: THREE.MeshStandardMaterial;
+  };
+};
 
-export default function Lamp(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/lamp/scene.gltf') as GLTFResult
+export default function Lamp(props: JSX.IntrinsicElements["group"]) {
+  const { nodes, materials } = useGLTF("/lamp/scene.gltf") as GLTFResult;
   return (
     <group {...props} dispose={null} scale={0.025}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
-          <mesh geometry={nodes.defaultMaterial.geometry} material={materials.lambert1} rotation={[-Math.PI / 2, 0, 0]} />
+          <mesh position={[0, -32, 0]}>
+            <sphereGeometry args={[3]} />
+            <meshStandardMaterial color={"white"} />
+          </mesh>
+          <mesh
+            geometry={nodes.defaultMaterial.geometry}
+            material={materials.lambert1}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/lamp/scene.gltf')
+useGLTF.preload("/lamp/scene.gltf");

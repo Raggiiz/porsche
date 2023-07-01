@@ -24,9 +24,9 @@ type GLTFResult = GLTF & {
 export default function TireRack(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/tire_rack/scene.gltf') as GLTFResult
   return (
-    <group {...props} dispose={null} position={[0,0,0]}>
-      <group scale={0.013} >
-        <group rotation={[-Math.PI / 2, 0, 0]} >
+    <group {...props} dispose={null} position={[0,0,0]} castShadow receiveShadow>
+      <group scale={0.013} castShadow receiveShadow>
+        <group rotation={[-Math.PI / 2, 0, 0]} castShadow receiveShadow>
           <mesh geometry={nodes['TireRack_low_Material_#0_0'].geometry} material={materials.Material_0} position={[0, 0, 44.16]} castShadow receiveShadow/>
         </group>
       </group>

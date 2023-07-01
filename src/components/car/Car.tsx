@@ -145,7 +145,7 @@ export const Car = () => {
         </motion.div>
       </motion.div>
       <Canvas shadows >
-        <Stage environment={"night"} intensity={0.5} castShadow adjustCamera>
+        {/* <Stage environment={"night"} intensity={0.001} preset={'rembrandt'} castShadow adjustCamera > */}
           <OrbitControls />
           <Porsche
             exteriorDesign={configs.exteriorDesign}
@@ -158,7 +158,7 @@ export const Car = () => {
           {/* <Warehouse /> */}
           {/* <Wareroom /> */}
           <InteriorGarage />
-        </Stage>
+        {/* </Stage> */}
       </Canvas>
     </motion.div>
   );
@@ -175,21 +175,54 @@ export const Lights = () => {
   useHelper(spotLightHelper, SpotLightHelper, 1)
 
   const spotlight = useMemo(() => new THREE.SpotLight('#ede7d3'), []);
+  const spotlight2 = useMemo(() => new THREE.SpotLight('#ede7d3'), []);
+  const spotlight3 = useMemo(() => new THREE.SpotLight('#ede7d3'), []);
+  const spotlight4 = useMemo(() => new THREE.SpotLight('#ede7d3'), []);
 
   return (
     <>
       {/* <pointLight position={[0,8,5]} intensity={1} castShadow ref={pointLightRef}/> */}
       {/* <directionalLight position={[0,18,0]} intensity={0.5} castShadow ref={directionalRef}/> */}
       {/* <spotLight position={[0,18,0]} intensity={0.7} angle={0.8} castShadow penumbra={1} ref={spotLightHelper} /> */}
-
+      <ambientLight intensity={0.2}/>
       <group>
         <primitive
           object={spotlight}
-          position={[0,14,0]} intensity={1} angle={1} castShadow penumbra={0.9} ref={spotLightHelper}
+          position={[0,14,0]} intensity={1.5} angle={1} castShadow penumbra={0.9}
           shadow-radius={10}
           shadow-bias={-0.0001}
           />
         <primitive object={spotlight.target} position={[0, 0, 0]} />
+      </group>
+
+      <group>
+        <primitive
+          object={spotlight2}
+          position={[19,14,15]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
+          shadow-radius={10}
+          shadow-bias={-0.0001}
+          />
+        <primitive object={spotlight2.target} position={[19,-4,15]} />
+      </group>
+
+      <group>
+        <primitive
+          object={spotlight3}
+          position={[19,14,0]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
+          shadow-radius={10}
+          shadow-bias={-0.0001}
+          />
+        <primitive object={spotlight3.target} position={[19,-4,0]} />
+      </group>
+
+      <group>
+        <primitive
+          object={spotlight4}
+          position={[19,14,-15]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
+          shadow-radius={10}
+          shadow-bias={-0.0001}
+          />
+        <primitive object={spotlight4.target} position={[19,-4,-15]} />
       </group>
     </>
   )
