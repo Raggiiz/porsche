@@ -233,13 +233,12 @@ export const Lights = () => {
 
       <group>
         <primitive
-          object={spotlight8}
+          object={spotlight9}
           position={[13,14,-15]} intensity={0.5} angle={0.9} castShadow penumbra={0.9}
           shadow-radius={10}
           shadow-bias={-0.0001}
-          ref={spotLightHelper}
           />
-        <primitive object={spotlight8.target} position={[13,-4,-15]} />
+        <primitive object={spotlight9.target} position={[13,-4,-15]} />
       </group>
 
       <group>

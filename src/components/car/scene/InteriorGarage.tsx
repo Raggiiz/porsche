@@ -14,6 +14,7 @@ import Workbench from "./Workbench";
 import Chair from "./Chair";
 import Cabinet from "./Cabinet";
 import Vendor from "./Vendor";
+import Arcade from "./Arcade";
 
 export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
   const textureWall1 = useLoader(THREE.TextureLoader, textureWall);
@@ -81,6 +82,10 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
 
       <group position={[-3.5, 0, -6.5]} scale={0.025}>
         <Vendor />
+      </group>
+
+      <group position={[-7, 0, 5]} scale={0.015}>
+        <Arcade />
       </group>
 
       <mesh
