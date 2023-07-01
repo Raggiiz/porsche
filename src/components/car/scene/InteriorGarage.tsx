@@ -45,7 +45,7 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         <meshStandardMaterial map={textureBricksGraffiti} />
       </mesh>
 
-      <group scale={1.43} position={[-7.25,1.6,-4]}>
+      <group scale={1.46} position={[-7.25,1.6,-4]}>
         <Door />
       </group>
 
