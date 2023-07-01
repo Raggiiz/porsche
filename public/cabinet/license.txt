@@ -1,0 +1,11 @@
+Model Information:
+* title:	Old School Cabinet
+* source:	https://sketchfab.com/3d-models/old-school-cabinet-af9c49cdc47e4eb2bcdd24b631ae4808
+* author:	NghiaNguyeen (https://sketchfab.com/kiroy2002)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Old School Cabinet" (https://sketchfab.com/3d-models/old-school-cabinet-af9c49cdc47e4eb2bcdd24b631ae4808) by NghiaNguyeen (https://sketchfab.com/kiroy2002) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

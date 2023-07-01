@@ -12,6 +12,8 @@ import Lamp from "./Lamp";
 import HangingLight from "./HangingLight";
 import Workbench from "./Workbench";
 import Chair from "./Chair";
+import Cabinet from "./Cabinet";
+import Vendor from "./Vendor";
 
 export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
   const textureWall1 = useLoader(THREE.TextureLoader, textureWall);
@@ -73,6 +75,14 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         <Chair />
       </group>
 
+      <group position={[-6, 1.4, -7]} scale={0.65}>
+        <Cabinet />
+      </group>
+
+      <group position={[-3.5, 0, -6.5]} scale={0.025}>
+        <Vendor />
+      </group>
+
       <mesh
         position={[0, 0, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -96,6 +106,27 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
       </group>
 
       <group position={[6.6, 4, 5]} scale={0.15}>
+        <HangingLight />
+      </group>
+
+
+      <group position={[4, 4, -5]} scale={0.15} rotation-y={-Math.PI / 2}>
+        <HangingLight />
+      </group>
+
+      <group position={[-4, 4, -5]} scale={0.15} rotation-y={-Math.PI / 2}>
+        <HangingLight />
+      </group>
+
+      <group position={[-6.6, 4, -5]} scale={0.15}>
+        <HangingLight />
+      </group>
+
+      <group position={[-6.6, 4, 0]} scale={0.15}>
+        <HangingLight />
+      </group>
+
+      <group position={[-6.6, 4, 5]} scale={0.15}>
         <HangingLight />
       </group>
 
