@@ -15,6 +15,7 @@ import Chair from "./Chair";
 import Cabinet from "./Cabinet";
 import Vendor from "./Vendor";
 import Arcade from "./Arcade";
+import Door from "./Door";
 
 export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
   const textureWall1 = useLoader(THREE.TextureLoader, textureWall);
@@ -44,6 +45,10 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         <meshStandardMaterial map={textureBricksGraffiti} />
       </mesh>
 
+      <group scale={1.43} position={[-7.25,1.6,-4]}>
+        <Door />
+      </group>
+
       <mesh
         position={[7.3, 2.5, 0]}
         rotation={[-Math.PI / 1, -1.565, 0]}
@@ -64,11 +69,7 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         <meshStandardMaterial map={SteelDoor} />
       </mesh>
 
-      <group position={[6.6, 0, 5]}>
-        <TireRack />
-      </group>
-
-      <group rotation-y={-Math.PI / 2} position={[7.3, 0, 0]}>
+      <group position={[6.6, 0, 3.6]} rotation-y={-Math.PI / 2}>
         <Workbench />
       </group>
 
@@ -84,7 +85,7 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         <Vendor />
       </group>
 
-      <group position={[-7, 0, 5]} scale={0.015}>
+      <group position={[-7, 0, 4.2]} scale={0.18}>
         <Arcade />
       </group>
 
@@ -102,15 +103,7 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         <Lamp />
       </group>
 
-      <group position={[6.6, 4, -5]} scale={0.15}>
-        <HangingLight />
-      </group>
-
-      <group position={[6.6, 4, 0]} scale={0.15}>
-        <HangingLight />
-      </group>
-
-      <group position={[6.6, 4, 5]} scale={0.15}>
+      <group position={[6.6, 4, 4]} scale={0.15}>
         <HangingLight />
       </group>
 
@@ -123,15 +116,7 @@ export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
         <HangingLight />
       </group>
 
-      <group position={[-6.6, 4, -5]} scale={0.15}>
-        <HangingLight />
-      </group>
-
-      <group position={[-6.6, 4, 0]} scale={0.15}>
-        <HangingLight />
-      </group>
-
-      <group position={[-6.6, 4, 5]} scale={0.15}>
+      <group position={[-6.6, 4, 4]} scale={0.15}>
         <HangingLight />
       </group>
 

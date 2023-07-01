@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from "react";
-import { OrbitControls, Stage, useHelper } from "@react-three/drei";
+import { Environment, OrbitControls, Stage, useHelper } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Porsche from "./scene/Porsche";
 import ArrowDown from "../../assets/icons/arrow-down.svg";
@@ -12,6 +12,7 @@ import Warehouse from "./scene/Warehouse";
 import * as THREE from 'three'
 import Wareroom from "./scene/Wareroom";
 import { InteriorGarage } from "./scene/InteriorGarage";
+import { Perf } from "r3f-perf";
 
 export const Car = () => {
   const [wheel, setWheel] = useState<"originalWheel" | "wheelExtra" | "wheelExtra2">("originalWheel");
@@ -109,7 +110,7 @@ export const Car = () => {
         </motion.span>
       </div>
       <motion.div
-        className="py-4 px-10 bg-white/10 absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[25rem]"
+        className="py-4 px-10 bg-black/70 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[25rem]"
         animate={exteriorDesignToggle ? "open" : "closed"}
         variants={customBlockAnimation}
       >
@@ -127,7 +128,7 @@ export const Car = () => {
         </motion.div>
       </motion.div>
       <motion.div
-        className="py-4 px-10 bg-white/10 absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[25rem]"
+        className="py-4 px-10 bg-black/70 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[25rem]"
         animate={interiorDesignToggle ? "open" : "closed"}
         variants={customBlockAnimation}
       >
@@ -145,20 +146,19 @@ export const Car = () => {
         </motion.div>
       </motion.div>
       <Canvas shadows >
-        {/* <Stage environment={"night"} intensity={0.001} preset={'rembrandt'} castShadow adjustCamera > */}
+        <Perf position="bottom-left" />
           <OrbitControls />
+          <Environment
+              files={'dikhololo_night_4k.hdr'}
+              path={'/public/textures/'}
+            />
           <Porsche
             exteriorDesign={configs.exteriorDesign}
             interiorDesign={configs.interiorDesign}
           />
           <Lights />
           
-          {/* <Garage /> */}
-          {/* <Room /> */}
-          {/* <Warehouse /> */}
-          {/* <Wareroom /> */}
           <InteriorGarage />
-        {/* </Stage> */}
       </Canvas>
     </motion.div>
   );
@@ -188,9 +188,9 @@ export const Lights = () => {
   return (
     <>
       {/* <pointLight position={[0,8,5]} intensity={1} castShadow ref={pointLightRef}/> */}
-      {/* <directionalLight position={[0,18,0]} intensity={0.5} castShadow ref={directionalRef}/> */}
+      {/* <directionalLight intensity={0.5} castShadow ref={directionalRef}/> */}
       {/* <spotLight position={[0,18,0]} intensity={0.7} angle={0.8} castShadow penumbra={1} ref={spotLightHelper} /> */}
-      <ambientLight intensity={0.2}/>
+      {/* <ambientLight intensity={0.1}/> */}
       <group>
         <primitive
           object={spotlight}
@@ -204,37 +204,17 @@ export const Lights = () => {
       <group>
         <primitive
           object={spotlight2}
-          position={[19,14,15]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
+          position={[19,14,13]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
           shadow-radius={10}
           shadow-bias={-0.0001}
           />
-        <primitive object={spotlight2.target} position={[19,-4,15]} />
-      </group>
-
-      <group>
-        <primitive
-          object={spotlight3}
-          position={[19,14,0]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
-          shadow-radius={10}
-          shadow-bias={-0.0001}
-          />
-        <primitive object={spotlight3.target} position={[19,-4,0]} />
-      </group>
-
-      <group>
-        <primitive
-          object={spotlight4}
-          position={[19,14,-15]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
-          shadow-radius={10}
-          shadow-bias={-0.0001}
-          />
-        <primitive object={spotlight4.target} position={[19,-4,-15]} />
+        <primitive object={spotlight2.target} position={[19,-4,13]} />
       </group>
 
       <group>
         <primitive
           object={spotlight9}
-          position={[13,14,-15]} intensity={0.5} angle={0.9} castShadow penumbra={0.9}
+          position={[13,14,-15]} intensity={0.7} angle={0.9} castShadow penumbra={0.9}
           shadow-radius={10}
           shadow-bias={-0.0001}
           />
@@ -244,37 +224,17 @@ export const Lights = () => {
       <group>
         <primitive
           object={spotlight5}
-          position={[-19,14,15]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
+          position={[-19,14,13]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
           shadow-radius={10}
           shadow-bias={-0.0001}
           />
-        <primitive object={spotlight5.target} position={[-19,-4,15]} />
-      </group>
-
-      <group>
-        <primitive
-          object={spotlight6}
-          position={[-19,14,0]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
-          shadow-radius={10}
-          shadow-bias={-0.0001}
-          />
-        <primitive object={spotlight6.target} position={[-19,-4,0]} />
-      </group>
-
-      <group>
-        <primitive
-          object={spotlight7}
-          position={[-19,14,-15]} intensity={0.7} angle={0.6} castShadow penumbra={0.9}
-          shadow-radius={10}
-          shadow-bias={-0.0001}
-          />
-        <primitive object={spotlight7.target} position={[-19,-4,-15]} />
+        <primitive object={spotlight5.target} position={[-19,-4,13]} />
       </group>
 
       <group>
         <primitive
           object={spotlight8}
-          position={[-13,14,-15]} intensity={0.5} angle={0.9} castShadow penumbra={0.9}
+          position={[-13,14,-15]} intensity={0.7} angle={0.9} castShadow penumbra={0.9}
           shadow-radius={10}
           shadow-bias={-0.0001}
           />
