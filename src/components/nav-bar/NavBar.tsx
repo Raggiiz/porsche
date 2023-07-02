@@ -1,5 +1,6 @@
 import React from "react";
 import Menu from "../../assets/icons/menu.svg";
+import Profile from "../../assets/icons/profile.svg";
 import Logo from "../../assets/porscha-logo-white.png";
 import { Link } from "react-router-dom";
 
@@ -12,9 +13,9 @@ export const NavBar = () => {
       <Link to={"/"}>
         <img className="h-10" src={Logo} alt="Logo" />
       </Link>
-      <Link to={"/customize"} className="font-space uppercase text-xs text-white h16">
-        customize
-      </Link>
+      <div className="cursor-pointer text-white">
+        <Profile />
+      </div>
     </div>
   );
 };
