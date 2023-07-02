@@ -16,7 +16,6 @@ import Wheel from './Wheel'
 import Wheel2 from './Wheel2'
 import Tire from './Tire'
 import { CarConfigs } from '../interfaces'
-import { Garage } from './Garage'
 
 type GLTFResult = GLTF & {
   nodes: {

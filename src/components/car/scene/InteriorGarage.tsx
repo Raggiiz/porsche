@@ -1,5 +1,4 @@
 import React from "react";
-import TireRack from "./TireRack";
 import { useLoader } from "@react-three/fiber";
 import textureWall from "../../../../public/textures/grunge-wall-texture.jpg";
 import textureFloor from "../../../../public/textures/old-grunge-concrete.jpg";
