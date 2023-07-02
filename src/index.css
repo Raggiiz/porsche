@@ -61,3 +61,22 @@ video::-webkit-media-controls {
   display: none;
 }
 
+.yellowGradient{
+  background: linear-gradient(180deg, #E6EA21 0%, #D9B32C 49.48%, #E8D316 49.49%, #DFCC1B 100%);
+  border-color: #E2B558;
+}
+
+.redGradient{
+  background: linear-gradient(180deg, #EA2121 0%, #D92C56 49.48%, #AA2545 49.49%, #EE193F 100%);
+  border-color: #E2B558;
+}
+
+.blueGradient{
+  background: linear-gradient(180deg, #154C9E 0%, #06F 49.48%, #144B9C 49.49%, #1444C0 100%);
+  border-color: #E2B558;
+}
+
+.silverGradient{
+  background: linear-gradient(180deg, #B9B9B9 0%, #D9D9D9 49.48%, #B4B4B4 49.49%, #B8B8B8 100%);
+  border-color: #E2B558;
+}

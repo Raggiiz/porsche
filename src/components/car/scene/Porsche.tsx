@@ -141,7 +141,7 @@ export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   }
   
   return (
-    <group dispose={null} position={[0, 0, 0]} scale={1.4} castShadow >
+    <group dispose={null} position={[0, 0, 0]} scale={1.5} castShadow >
       
       <group position={[0, 0, -0.92]} rotation={[1.57, 0, 0]} scale={0.335} castShadow >
         <mesh geometry={nodes.Object_10.geometry} material={primaryColorMaterial} castShadow />

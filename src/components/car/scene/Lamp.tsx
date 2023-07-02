@@ -29,7 +29,7 @@ export default function Lamp(props: JSX.IntrinsicElements["group"]) {
         <group rotation={[Math.PI / 2, 0, 0]}>
           <mesh position={[0, -32, 0]}>
             <sphereGeometry args={[3]} />
-            <meshStandardMaterial color={"white"} emissive={[1, 1, 1]}/>
+            <meshBasicMaterial color={"#f5e8b0"}/>
           </mesh>
           <mesh
             geometry={nodes.defaultMaterial.geometry}
