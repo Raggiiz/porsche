@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/customize" element={<Car />} />
         </Routes>
-        </AnimatePresence>
+      </AnimatePresence>
       </div>
     </>
   );

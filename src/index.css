@@ -86,8 +86,42 @@ video::-webkit-media-controls {
   border-color: #E2B558;
 }
 
+.greenGradient{
+  background: linear-gradient(180deg, #19795C 0%, #165643 49.48%, #187A5D 49.49%, #136D52 100%);
+  border-color: #E2B558;
+}
+
+.limeGradient{
+  background: linear-gradient(180deg, #28B125 0%, #38FF17 49.48%, #3BD22E 49.49%, #5BEB17 100%);
+  border-color: #E2B558;
+}
+
 .carbonGradient{
   background: url(../public/textures/carbon.jpg);
+  background-size: cover;
+  border-color: #E2B558;
+}
+
+.blackLeatherGradient{
+  background: url(../public/textures/black-leather.png);
+  background-size: cover;
+  border-color: #E2B558;
+}
+
+.lightLeatherGradient{
+  background: url(../public/textures/light-leather.png);
+  background-size: cover;
+  border-color: #E2B558;
+}
+
+.coffeeLeatherGradient{
+  background: url(../public/textures/coffee-leather.png);
+  background-size: cover;
+  border-color: #E2B558;
+}
+
+.greyLeatherGradient{
+  background: url(../public/textures/grey-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }

@@ -121,8 +121,8 @@ type GLTFResult = GLTF & {
 export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   const { nodes, materials } = useGLTF('/porsche/scene.gltf') as GLTFResult
 
-  const primaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.primaryColor, roughness: 0.2, metalness: 0.8 });
-  const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor === 'carbon' ? 'white' : exteriorDesign.secondaryColor, roughness: 0.2, metalness: 0.8 });
+  const primaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.primaryColor, roughness: 0.2, metalness: exteriorDesign.primaryColor === '#ffee05' || exteriorDesign.primaryColor === '#1a6dd9' ? 0.2 : 0.8 });
+  const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor === 'carbon' ? 'white' : exteriorDesign.secondaryColor, roughness: 0.2, metalness: exteriorDesign.secondaryColor === '#ffee05' || exteriorDesign.secondaryColor === '#1a6dd9' ? 0.2 : 0.8 });
   const wheelMaterial = new THREE.MeshStandardMaterial({ color: 'silver', roughness: 0.2, metalness: 0.8, side: THREE.DoubleSide  });
   const braksMaterial = new THREE.MeshStandardMaterial({ color: exteriorDesign.brakesColor, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide });
 
@@ -135,7 +135,7 @@ export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   // normalMap.offset.set(1, 1);
 
   
-  const internalColorMaterial = new THREE.MeshStandardMaterial({ color: '#593915' });
+  const internalColorMaterial = new THREE.MeshStandardMaterial({ color: interiorDesign.interiorColor });
 
   function wheelSeter(){
     return exteriorDesign.wheel === 'originalWheel' && <mesh geometry={nodes.Object_42.geometry} material={wheelMaterial} /> 
