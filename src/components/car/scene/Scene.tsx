@@ -1,7 +1,7 @@
 import { Environment, OrbitControls, useHelper } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import {
   PointLightHelper,
   DirectionalLightHelper,
@@ -10,23 +10,38 @@ import {
 import * as THREE from "three";
 import { InteriorGarage } from "./InteriorGarage";
 import Porsche from "./Porsche";
+import External from "./External";
 
 export const Scene = ({ configs }: any) => {
+  const spotlight = useMemo(() => new THREE.PointLight("#fff"), []);
+  const [internalEnvironment, setInternalEnvironment] = useState(false);
+
   return (
     <Canvas shadows>
       <Perf position="bottom-left" />
       <OrbitControls />
       <Environment
-        files={"dikhololo_night_4k.hdr"}
-        path={"/public/textures/"}
+        files={`/public/textures/${
+          internalEnvironment
+            ? "dikhololo_night_4k.hdr"
+            : "rolling_hills_4k.hdr"
+        }`}
+        background={!internalEnvironment}
       />
+
       <Porsche
         exteriorDesign={configs.exteriorDesign}
         interiorDesign={configs.interiorDesign}
       />
-      <Lights />
 
-      <InteriorGarage />
+      {internalEnvironment ? (
+        <>
+          <Lights />
+          <InteriorGarage />
+        </>
+      ) : (
+        <External />
+      )}
     </Canvas>
   );
 };
