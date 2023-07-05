@@ -1,7 +1,7 @@
 import { Environment, OrbitControls, useHelper } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
-import React, { useMemo, useRef, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import {
   PointLightHelper,
   DirectionalLightHelper,
@@ -16,30 +16,32 @@ export const Scene = ({ configs, interiorEnvironment }: any) => {
 
   return (
     <Canvas shadows>
-      <Perf position="bottom-left" />
-      <OrbitControls />
-      <Environment
-        files={`/public/textures/${
-          interiorEnvironment
-            ? "dikhololo_night_4k.hdr"
-            : "rolling_hills_4k.hdr"
-        }`}
-        background={!interiorEnvironment}
-      />
+      <Suspense fallback={null}>
+        <Perf position="bottom-left" />
+        <OrbitControls />
+        <Environment
+          files={`/public/textures/${
+            interiorEnvironment
+              ? "dikhololo_night_4k.hdr"
+              : "rolling_hills_4k.hdr"
+          }`}
+          background={!interiorEnvironment}
+        />
 
-      <Porsche
-        exteriorDesign={configs.exteriorDesign}
-        interiorDesign={configs.interiorDesign}
-      />
+        <Porsche
+          exteriorDesign={configs.exteriorDesign}
+          interiorDesign={configs.interiorDesign}
+        />
 
-      {interiorEnvironment ? (
-        <>
-          <Lights />
-          <InteriorGarage />
-        </>
-      ) : (
-        <External />
-      )}
+        {interiorEnvironment ? (
+          <>
+            <Lights />
+            <InteriorGarage />
+          </>
+        ) : (
+          <External />
+        )}
+      </Suspense>
     </Canvas>
   );
 };

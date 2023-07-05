@@ -121,10 +121,10 @@ type GLTFResult = GLTF & {
 export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   const { nodes, materials } = useGLTF('/porsche/scene.gltf') as GLTFResult
 
-  const primaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.primaryColor, roughness: 0.2, metalness: exteriorDesign.primaryColor === '#ffee05' || exteriorDesign.primaryColor === '#1a6dd9' ? 0.2 : 0.8 });
-  const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor === 'carbon' ? 'white' : exteriorDesign.secondaryColor, roughness: 0.2, metalness: exteriorDesign.secondaryColor === '#ffee05' || exteriorDesign.secondaryColor === '#1a6dd9' ? 0.2 : 0.8 });
+  const primaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.primaryColor.value, roughness: 0.2, metalness: exteriorDesign.primaryColor.value === '#ffee05' || exteriorDesign.primaryColor.value === '#1a6dd9' ? 0.2 : 0.8 });
+  const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor.value === 'carbon' ? 'white' : exteriorDesign.secondaryColor.value, roughness: 0.2, metalness: exteriorDesign.secondaryColor.value === '#ffee05' || exteriorDesign.secondaryColor.value === '#1a6dd9' ? 0.2 : 0.8 });
   const wheelMaterial = new THREE.MeshStandardMaterial({ color: 'silver', roughness: 0.2, metalness: 0.8, side: THREE.DoubleSide  });
-  const braksMaterial = new THREE.MeshStandardMaterial({ color: exteriorDesign.brakesColor, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide });
+  const braksMaterial = new THREE.MeshStandardMaterial({ color: exteriorDesign.brakesColor.value, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide });
 
 
   // const normalMap = useLoader(THREE.TextureLoader, 
@@ -135,12 +135,12 @@ export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   // normalMap.offset.set(1, 1);
 
   
-  const internalColorMaterial = new THREE.MeshStandardMaterial({ color: interiorDesign.interiorColor });
+  const internalColorMaterial = new THREE.MeshStandardMaterial({ color: interiorDesign.leatherColor.value });
 
   function wheelSeter(){
-    return exteriorDesign.wheel === 'originalWheel' && <mesh geometry={nodes.Object_42.geometry} material={wheelMaterial} /> 
-    || exteriorDesign.wheel === 'wheelExtra' && <Wheel /> 
-    || exteriorDesign.wheel === 'wheelExtra2' && <Wheel2 />
+    return exteriorDesign.wheelType.value === 'Original' && <mesh geometry={nodes.Object_42.geometry} material={wheelMaterial} /> 
+    || exteriorDesign.wheelType.value === 'Type 01' && <Wheel /> 
+    || exteriorDesign.wheelType.value === 'Type 02' && <Wheel2 />
   }
   
   return (
@@ -152,7 +152,7 @@ export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
         <mesh geometry={nodes.Object_12.geometry} material={materials.wire_141007058} castShadow />
         <mesh geometry={nodes.Object_13.geometry} material={materials.Base} castShadow />
 
-        {exteriorDesign.secondaryColor === 'carbon' ?<mesh geometry={nodes.Object_14.geometry} material={materials.Carbon1} castShadow /> :
+        {exteriorDesign.secondaryColor.value === 'carbon' ?<mesh geometry={nodes.Object_14.geometry} material={materials.Carbon1} castShadow /> :
         <mesh geometry={nodes.Object_14.geometry} material={secondaryColorMaterial} castShadow />}
 
         <mesh geometry={nodes.Object_15.geometry} material={materials.Carbon1M} castShadow />

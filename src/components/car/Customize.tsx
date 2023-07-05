@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ArrowDown from "../../assets/icons/arrow-down.svg";
-import { CarConfigs } from "./interfaces";
+import { CarConfigs, Item } from "./interfaces";
 import { AnimatePresence, motion } from "framer-motion";
 import { Scene } from "./scene/Scene";
 import PrimaryColor from "../../assets/icons/primary-color.svg";
@@ -9,15 +9,14 @@ import Wheels from "../../assets/icons/wheels.svg";
 import Brakes from "../../assets/icons/brakes.svg";
 import ArrowBack from "../../assets/icons/back-arrow.svg";
 import { Summary } from "./Summary";
+import { primaryColorOptions, leatherOptions, secondaryColorOptions, wheelOptions, brakeColorOptions } from "./carConfigs";
 
 export const Car = () => {
-  const [wheel, setWheel] = useState<
-    "originalWheel" | "wheelExtra" | "wheelExtra2"
-  >("originalWheel");
-  const [primaryColor, setPrimaryColor] = useState<string>("#ededed");
-  const [secondaryColor, setSecondaryColor] = useState<string>("carbon");
-  const [internalColor, setInternalColor] = useState<string>("#c7b695");
-  const [brakesColor, setBrakeColor] = useState<string>("#12ff4d");
+  const [wheel, setWheel] = useState<Item>(wheelOptions.original);
+  const [primaryColor, setPrimaryColor] = useState<Item>(primaryColorOptions.silver);
+  const [secondaryColor, setSecondaryColor] = useState<Item>(secondaryColorOptions.carbon);
+  const [leatherColor, setLeatherColor] = useState<Item>(leatherOptions.lightLeather);
+  const [brakesColor, setBrakeColor] = useState<Item>(brakeColorOptions.green);
 
   const [exteriorDesignToggle, setExteriorDesignToggle] = useState(false);
   const [interiorDesignToggle, setInteriorDesignToggle] = useState(false);
@@ -28,12 +27,12 @@ export const Car = () => {
     exteriorDesign: {
       primaryColor: primaryColor,
       secondaryColor: secondaryColor,
-      wheel: wheel,
+      wheelType: wheel,
       brakesColor: brakesColor,
       active: exteriorDesignToggle,
     },
     interiorDesign: {
-      interiorColor: internalColor,
+      leatherColor: leatherColor,
       active: interiorDesignToggle,
     },
   };
@@ -51,7 +50,7 @@ export const Car = () => {
     setSelectedExterior(null);
   }
 
-  const handleUpdateEnviroment = (data: any) => {
+  const handleUpdateEnviroment = (data: boolean) => {
     setInteriorEnvironment(data)
   };
 
@@ -191,44 +190,44 @@ export const Car = () => {
                     >
                       <motion.div
                         className={`flex h-12 w-6 silverGradient cursor-pointer ${
-                          primaryColor === "#ededed" ? "border-b-4" : ""
+                          primaryColor === primaryColorOptions.silver ? "border-b-4" : ""
                         }`}
-                        onClick={() => setPrimaryColor("#ededed")}
+                        onClick={() => setPrimaryColor(primaryColorOptions.silver)}
                         variants={upItem}
                       ></motion.div>
                       <motion.div
                         className={`flex h-12 w-6 blackGradient cursor-pointer ${
-                          primaryColor === "#000" ? "border-b-4" : ""
+                          primaryColor === primaryColorOptions.black ? "border-b-4" : ""
                         }`}
-                        onClick={() => setPrimaryColor("#000")}
+                        onClick={() => setPrimaryColor(primaryColorOptions.black)}
                         variants={upItem}
                       ></motion.div>
                       <motion.div
                         className={`flex h-12 w-6 blueGradient cursor-pointer ${
-                          primaryColor === "#1a6dd9" ? "border-b-4" : ""
+                          primaryColor === primaryColorOptions.blue ? "border-b-4" : ""
                         }`}
-                        onClick={() => setPrimaryColor("#1a6dd9")}
+                        onClick={() => setPrimaryColor(primaryColorOptions.blue)}
                         variants={upItem}
                       ></motion.div>
                       <motion.div
                         className={`flex h-12 w-6 redGradient cursor-pointer ${
-                          primaryColor === "#ff3838" ? "border-b-4" : ""
+                          primaryColor === primaryColorOptions.red ? "border-b-4" : ""
                         }`}
-                        onClick={() => setPrimaryColor("#ff3838")}
+                        onClick={() => setPrimaryColor(primaryColorOptions.red)}
                         variants={upItem}
                       ></motion.div>
                       <motion.div
                         className={`flex h-12 w-6 yellowGradient cursor-pointer ${
-                          primaryColor === "#ffee05" ? "border-b-4" : ""
+                          primaryColor === primaryColorOptions.yellow ? "border-b-4" : ""
                         }`}
-                        onClick={() => setPrimaryColor("#ffee05")}
+                        onClick={() => setPrimaryColor(primaryColorOptions.yellow )}
                         variants={upItem}
                       ></motion.div>
                       <motion.div
                         className={`flex h-12 w-6 greenGradient cursor-pointer ${
-                          primaryColor === "#228067" ? "border-b-4" : ""
+                          primaryColor === primaryColorOptions.green  ? "border-b-4" : ""
                         }`}
-                        onClick={() => setPrimaryColor("#228067")}
+                        onClick={() => setPrimaryColor(primaryColorOptions.green)}
                         variants={upItem}
                       ></motion.div>
                     </motion.div>
@@ -247,39 +246,39 @@ export const Car = () => {
                     <motion.div className="flex justify-between mt-4 w-[25rem]">
                       <motion.div
                         className={`h-12 w-6 carbonGradient cursor-pointer ${
-                          secondaryColor === "carbon" ? "border-b-4" : ""
+                          secondaryColor === secondaryColorOptions.carbon ? "border-b-4" : ""
                         }`}
-                        onClick={() => setSecondaryColor("carbon")}
+                        onClick={() => setSecondaryColor(secondaryColorOptions.carbon)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 silverGradient cursor-pointer ${
-                          secondaryColor === "#ededed" ? "border-b-4" : ""
+                          secondaryColor === secondaryColorOptions.silver ? "border-b-4" : ""
                         }`}
-                        onClick={() => setSecondaryColor("#ededed")}
+                        onClick={() => setSecondaryColor(secondaryColorOptions.silver)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 blueGradient cursor-pointer ${
-                          secondaryColor === "#1a6dd9" ? "border-b-4" : ""
+                          secondaryColor === secondaryColorOptions.blue ? "border-b-4" : ""
                         }`}
-                        onClick={() => setSecondaryColor("#1a6dd9")}
+                        onClick={() => setSecondaryColor(secondaryColorOptions.blue)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 redGradient cursor-pointer ${
-                          secondaryColor === "#ff3838" ? "border-b-4" : ""
+                          secondaryColor === secondaryColorOptions.red ? "border-b-4" : ""
                         }`}
-                        onClick={() => setSecondaryColor("#ff3838")}
+                        onClick={() => setSecondaryColor(secondaryColorOptions.red)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 yellowGradient cursor-pointer ${
-                          secondaryColor === "#ffee05" ? "border-b-4" : ""
+                          secondaryColor === secondaryColorOptions.yellow ? "border-b-4" : ""
                         }`}
-                        onClick={() => setSecondaryColor("#ffee05")}
+                        onClick={() => setSecondaryColor(secondaryColorOptions.yellow)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 greenGradient cursor-pointer ${
-                          secondaryColor === "#228067" ? "border-b-4" : ""
+                          secondaryColor === secondaryColorOptions.green ? "border-b-4" : ""
                         }`}
-                        onClick={() => setSecondaryColor("#228067")}
+                        onClick={() => setSecondaryColor(secondaryColorOptions.green)}
                       ></motion.div>
                     </motion.div>
                   </div>
@@ -299,8 +298,8 @@ export const Car = () => {
                   <div className="w-full flex justify-center">
                     <motion.div className="flex justify-between mt-4 w-[25rem]">
                       <motion.div
-                        className="font-space text-xs cursor-pointer"
-                        onClick={() => setWheel("originalWheel")}
+                        className={`${wheel === wheelOptions.original && 'border-b-4 border-[#E2B558]'} font-space text-xs cursor-pointer pb-1`}
+                        onClick={() => setWheel(wheelOptions.original)}
                       >
                         <div className="mb-2">
                           <Wheels />
@@ -308,8 +307,8 @@ export const Car = () => {
                         Original
                       </motion.div>
                       <motion.div
-                        className="font-space text-xs cursor-pointer"
-                        onClick={() => setWheel("wheelExtra")}
+                        className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type01 && 'border-b-4 border-[#E2B558]'} pb-1`}
+                        onClick={() => setWheel(wheelOptions.type01)}
                       >
                         <div className="mb-2">
                           <Wheels />
@@ -317,8 +316,8 @@ export const Car = () => {
                         Type 01
                       </motion.div>
                       <motion.div
-                        className="font-space text-xs cursor-pointer"
-                        onClick={() => setWheel("wheelExtra2")}
+                        className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type02 && 'border-b-4 border-[#E2B558]'} pb-1`}
+                        onClick={() => setWheel(wheelOptions.type02)}
                       >
                         <div className="mb-2">
                           <Wheels />
@@ -341,33 +340,33 @@ export const Car = () => {
                     <motion.div className="flex justify-between mt-4 w-[25rem]">
                       <motion.div
                         className={`h-12 w-6 limeGradient cursor-pointer ${
-                          brakesColor === "#12ff4d" ? "border-b-4" : ""
+                          brakesColor === brakeColorOptions.green ? "border-b-4" : ""
                         }`}
-                        onClick={() => setBrakeColor("#12ff4d")}
+                        onClick={() => setBrakeColor(brakeColorOptions.green)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 blueGradient cursor-pointer ${
-                          brakesColor === "#1a6dd9" ? "border-b-4" : ""
+                          brakesColor === brakeColorOptions.blue ? "border-b-4" : ""
                         }`}
-                        onClick={() => setBrakeColor("#1a6dd9")}
+                        onClick={() => setBrakeColor(brakeColorOptions.blue)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 redGradient cursor-pointer ${
-                          brakesColor === "#ff3838" ? "border-b-4" : ""
+                          brakesColor === brakeColorOptions.red ? "border-b-4" : ""
                         }`}
-                        onClick={() => setBrakeColor("#ff3838")}
+                        onClick={() => setBrakeColor(brakeColorOptions.red)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 yellowGradient cursor-pointer ${
-                          brakesColor === "#ffee05" ? "border-b-4" : ""
+                          brakesColor === brakeColorOptions.yellow ? "border-b-4" : ""
                         }`}
-                        onClick={() => setBrakeColor("#ffee05")}
+                        onClick={() => setBrakeColor(brakeColorOptions.yellow)}
                       ></motion.div>
                       <motion.div
                         className={`h-12 w-6 blackGradient cursor-pointer ${
-                          brakesColor === "#000" ? "border-b-4" : ""
+                          brakesColor === brakeColorOptions.black ? "border-b-4" : ""
                         }`}
-                        onClick={() => setBrakeColor("#000")}
+                        onClick={() => setBrakeColor(brakeColorOptions.black)}
                       ></motion.div>
                     </motion.div>
                   </div>
@@ -387,30 +386,30 @@ export const Car = () => {
             <motion.div className="flex justify-between mt-4" variants={upItem} animate={"open"}>
               <motion.div
                 className={`flex h-12 w-6 coffeeLeatherGradient cursor-pointer ${
-                  internalColor === "#593915" ? "border-b-4" : ""
+                  leatherColor === leatherOptions.coffeeLeather? "border-b-4" : ""
                 }`}
-                onClick={() => setInternalColor("#593915")}
+                onClick={() => setLeatherColor(leatherOptions.coffeeLeather)}
                 variants={upItem}
               ></motion.div>
               <motion.div
                 className={`flex h-12 w-6 lightLeatherGradient cursor-pointer ${
-                  internalColor === "#c7b695" ? "border-b-4" : ""
+                  leatherColor === leatherOptions.lightLeather ? "border-b-4" : ""
                 }`}
-                onClick={() => setInternalColor("#c7b695")}
+                onClick={() => setLeatherColor(leatherOptions.lightLeather)}
                 variants={upItem}
               ></motion.div>
               <motion.div
                 className={`flex h-12 w-6 greyLeatherGradient cursor-pointer ${
-                  internalColor === "#9c9a95" ? "border-b-4" : ""
+                  leatherColor === leatherOptions.greyLeather ? "border-b-4" : ""
                 }`}
-                onClick={() => setInternalColor("#9c9a95")}
+                onClick={() => setLeatherColor(leatherOptions.greyLeather)}
                 variants={upItem}
               ></motion.div>
               <motion.div
                 className={`flex h-12 w-6 blackLeatherGradient cursor-pointer ${
-                  internalColor === "#1a1a1a" ? "border-b-4" : ""
+                  leatherColor === leatherOptions.blackLeather ? "border-b-4" : ""
                 }`}
-                onClick={() => setInternalColor("#1a1a1a")}
+                onClick={() => setLeatherColor(leatherOptions.blackLeather)}
                 variants={upItem}
               ></motion.div>
             </motion.div>

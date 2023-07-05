@@ -4,14 +4,19 @@ export interface CarConfigs {
 }
 
 export interface ExteriorDesign {
-    wheel: "originalWheel" | "wheelExtra" | "wheelExtra2",
-    primaryColor: string,
-    secondaryColor: string,
-    brakesColor: string,
+    wheelType: Item,
+    primaryColor: Item,
+    secondaryColor: Item,
+    brakesColor: Item,
     active?: boolean
 }
 
 export interface InteriorDesign {
-    interiorColor: string,
+    leatherColor: Item,
     active?: boolean
+}
+
+export interface Item {
+    value: string,
+    price: number
 }
