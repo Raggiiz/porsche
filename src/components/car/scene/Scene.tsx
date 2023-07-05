@@ -12,9 +12,7 @@ import { InteriorGarage } from "./InteriorGarage";
 import Porsche from "./Porsche";
 import External from "./External";
 
-export const Scene = ({ configs }: any) => {
-  const spotlight = useMemo(() => new THREE.PointLight("#fff"), []);
-  const [internalEnvironment, setInternalEnvironment] = useState(false);
+export const Scene = ({ configs, interiorEnvironment }: any) => {
 
   return (
     <Canvas shadows>
@@ -22,11 +20,11 @@ export const Scene = ({ configs }: any) => {
       <OrbitControls />
       <Environment
         files={`/public/textures/${
-          internalEnvironment
+          interiorEnvironment
             ? "dikhololo_night_4k.hdr"
             : "rolling_hills_4k.hdr"
         }`}
-        background={!internalEnvironment}
+        background={!interiorEnvironment}
       />
 
       <Porsche
@@ -34,7 +32,7 @@ export const Scene = ({ configs }: any) => {
         interiorDesign={configs.interiorDesign}
       />
 
-      {internalEnvironment ? (
+      {interiorEnvironment ? (
         <>
           <Lights />
           <InteriorGarage />

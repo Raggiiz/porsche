@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import "./App.css";
 import { Home } from "./components/home/Home";
 import { NavBar } from "./components/nav-bar/NavBar";
-import { Car } from "./components/car/Car";
+import { Car } from "./components/car/Customize";
 import { AnimatePresence } from 'framer-motion';
 
 function App() {
