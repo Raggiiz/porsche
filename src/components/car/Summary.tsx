@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 export const Summary = ({handleUpdateEnviroment}: any) => {
   const [internal, setInternal] = useState(false);
 
-  function updateInternal(test: boolean) {
-    console.log(test)
-    handleUpdateEnviroment(test)
-    setInternal(test)
+  function updateInternal(data: boolean) {
+    setInternal(data)
+    handleUpdateEnviroment(data)
   }
 
   return (
