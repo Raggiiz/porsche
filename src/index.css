@@ -125,3 +125,8 @@ video::-webkit-media-controls {
   background-size: cover;
   border-color: #E2B558;
 }
+
+.icon-holder svg{
+  height: 13px;
+  width: fit-content;
+}

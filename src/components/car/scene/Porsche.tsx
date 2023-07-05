@@ -122,7 +122,7 @@ export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   const { nodes, materials } = useGLTF('/porsche/scene.gltf') as GLTFResult
 
   const primaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.primaryColor.value, roughness: 0.2, metalness: exteriorDesign.primaryColor.value === '#ffee05' || exteriorDesign.primaryColor.value === '#1a6dd9' ? 0.2 : 0.8 });
-  const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor.value === 'carbon' ? 'white' : exteriorDesign.secondaryColor.value, roughness: 0.2, metalness: exteriorDesign.secondaryColor.value === '#ffee05' || exteriorDesign.secondaryColor.value === '#1a6dd9' ? 0.2 : 0.8 });
+  const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor.value, roughness: 0.2, metalness: exteriorDesign.secondaryColor.value === '#ffee05' || exteriorDesign.secondaryColor.value === '#1a6dd9' ? 0.2 : 0.8 });
   const wheelMaterial = new THREE.MeshStandardMaterial({ color: 'silver', roughness: 0.2, metalness: 0.8, side: THREE.DoubleSide  });
   const braksMaterial = new THREE.MeshStandardMaterial({ color: exteriorDesign.brakesColor.value, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide });
 
