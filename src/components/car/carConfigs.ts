@@ -1,3 +1,5 @@
+export const carPrice = 200000
+
 export const leatherOptions = {
     coffeeLeather: {
         value: '#593915',

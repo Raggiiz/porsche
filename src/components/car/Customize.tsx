@@ -416,7 +416,7 @@ export const Car = () => {
           </motion.div>
           <Scene configs={configs} interiorEnvironment={interiorEnvironment}/>
         </div>
-        <Summary handleUpdateEnviroment={handleUpdateEnviroment}/>
+        <Summary handleUpdateEnviroment={handleUpdateEnviroment} configs={configs}/>
       </div>
     </motion.div>
   );
