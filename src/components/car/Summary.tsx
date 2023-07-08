@@ -66,8 +66,8 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
       <div className="flex flex-col w-[214px]">
         <strong className="font-inter font-semibold uppercase">view</strong>
         <div className="flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer">
-          <div className={`rounded-s-[10px] border border-[#E2B558] ${internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(true)}>interior</div>
-          <div className={`rounded-e-[10px] border border-[#E2B558] ${!internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(false)}>exterior</div>
+          <div className={`flex justify-center rounded-s-[10px] w-full border border-[#E2B558] ${internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
+          <div className={`flex justify-center rounded-e-[10px] w-full border border-[#E2B558] ${!internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(false)}>road</div>
         </div>
       </div>
       <div className="flex flex-col w-[214px] mt-14">
@@ -86,7 +86,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
                 </div>
                 <div className="flex flex-col pl-4">
                   <small className="font-space text-[10px]">Primary color</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.primaryColor.price}</span>
+                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.primaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                 </div>
               </div>
               <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.primaryColor.value)}`}></div>
@@ -98,7 +98,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
                 </div>
                 <div className="flex flex-col pl-4">
                   <small className="font-space text-[10px]">Secondary color</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.secondaryColor.price}</span>
+                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.secondaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                 </div>
               </div>
               <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.secondaryColor.value)}`}></div>
@@ -110,7 +110,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
                 </div>
                 <div className="flex flex-col pl-4">
                   <small className="font-space text-[10px]">Wheel type</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.wheelType.price}</span>
+                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.wheelType.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                 </div>
               </div>
               <div className="font-space text-[8px]">{configs.exteriorDesign.wheelType.value}</div>
@@ -122,7 +122,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
                 </div>
                 <div className="flex flex-col pl-4">
                   <small className="font-space text-[10px]">Brake color</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.brakesColor.price}</span>
+                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.brakesColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                 </div>
               </div>
               <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.brakesColor.value)}`}></div>
@@ -143,7 +143,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
                 </div>
                 <div className="flex flex-col pl-4">
                   <small className="font-space text-[10px]">Leather color</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.interiorDesign.leatherColor.price}</span>
+                  <span className="text-[#E2B558] font-space text-xs">$ {configs.interiorDesign.leatherColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                 </div>
               </div>
               <div className={`w-4 h-8 ${getGradient(configs.interiorDesign.leatherColor.value)}`}></div>
@@ -155,13 +155,13 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
         <strong className="font-inter font-semibold uppercase">total</strong>
         <div className="flex flex-col text-[#7D7D7D] font-space mt-1">
           <div className="flex justify-between">
-            <small className="text-xs">Car</small><small className="text-xs">$ {carPrice}</small>
+            <small className="text-xs">Car</small><small className="text-xs">$ {carPrice.toLocaleString('en-us', { minimumFractionDigits: 2 })}</small>
           </div>
           <div className="flex justify-between">
             <small className="text-xs">Configurations</small>
-            <small className="text-xs">$ {getConfigsPrice()}</small>
+            <small className="text-xs">$ {getConfigsPrice().toLocaleString('en-us', { minimumFractionDigits: 2 })}</small>
           </div>
-          <span className="text-[#E2B558] text-xl mt-1 text-end">$ {getConfigsPrice() + carPrice}</span>
+          <span className="text-[#E2B558] text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
         </div>
       </div>
       <div className="primary-btn mt-6">Send to dealer</div>

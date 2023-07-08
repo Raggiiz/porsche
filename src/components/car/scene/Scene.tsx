@@ -1,4 +1,9 @@
-import { Environment, OrbitControls, useHelper } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  PerspectiveCamera,
+  useHelper,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
@@ -13,12 +18,18 @@ import Porsche from "./Porsche";
 import External from "./External";
 
 export const Scene = ({ configs, interiorEnvironment }: any) => {
-
   return (
     <Canvas shadows>
       <Suspense fallback={null}>
         <Perf position="bottom-left" />
-        <OrbitControls />
+        <OrbitControls enableZoom={false} maxPolarAngle={Math.PI * 0.45}/>
+        <PerspectiveCamera
+          makeDefault
+          fov={70}
+          position={[0, 11, 20]}
+          matrixWorldAutoUpdate={undefined}
+          getObjectsByProperty={undefined}
+        />
         <Environment
           files={`/public/textures/${
             interiorEnvironment
