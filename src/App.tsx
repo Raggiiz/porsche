@@ -1,23 +1,29 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
 import { Home } from "./components/home/Home";
 import { NavBar } from "./components/nav-bar/NavBar";
-import { Car } from "./components/car/Customize";
-import { AnimatePresence } from 'framer-motion';
+import { Configurator } from "./components/configurator/Configurator";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
-
   const location = useLocation();
   return (
     <>
       <NavBar />
       <div className="w-full overflow-x-hidden">
-      <AnimatePresence>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/customize" element={<Car />} />
-        </Routes>
-      </AnimatePresence>
+        <AnimatePresence>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Navigate to="/911-gt2" />} />
+            <Route path="/911-gt2" element={<Home />} />
+            <Route path="/911-gt2/configurator" element={<Configurator />} />
+          </Routes>
+        </AnimatePresence>
       </div>
     </>
   );

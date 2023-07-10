@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import video from "../../assets/video-bg.webm";
 import ArrowRight from "../../assets/icons/arrow-right.svg";
 import Cup from "../../assets/icons/cup.svg";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import CustomCar from "../../assets/custom-car.png";
 import { motion } from "framer-motion";
 
@@ -28,7 +28,7 @@ export const Home = () => {
                 passion. Every curve, every acceleration is a unique and
                 unforgettable experience.
               </p>
-              <Link to={"/customize"} className="primary-btn mt-6">
+              <Link to={"/911-gt2/configurator"} className="primary-btn mt-6">
                 Customize vehicle
                 <div className="arrow">
                   <ArrowRight />

@@ -3,6 +3,7 @@ import Menu from "../../assets/icons/menu.svg";
 import Profile from "../../assets/icons/profile.svg";
 import Logo from "../../assets/porscha-logo-white.png";
 import { Link } from "react-router-dom";
+import { SideBar } from "./SideBar";
 
 export const NavBar = () => {
   return (
@@ -16,6 +17,7 @@ export const NavBar = () => {
       <div className="cursor-pointer text-white">
         <Profile />
       </div>
+      {/* <SideBar /> */}
     </div>
   );
 };
