@@ -17,7 +17,7 @@ import Arcade from "./Arcade";
 import Door from "./Door";
 import { Lights } from "./Lights";
 
-export const InteriorGarage = (props: JSX.IntrinsicElements["group"]) => {
+export const Garage = (props: JSX.IntrinsicElements["group"]) => {
   const textureWall1 = useLoader(THREE.TextureLoader, textureWall);
   const textureFloor1 = useLoader(THREE.TextureLoader, textureFloor);
   const textureBricks = useLoader(THREE.TextureLoader, textureBrick);

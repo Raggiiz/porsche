@@ -58,8 +58,8 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function External(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('public/models/externalEnvironment/scene.gltf') as GLTFResult
+export default function Road(props: JSX.IntrinsicElements['group']) {
+  const { nodes, materials } = useGLTF('/models/externalEnvironment/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null} position={[520,18.3,480]} rotation-z={-Math.PI / -30}>
       <group scale={0.0084}>
@@ -91,4 +91,4 @@ export default function External(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('public/models/externalEnvironment/scene.gltf')
+useGLTF.preload('/models/externalEnvironment/scene.gltf')

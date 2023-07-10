@@ -27,7 +27,7 @@ type GLTFResult = GLTF & {
 const rubber = new THREE.MeshPhysicalMaterial({ color: 'black', roughness: 1, metalness: 0 });
 
 export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('models/tire/scene.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('/models/tire/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null} castShadow receiveShadow>
       <group rotation={[-Math.PI / 2, 0, 1.55]} scale={0.515} castShadow receiveShadow>
@@ -41,4 +41,4 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/tire/scene.gltf')
+useGLTF.preload('/models/tire/scene.gltf')

@@ -36,7 +36,7 @@ type GLTFActions = Record<ActionName, THREE.AnimationAction>
 
 export default function Arcade(props: JSX.IntrinsicElements['group']) {
   const group = useRef<any>()
-  const { nodes, materials, animations } = useGLTF('models/arcade/scene.gltf') as GLTFResult
+  const { nodes, materials, animations } = useGLTF('/models/arcade/scene.gltf') as GLTFResult
   // const { actions } = useAnimations<GLTFActions>(animations, group)
   return (
     <group ref={group} {...props} dispose={null}>
@@ -79,4 +79,4 @@ export default function Arcade(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/arcade/scene.gltf')
+useGLTF.preload('/models/arcade/scene.gltf')

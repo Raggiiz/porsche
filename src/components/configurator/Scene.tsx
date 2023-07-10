@@ -12,8 +12,8 @@ import {
   DirectionalLightHelper,
   SpotLightHelper,
 } from "three";
-import External from "./road/External";
-import { InteriorGarage } from "./garage/InteriorGarage";
+import Road from "./road/Road";
+import { Garage } from "./garage/Garage";
 import Porsche from "./car/Porsche";
 
 export const Scene = ({ configs, interiorEnvironment }: any) => {
@@ -43,7 +43,7 @@ export const Scene = ({ configs, interiorEnvironment }: any) => {
           interiorDesign={configs.interiorDesign}
         />
 
-        {interiorEnvironment ? <InteriorGarage /> : <External />}
+        {interiorEnvironment ? <Garage /> : <Road />}
       </Suspense>
     </Canvas>
   );

@@ -32,7 +32,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function HangingLight(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('models/lamp2/scene.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('/models/lamp2/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <group scale={0.01} rotation-y={-Math.PI / 2}>
@@ -52,4 +52,4 @@ export default function HangingLight(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/lamp2/scene.gltf')
+useGLTF.preload('/models/lamp2/scene.gltf')

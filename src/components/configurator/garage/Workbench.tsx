@@ -25,7 +25,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function Workbench(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('models/workbench/scene.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('/models/workbench/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null} scale={0.014} castShadow receiveShadow>
       <group rotation={[-Math.PI / 2, 0, 0]} castShadow receiveShadow>
@@ -40,4 +40,4 @@ export default function Workbench(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/workbench/scene.gltf')
+useGLTF.preload('/models/workbench/scene.gltf')

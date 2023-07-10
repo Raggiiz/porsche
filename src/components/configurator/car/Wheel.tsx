@@ -22,7 +22,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function Wheel(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('models/wheel/scene.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('/models/wheel/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null} scale={0.029}>
       <mesh geometry={nodes.Wheel06LowPoly_Wheel06_0.geometry} material={materials['Wheel.06']} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
@@ -30,4 +30,4 @@ export default function Wheel(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/wheel/scene.gltf')
+useGLTF.preload('/models/wheel/scene.gltf')

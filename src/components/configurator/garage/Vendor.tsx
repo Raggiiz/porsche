@@ -24,7 +24,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function Vendor(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('models/vendor_machine/scene.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('/models/vendor_machine/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={6} castShadow receiveShadow>
@@ -35,4 +35,4 @@ export default function Vendor(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/vendor_machine/scene.gltf')
+useGLTF.preload('/models/vendor_machine/scene.gltf')

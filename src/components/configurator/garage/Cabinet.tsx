@@ -24,7 +24,7 @@ type GLTFResult = GLTF & {
 };
 
 export default function Cabinet(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("models/cabinet/scene.gltf") as GLTFResult;
+  const { nodes, materials } = useGLTF("/models/cabinet/scene.gltf") as GLTFResult;
   return (
     <group {...props} dispose={null} castShadow >
       <group scale={0.01} castShadow >
@@ -56,4 +56,4 @@ export default function Cabinet(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("models/cabinet/scene.gltf");
+useGLTF.preload("/models/cabinet/scene.gltf");

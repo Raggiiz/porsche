@@ -22,7 +22,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function Door(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('models/door/scene.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('/models/door/scene.gltf') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Door_low002_Door_0.geometry} material={materials.Door} rotation={[-Math.PI / 2, 0, 0]} scale={1}/>
@@ -30,4 +30,4 @@ export default function Door(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('models/door/scene.gltf')
+useGLTF.preload('/models/door/scene.gltf')
