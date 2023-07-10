@@ -19,7 +19,7 @@
 body {
   width: 100vw;
   overflow-x: hidden;
-  background-color: #ececec;
+  background-color: #161616;
 }
 
 @layer components {

@@ -18,9 +18,9 @@ import Porsche from "./car/Porsche";
 
 export const Scene = ({ configs, interiorEnvironment }: any) => {
   return (
-    <Canvas shadows>
+    <Canvas shadows style={{ background: "#161616" }}>
       <Suspense fallback={null}>
-        <Perf position="bottom-left" />
+        {/* <Perf position="bottom-left" /> */}
         <OrbitControls enableZoom={false} maxPolarAngle={Math.PI * 0.45} />
         <PerspectiveCamera
           makeDefault

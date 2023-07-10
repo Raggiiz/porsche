@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowDown from "../../assets/icons/arrow-down.svg";
 import { CarConfigs, Item } from "./interfaces";
 import { AnimatePresence, motion } from "framer-motion";
@@ -10,6 +10,8 @@ import Brakes from "../../assets/icons/brakes.svg";
 import ArrowBack from "../../assets/icons/back-arrow.svg";
 import { Summary } from "./Summary";
 import { primaryColorOptions, leatherOptions, secondaryColorOptions, wheelOptions, brakeColorOptions } from "./carConfigs";
+import { useProgress } from "@react-three/drei";
+import { Loader } from "./Loader";
 
 export const Configurator = () => {
   const [wheel, setWheel] = useState<Item>(wheelOptions.original);
@@ -53,6 +55,8 @@ export const Configurator = () => {
   const handleUpdateEnviroment = (data: boolean) => {
     setInteriorEnvironment(data)
   };
+
+  const { progress } = useProgress();
 
   return (
     <motion.div
@@ -414,7 +418,12 @@ export const Configurator = () => {
               ></motion.div>
             </motion.div>
           </motion.div>
-          <Scene configs={configs} interiorEnvironment={interiorEnvironment}/>
+          {
+            progress === 100 || progress === 0 ? 
+            <Scene configs={configs} interiorEnvironment={interiorEnvironment}/>
+            : 
+            <Loader progress={progress}/>
+          }
         </div>
         <Summary handleUpdateEnviroment={handleUpdateEnviroment} configs={configs}/>
       </div>
