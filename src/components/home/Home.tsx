@@ -36,26 +36,17 @@ export const Home = () => {
               </Link>
             </div>
             <div className="flex w-1/2 justify-center">
-              <div className="all-slider relative">
-                <div className="clip-path bg-[#0000004D] backdrop-blur-md rounded-[10px] p-5 text-white">
-                  <strong className="font-space uppercase text-base">
-                    meet the custom
-                    <br />
-                    plataform
-                  </strong>
-                  <img src={CustomCar} alt="" className="h-14 my-4" />
-                  <p className="w-60 text-xs font-montserrat">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incidid unt ut labore et dolore magna
-                    aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod tempor incidid unt ut labore et dolore
-                    magna aliqua.
-                  </p>
-                </div>
-                <div className="flex absolute top-[6%] right-2">
-                  <div className="h-4 w-7 bg-[#E2B558] rounded-full cursor-pointer"></div>
-                  <div className="h-4 w-4 bg-white rounded-full ml-2 cursor-pointer"></div>
-                </div>
+              <div className="bg-[#0000004D] backdrop-blur-md rounded-[10px] p-5 text-white">
+                <strong className="font-space uppercase text-base">
+                  meet the configurator
+                  <br />
+                  plataform
+                </strong>
+                <img src={CustomCar} alt="" className="h-14 my-4" />
+                <p className="w-60 text-xs font-montserrat">
+                  Change it's entire style, such as exterior colors, inside leather color, wheels and much else. 
+                  Get the summary with the total car price to send it to your dealer.
+                </p>
               </div>
             </div>
           </div>
@@ -73,9 +64,8 @@ export const Home = () => {
                   </span>
                 </strong>
                 <p className="w-60 text-xs font-montserrat mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incidid unt ut labore et dolore magna
-                  aliqua. dolore magna consectetur adipiscing elit aliqua.
+                "...It effortlessly outperformed its competitors, leaving them in its rearview mirror as it claimed the ultimate title.
+                The award-winning 911 GT2 is an epitome of engineering excellence."
                 </p>
               </div>
               <div className="flex items-center justify-center absolute top-0 right-0 bg-[#E2B558] cursor-pointer rounded-[10px] h-7 w-[4.5rem] text-[10px] text-white">
