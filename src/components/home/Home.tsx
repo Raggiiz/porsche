@@ -28,7 +28,7 @@ export const Home = () => {
                 passion. Every curve, every acceleration is a unique and
                 unforgettable experience.
               </p>
-              <Link to={"/911-gt2/configurator"} className="primary-btn mt-6">
+              <Link to={"/911/gt2/configurator"} className="primary-btn mt-6">
                 Customize vehicle
                 <div className="arrow">
                   <ArrowRight />

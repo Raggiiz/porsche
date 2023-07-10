@@ -19,9 +19,9 @@ function App() {
       <div className="w-full overflow-x-hidden">
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Navigate to="/911-gt2" />} />
-            <Route path="/911-gt2" element={<Home />} />
-            <Route path="/911-gt2/configurator" element={<Configurator />} />
+            <Route path="/" element={<Navigate to="/911/gt2" />} />
+            <Route path="/911/gt2" element={<Home />} />
+            <Route path="/911/gt2/configurator" element={<Configurator />} />
           </Routes>
         </AnimatePresence>
       </div>
