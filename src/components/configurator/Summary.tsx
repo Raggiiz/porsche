@@ -6,15 +6,17 @@ import BrakeColor from "../../assets/icons/brakes.svg"
 import LeatherColor from "../../assets/icons/leather-color.svg"
 import { CarConfigs } from "./interfaces";
 import { carPrice } from "./carConfigs";
+import Logo from "../../assets/porscha-logo-white.png";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-interface Prop {
+interface SummaryProps {
   handleUpdateEnviroment: any,
-  configs: CarConfigs
+  configs: CarConfigs,
+  progress: number
 }
 
-export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: fix types
+export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProps) => {
   const [internal, setInternal] = useState(false);
 
   function updateInternal(data: boolean) {
@@ -74,7 +76,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
         const sourceHeight = canvas.height;
 
         const croppedWidth = sourceWidth - 2;
-        const croppedHeight = sourceHeight - 250; // 100px top + 100px bottom
+        const croppedHeight = sourceHeight - 250;
 
         croppedCanvas.width = croppedWidth;
         croppedCanvas.height = croppedHeight;
@@ -82,7 +84,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
         croppedContext?.drawImage(
           canvas,
           0,
-          150, // skip the top 100px
+          150,
           croppedWidth,
           croppedHeight,
           0,
@@ -92,20 +94,31 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
         );
 
         const imgData: any = croppedCanvas.toDataURL('image/png');
-        const pdf = new jsPDF({unit: 'px', format: [170,460]});
+        const pdf = new jsPDF({unit: 'px', format: [180,490]});
         pdf.setFillColor('#1c1c1c');
         pdf.rect(0, 0, 10000, 10000, "F");
-        pdf.addImage(imgData, 0, 60, 0, 0);
-        pdf.save('download.pdf');
+        pdf.addImage(Logo, 60, 20, 60, 0);
+        pdf.setTextColor('#fff');
+        pdf.setFont('Inter-Bold', 'bold');
+        pdf.setFontSize(12)
+        pdf.text('911 GT2', 73, 70);
+        pdf.setFontSize(10);
+        pdf.text('PURCHASE CODE', 60, 450)
+        pdf.addImage(imgData, 0, 80, 0, 0);
+        pdf.setTextColor('#E2B558')
+        pdf.setFontSize(10);
+        pdf.text(`pc=${configs.exteriorDesign.primaryColor.code}&sc=${configs.exteriorDesign.secondaryColor.code}&wt=${configs.exteriorDesign.wheelType.code}&bc=${configs.exteriorDesign.brakesColor.code}&lc=${configs.interiorDesign.leatherColor.code}`,
+         35, 460)
+        pdf.save(`911-gt2-${new Date().toDateString().replaceAll(' ', '-')}.pdf`);
       })
     ;
   }
 
   return (
-    <div className="flex flex-col w-[20vw] bg-[#1C1C1C] items-center py-8 text-white" id="print">
+    <div className="flex flex-col w-80 bg-[#1C1C1C] items-center py-8 text-white" id="print">
       <div className="flex flex-col w-[214px]">
         <strong className="font-inter font-semibold uppercase">view</strong>
-        <div className="flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer">
+        <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${progress !== 100 && 'disabled-btn'}`}>
           <div className={`flex justify-center rounded-s-[10px] w-full border border-[#E2B558] ${internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
           <div className={`flex justify-center rounded-e-[10px] w-full border border-[#E2B558] ${!internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(false)}>road</div>
         </div>
@@ -204,7 +217,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
           <span className="text-[#E2B558] text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
         </div>
       </div>
-      <div className="primary-btn mt-6" onClick={() => saveConfigs()}>Send to dealer</div>
+      <div className={`primary-btn mt-6 ${progress !== 100 && 'disabled-btn'}`} onClick={() => saveConfigs()}>Send to dealer</div>
     </div>
   );
 };

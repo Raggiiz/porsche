@@ -68,7 +68,7 @@ export const Configurator = () => {
       transition={{ duration: 1 }}
     >
       <div className="flex  h-[calc(100vh-72px)]">
-        <div className="w-[80vw] relative">
+        <div className="w-[calc(100vw-320px)] relative">
           <div className="flex justify-center items-center w-[inherit] h-14 bg-black/70 absolute top-0 backdrop-blur-sm z-10">
             <motion.span
               className="btn-custom-menu"
@@ -426,7 +426,7 @@ export const Configurator = () => {
             <Loader progress={progress}/>
           }
         </div>
-        <Summary handleUpdateEnviroment={handleUpdateEnviroment} configs={configs}/>
+        <Summary handleUpdateEnviroment={handleUpdateEnviroment} configs={configs} progress={progress}/>
       </div>
     </motion.div>
   );

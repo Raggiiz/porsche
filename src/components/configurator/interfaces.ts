@@ -18,5 +18,6 @@ export interface InteriorDesign {
 
 export interface Item {
     value: string,
-    price: number
+    price: number,
+    code: string
 }

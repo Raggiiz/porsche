@@ -40,6 +40,10 @@ body {
   .primary-btn .arrow {
     @apply ml-2;
   }
+
+  .disabled-btn {
+    @apply opacity-50 pointer-events-none;
+  }
 }
 
 @layer utilities {
