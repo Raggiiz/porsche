@@ -18,7 +18,7 @@ export const Configurator = () => {
   const [primaryColor, setPrimaryColor] = useState<Item>(primaryColorOptions.silver);
   const [secondaryColor, setSecondaryColor] = useState<Item>(secondaryColorOptions.carbon);
   const [leatherColor, setLeatherColor] = useState<Item>(leatherOptions.lightLeather);
-  const [brakesColor, setBrakeColor] = useState<Item>(brakeColorOptions.green);
+  const [brakesColor, setBrakeColor] = useState<Item>(brakeColorOptions.black);
 
   const [exteriorDesignToggle, setExteriorDesignToggle] = useState(false);
   const [interiorDesignToggle, setInteriorDesignToggle] = useState(false);
@@ -42,14 +42,15 @@ export const Configurator = () => {
   const [selectedExterior, setSelectedExterior] = useState<string | null>(null);
 
   function activeExterior() {
-    if (!exteriorDesignToggle) setInteriorDesignToggle(false);
+    if (!exteriorDesignToggle){
+      setSelectedExterior(null)
+      setInteriorDesignToggle(false);
+    } 
     setExteriorDesignToggle(!exteriorDesignToggle);
-    setSelectedExterior(null);
   }
   function activeInterior() {
     if (!interiorDesignToggle) setExteriorDesignToggle(false);
     setInteriorDesignToggle(!interiorDesignToggle);
-    setSelectedExterior(null);
   }
 
   const handleUpdateEnviroment = (data: boolean) => {
