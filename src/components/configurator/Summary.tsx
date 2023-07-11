@@ -6,6 +6,8 @@ import BrakeColor from "../../assets/icons/brakes.svg"
 import LeatherColor from "../../assets/icons/leather-color.svg"
 import { CarConfigs } from "./interfaces";
 import { carPrice } from "./carConfigs";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface Prop {
   handleUpdateEnviroment: any,
@@ -61,8 +63,46 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
     }
   }
 
+  const saveConfigs = () => {
+    const input: any = document.getElementById('print');
+    html2canvas(input)
+      .then((canvas) => {
+        const croppedCanvas = document.createElement('canvas');
+        const croppedContext = croppedCanvas.getContext('2d');
+
+        const sourceWidth = canvas.width;
+        const sourceHeight = canvas.height;
+
+        const croppedWidth = sourceWidth - 2;
+        const croppedHeight = sourceHeight - 250; // 100px top + 100px bottom
+
+        croppedCanvas.width = croppedWidth;
+        croppedCanvas.height = croppedHeight;
+
+        croppedContext?.drawImage(
+          canvas,
+          0,
+          150, // skip the top 100px
+          croppedWidth,
+          croppedHeight,
+          0,
+          0,
+          croppedWidth,
+          croppedHeight
+        );
+
+        const imgData: any = croppedCanvas.toDataURL('image/png');
+        const pdf = new jsPDF({unit: 'px', format: [170,460]});
+        pdf.setFillColor('#1c1c1c');
+        pdf.rect(0, 0, 10000, 10000, "F");
+        pdf.addImage(imgData, 0, 60, 0, 0);
+        pdf.save('download.pdf');
+      })
+    ;
+  }
+
   return (
-    <div className="flex flex-col w-[20vw] bg-[#1C1C1C] items-center py-8 text-white">
+    <div className="flex flex-col w-[20vw] bg-[#1C1C1C] items-center py-8 text-white" id="print">
       <div className="flex flex-col w-[214px]">
         <strong className="font-inter font-semibold uppercase">view</strong>
         <div className="flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer">
@@ -164,7 +204,7 @@ export const Summary = ({handleUpdateEnviroment, configs}: Prop) => { // TODO: f
           <span className="text-[#E2B558] text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
         </div>
       </div>
-      <div className="primary-btn mt-6">Send to dealer</div>
+      <div className="primary-btn mt-6" onClick={() => saveConfigs()}>Send to dealer</div>
     </div>
   );
 };
