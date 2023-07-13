@@ -4,11 +4,13 @@ import SecondaryColor from "../../assets/icons/secondary-color.svg"
 import WheelType from "../../assets/icons/wheels.svg"
 import BrakeColor from "../../assets/icons/brakes.svg"
 import LeatherColor from "../../assets/icons/leather-color.svg"
+import DownloadIcon from "../../assets/icons/download.svg"
 import { CarConfigs } from "./interfaces";
 import { carPrice } from "./carConfigs";
 import Logo from "../../assets/porscha-logo-white.png";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface SummaryProps {
   handleUpdateEnviroment: any,
@@ -18,6 +20,7 @@ interface SummaryProps {
 
 export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProps) => {
   const [internal, setInternal] = useState(false);
+  const [modalSend, setModalSend] = useState(false);
 
   function updateInternal(data: boolean) {
     setInternal(data)
@@ -65,7 +68,8 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
     }
   }
 
-  const saveConfigs = () => {
+  const downloadPDF = () => {
+    setModalSend(false);
     const input: any = document.getElementById('print');
     html2canvas(input)
       .then((canvas) => {
@@ -115,6 +119,7 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
   }
 
   return (
+    <>
     <div className="flex flex-col w-80 bg-[#1C1C1C] items-center py-8 text-white" id="print">
       <div className="flex flex-col w-[214px]">
         <strong className="font-inter font-semibold uppercase">view</strong>
@@ -217,7 +222,41 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
           <span className="text-[#E2B558] text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
         </div>
       </div>
-      <div className={`primary-btn mt-6 ${progress !== 100 && 'disabled-btn'}`} onClick={() => saveConfigs()}>Send to dealer</div>
+      <div className={`primary-btn mt-6 ${progress !== 100 && 'disabled-btn'}`} onClick={() => setModalSend(true)}>Send to dealer</div>
     </div>
+    <AnimatePresence>
+      {modalSend && <>
+        <motion.div className="flex items-center justify-center bg-opacity-50 h-screen w-screen fixed left-0 top-0 bottom-0 z-40" 
+        animate={{background: '#00000080'}} 
+        initial={{background: '#00000000'}} 
+        exit={{background: '#00000000'}}>
+          <motion.div className="flex absolute flex-col justify-between h-[220px] w-[375px] z-50 bg-[#1C1C1C] rounded-[10px] p-4 overflow-hidden shadow-md" 
+          animate={{height: '220px', width: '375px'}} 
+          initial={{height: 0, width: 0}} 
+          exit={{height: 0, width: 0}} 
+          transition={{type: "spring",stiffness: 250,damping: 24}}>
+            <h3 className="text-white font-inter text-lg">Summary sent to dealer successfully!</h3>
+            <p className="font-montserrat text-[#7E7E7E] text-sm">
+              Downlaod the PDF to get your configurations detailed.<br/>
+              Purchase code: <br/>
+              <span className="text-[#E2B558]">
+                {`pc=${configs.exteriorDesign.primaryColor.code}&sc=${configs.exteriorDesign.secondaryColor.code}&wt=${configs.exteriorDesign.wheelType.code}&bc=${configs.exteriorDesign.brakesColor.code}&lc=${configs.interiorDesign.leatherColor.code}`}
+              </span>
+            </p>
+            <div className="flex items-center justify-between">
+              <span className="py-3 px-8 text-white font-inter text-sm cursor-pointer" onClick={() => setModalSend(false)}>Close</span>
+              <div className="primary-btn" onClick={() => downloadPDF()}>
+                PDF
+                <div className="ml-3">
+                  <DownloadIcon />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </>}
+    </AnimatePresence>
+    </>
   );
 };
+
