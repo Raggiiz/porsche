@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { Home } from "./components/home/Home";
-import { NavBar } from "./components/nav-bar/NavBar";
+import { NavBar } from "./components/shared/nav-bar/NavBar";
 import { Configurator } from "./components/configurator/Configurator";
 import { AnimatePresence } from "framer-motion";
 

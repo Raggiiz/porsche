@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import PrimaryColor from "../../assets/icons/primary-color.svg"
-import SecondaryColor from "../../assets/icons/secondary-color.svg"
-import WheelType from "../../assets/icons/wheels.svg"
-import BrakeColor from "../../assets/icons/brakes.svg"
-import LeatherColor from "../../assets/icons/leather-color.svg"
-import DownloadIcon from "../../assets/icons/download.svg"
-import { CarConfigs } from "./interfaces";
-import { carPrice } from "./carConfigs";
-import Logo from "../../assets/porscha-logo-white.png";
+import PrimaryColor from "../../../assets/icons/primary-color.svg"
+import SecondaryColor from "../../../assets/icons/secondary-color.svg"
+import WheelType from "../../../assets/icons/wheels.svg"
+import BrakeColor from "../../../assets/icons/brakes.svg"
+import LeatherColor from "../../../assets/icons/leather-color.svg"
+import DownloadIcon from "../../../assets/icons/download.svg"
+import { CarConfigs } from "../../configurator/interfaces";
+import { carPrice } from "../../configurator/carConfigs";
+import Logo from "../../../assets/porscha-logo-white.png";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { AnimatePresence, motion } from "framer-motion";

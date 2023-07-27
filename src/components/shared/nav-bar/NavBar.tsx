@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Menu from "../../assets/icons/menu.svg";
-import Profile from "../../assets/icons/profile.svg";
-import Logo from "../../assets/porscha-logo-white.png";
+import Menu from "../../../assets/icons/menu.svg";
+import Profile from "../../../assets/icons/profile.svg";
+import Logo from "../../../assets/porscha-logo-white.png";
 import { Link } from "react-router-dom";
 import { SideBar } from "./SideBar";
 

@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
-import p911 from "../../assets/car-models/911.webp";
-import p718 from "../../assets/car-models/718.webp";
-import cayenne from "../../assets/car-models/cayenne.webp";
-import macan from "../../assets/car-models/macan.webp";
-import panamera from "../../assets/car-models/panamera.webp";
+import p911 from "../../../assets/car-models/911.webp";
+import p718 from "../../../assets/car-models/718.webp";
+import cayenne from "../../../assets/car-models/cayenne.webp";
+import macan from "../../../assets/car-models/macan.webp";
+import panamera from "../../../assets/car-models/panamera.webp";
 import React from "react";
 
 export const SideBar = ({ sideBarOpen, setSideBarOpen }: any) => {

@@ -8,7 +8,7 @@ import SecondaryColor from "../../assets/icons/secondary-color.svg";
 import Wheels from "../../assets/icons/wheels.svg";
 import Brakes from "../../assets/icons/brakes.svg";
 import ArrowBack from "../../assets/icons/back-arrow.svg";
-import { Summary } from "./Summary";
+import { Summary } from "../shared/summary/Summary";
 import { primaryColorOptions, leatherOptions, secondaryColorOptions, wheelOptions, brakeColorOptions } from "./carConfigs";
 import { useProgress } from "@react-three/drei";
 import { Loader } from "./Loader";
