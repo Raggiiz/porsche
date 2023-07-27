@@ -10,6 +10,7 @@ module.exports = {
       },
       backgroundImage: {
         'customize': "url('src/assets/custom-bg.png')",
+        'topography': "url('src/assets/topography-bg.svg')"
       },
     },
   },

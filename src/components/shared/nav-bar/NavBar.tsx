@@ -21,9 +21,11 @@ export const NavBar = () => {
       <Link to={"/"}>
         <img className="h-10" src={Logo} alt="Logo" />
       </Link>
-      <div className="cursor-pointer text-white">
-        <Profile />
-      </div>
+      <Link to={"/checkout"}>
+        <div className="cursor-pointer text-white">
+          <Profile />
+        </div>
+      </Link>
       <SideBar sideBarOpen={sideBarOpen} setSideBarOpen={setSideBarOpen}/>
     </div>
   );
