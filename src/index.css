@@ -37,7 +37,10 @@ body {
   .primary-btn {
     @apply py-3 px-8 text-white bg-[#E2B558] w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
   }
-  .primary-btn .arrow {
+  .secondary-btn {
+    @apply py-3 px-8 text-white border-[#E2B558] border w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
+  }
+  .primary-btn .arrow, .secondary-btn .arrow {
     @apply ml-2;
   }
 

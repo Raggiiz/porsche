@@ -5,7 +5,6 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import "./App.css";
 import { Home } from "./components/home/Home";
 import { NavBar } from "./components/shared/nav-bar/NavBar";
 import { Configurator } from "./components/configurator/Configurator";
