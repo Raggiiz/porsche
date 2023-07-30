@@ -64,7 +64,6 @@ export const Configurator = () => {
       className="w-full h-[calc(100vh-72px)] bg-[#e4f3f5] flex justify-center flex-col relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
       <div className="flex  h-[calc(100vh-72px)]">

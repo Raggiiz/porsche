@@ -13,12 +13,13 @@ import jsPDF from "jspdf";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface SummaryProps {
-  handleUpdateEnviroment: any,
+  handleUpdateEnviroment?: any,
   configs: CarConfigs,
-  progress: number
+  progress?: number,
+  checkout?: boolean
 }
 
-export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProps) => {
+export const Summary = ({handleUpdateEnviroment, configs, progress, checkout}: SummaryProps) => {
   const [internal, setInternal] = useState(false);
   const [modalSend, setModalSend] = useState(false);
 
@@ -120,15 +121,17 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
 
   return (
     <>
-    <div className="flex flex-col w-80 bg-[#1C1C1C] items-center py-8 text-white" id="print">
-      <div className="flex flex-col w-[214px]">
-        <strong className="font-inter font-semibold uppercase">view</strong>
-        <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${progress !== 100 && 'disabled-btn'}`}>
-          <div className={`flex justify-center rounded-s-[10px] w-full border border-[#E2B558] ${internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
-          <div className={`flex justify-center rounded-e-[10px] w-full border border-[#E2B558] ${!internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(false)}>road</div>
-        </div>
-      </div>
-      <div className="flex flex-col w-[214px] mt-14">
+    <div className={`flex flex-col w-80 bg-[${checkout ? '#161616' : '#1C1C1C'}] items-center py-8 text-white ${checkout && 'rounded-[10px]'}`} id="print">
+      {!checkout && 
+        (<div className="flex flex-col w-[214px]">
+          <strong className="font-inter font-semibold uppercase">view</strong>
+          <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${progress !== 100 && 'disabled-btn'}`}>
+            <div className={`flex justify-center rounded-s-[10px] w-full border border-[#E2B558] ${internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
+            <div className={`flex justify-center rounded-e-[10px] w-full border border-[#E2B558] ${!internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(false)}>road</div>
+          </div>
+        </div>)
+      }
+      <div className={`flex flex-col w-[214px] ${!checkout && 'mt-14'}`}>
         <strong className="font-inter font-semibold uppercase">summary</strong>
         <div className="flex flex-row mt-5">
           <div className="flex flex-col items-center py-1">
@@ -139,7 +142,7 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
             <span className="font-inter text-sm ml-4">Exterior design</span>
             <div className="flex justify-between items-center my-8">
               <div className="flex flex-row items-center relative">
-                <div className="icon-holder bg-[#1C1C1C] p-1 absolute left-[-17px]">
+                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-17px]`}>
                   <PrimaryColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -151,7 +154,7 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
             </div>
             <div className="flex justify-between items-center mb-8">
               <div className="flex flex-row items-center relative">
-                <div className="icon-holder bg-[#1C1C1C] p-1 absolute left-[-15px]">
+                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-15px]`}>
                   <SecondaryColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -163,7 +166,7 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
             </div>
             <div className="flex justify-between items-center mb-8">
               <div className="flex flex-row items-center relative">
-                <div className="icon-holder bg-[#1C1C1C] p-1 absolute left-[-16px]">
+                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-16px]`}>
                   <WheelType />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -175,7 +178,7 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
             </div>
             <div className="flex justify-between items-center mb-8">
               <div className="flex flex-row items-center relative">
-                <div className="icon-holder bg-[#1C1C1C] p-1 absolute left-[-16px]">
+                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'} p-1 absolute left-[-16px]`}>
                   <BrakeColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -196,7 +199,7 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
             <span className="font-inter text-sm ml-4">Exterior design</span>
             <div className="flex justify-between items-center mt-8">
               <div className="flex flex-row items-center relative">
-                <div className="icon-holder bg-[#1C1C1C] p-1 absolute left-[-16px]">
+                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-16px]`}>
                   <LeatherColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -222,7 +225,7 @@ export const Summary = ({handleUpdateEnviroment, configs, progress}: SummaryProp
           <span className="text-[#E2B558] text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
         </div>
       </div>
-      <div className={`primary-btn mt-6 ${progress !== 100 && 'disabled-btn'}`} onClick={() => setModalSend(true)}>Send to dealer</div>
+      {!checkout && <div className={`primary-btn mt-6 ${progress !== 100 && 'disabled-btn'}`} onClick={() => setModalSend(true)}>Send to dealer</div>}
     </div>
     <AnimatePresence>
       {modalSend && <>

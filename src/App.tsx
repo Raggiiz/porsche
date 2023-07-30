@@ -17,14 +17,12 @@ function App() {
     <>
       <NavBar />
       <div className="w-full overflow-x-hidden">
-        <AnimatePresence>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Navigate to="/911/gt2" />} />
             <Route path="/911/gt2" element={<Home />} />
             <Route path="/911/gt2/configurator" element={<Configurator />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>
-        </AnimatePresence>
       </div>
     </>
   );
