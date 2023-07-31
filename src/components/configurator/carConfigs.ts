@@ -1,6 +1,8 @@
+import { Item } from "./interfaces"
+
 export const carPrice = 200000
 
-export const leatherOptions = {
+export const leatherOptions: { [key: string]: Item } = {
     coffeeLeather: {
         value: '#593915',
         price: 1500,
@@ -23,7 +25,7 @@ export const leatherOptions = {
     }
 }
 
-export const primaryColorOptions = {
+export const primaryColorOptions: { [key: string]: Item } = {
     silver: {
         value: '#ededed',
         price: 0,
@@ -56,7 +58,7 @@ export const primaryColorOptions = {
     },
 }
 
-export const secondaryColorOptions = {
+export const secondaryColorOptions: { [key: string]: Item } = {
     carbon: {
         value: 'carbon',
         price: 0,
@@ -89,7 +91,7 @@ export const secondaryColorOptions = {
     },
 }
 
-export const wheelOptions = {
+export const wheelOptions: { [key: string]: Item } = {
     original: {
         value: 'Original',
         price: 0,
@@ -107,7 +109,7 @@ export const wheelOptions = {
     }
 }
 
-export const brakeColorOptions = {
+export const brakeColorOptions: { [key: string]: Item } = {
     black: {
         value: '#000',
         price: 0,

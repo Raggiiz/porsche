@@ -178,7 +178,7 @@ export const Summary = ({handleUpdateEnviroment, configs, progress, checkout}: S
             </div>
             <div className="flex justify-between items-center mb-8">
               <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'} p-1 absolute left-[-16px]`}>
+                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-16px]`}>
                   <BrakeColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -230,14 +230,16 @@ export const Summary = ({handleUpdateEnviroment, configs, progress, checkout}: S
     <AnimatePresence>
       {modalSend && <>
         <motion.div className="flex items-center justify-center bg-opacity-50 h-screen w-screen fixed left-0 top-0 bottom-0 z-40" 
-        animate={{background: '#00000080'}} 
-        initial={{background: '#00000000'}} 
-        exit={{background: '#00000000'}}>
+          animate={{background: '#00000080'}} 
+          initial={{background: '#00000000'}} 
+          exit={{background: '#00000000'}}
+        >
           <motion.div className="flex absolute flex-col justify-between h-[220px] w-[375px] z-50 bg-[#1C1C1C] rounded-[10px] p-4 overflow-hidden shadow-md" 
-          animate={{height: '220px', width: '375px'}} 
-          initial={{height: 0, width: 0}} 
-          exit={{height: 0, width: 0}} 
-          transition={{type: "spring",stiffness: 250,damping: 24}}>
+            animate={{height: '220px', width: '375px', opacity: 1}} 
+            initial={{height: 0, width: 0, opacity: 0}} 
+            exit={{height: 0, width: 0, opacity: 0}} 
+            transition={{type: "spring",stiffness: 250,damping: 24}}
+          >
             <h3 className="text-white font-inter text-lg">Summary sent to dealer successfully!</h3>
             <p className="font-montserrat text-[#7E7E7E] text-sm">
               Downlaod the PDF to get your configurations detailed.<br/>
