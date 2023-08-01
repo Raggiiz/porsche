@@ -4,6 +4,7 @@ import ArrowDown from "../../assets/icons/arrow-down.svg";
 import { Summary } from "../shared/summary/Summary";
 import { CarConfigs, Item } from "../configurator/interfaces";
 import { brakeColorOptions, leatherOptions, primaryColorOptions, secondaryColorOptions, wheelOptions } from "../configurator/carConfigs";
+import InputMask from 'react-input-mask';
 
 export const Checkout = () => {
   const [expanded, setExpanded] = useState(0);
@@ -28,17 +29,45 @@ export const Checkout = () => {
 
   const [codeModal, setCodeModal] = useState(true);
   const [code, setCode] = useState('');
-  const [codeError, setCodeError] = useState(false)
+  const [codeError, setCodeError] = useState(false);
+
+  const [fullName, setFullName] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [driverLicense, setDriverLicense] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const [street, setStreet] = useState('');
+  const [number, setNumber] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [zipCode, setZipCode] = useState('');
 
   const reset = () => {
-    setCodeModal(true);
     setCode('');
     setCodeError(false);
+
     setPrimaryColor(primaryColorOptions.silver);
     setSecondaryColor(secondaryColorOptions.carbon);
     setLeatherColor(leatherOptions.lightLeather);
     setWheel(wheelOptions.original);
-    setBrakeColor(brakeColorOptions.black)
+    setBrakeColor(brakeColorOptions.black);
+
+    setFullName('');
+    setDateOfBirth('');
+    setDriverLicense('');
+    setEmail('');
+    setPhone('');
+
+    setStreet('');
+    setNumber('');
+    setCity('');
+    setState('');
+    setZipCode('');
+
+    setExpanded(0);
+
+    setCodeModal(true);
   }
 
   const getCodeInfo = () => {
@@ -110,6 +139,25 @@ export const Checkout = () => {
     return null
   }
 
+  const validForm = () => {
+    return (
+      fullName.length > 0 &&
+      dateOfBirth.length > 0 &&
+      driverLicense.length > 0 &&
+      email.length > 0 &&
+      phone.length > 0 &&
+      street.length > 0 &&
+      number.length > 0 &&
+      zipCode.length > 0 &&
+      state.length > 0 &&
+      city.length > 0
+    );
+  }
+
+  const generateInvoice = () => {
+    console.log(fullName, dateOfBirth, driverLicense, phone, email)
+  }
+
   return (
     <>
       <motion.div
@@ -163,12 +211,37 @@ export const Checkout = () => {
                           opacity: 1,
                           height: "auto",
                           marginTop: "1.375rem",
+                          marginBottom: "1.375rem",
                         },
-                        collapsed: { opacity: 0, height: 0, marginTop: "0" },
+                        collapsed: { opacity: 0, height: 0, marginTop: "0", marginBottom: 0 },
                       }}
                       transition={{ type: "spring", stiffness: 150, damping: 15 }}
                     >
-                      inputs
+                      <div className="flex">
+                        <div className="flex flex-col w-1/2">
+                          <label htmlFor="full-name" className="font-inter text-xs ml-2 mb-1">Full name</label>
+                          <input type="text" id="full-name" className="primary-input" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                        </div>
+                        <div className="flex flex-col w-1/4 px-7">
+                          <label htmlFor="birth" className="font-inter text-xs ml-2 mb-1">Date of birth</label>
+                          <InputMask type="text" id="birth" mask="99/99/9999" className="primary-input" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
+                        </div>
+                        <div className="flex flex-col w-1/4">
+                          <label htmlFor="driver-license" className="font-inter text-xs ml-2 mb-1">Driver license</label>
+                          <input type="number" id="driver-license" className="primary-input" value={driverLicense} onChange={(e) => setDriverLicense(e.target.value)} />
+                        </div>
+                      </div>
+                      <div className="flex mt-7">
+                        <div className="flex flex-col w-1/2">
+                          <label htmlFor="email" className="font-inter text-xs ml-2 mb-1">Email</label>
+                          <input type="text" id="email" className="primary-input" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                        <div className="flex flex-col w-1/4 px-7">
+                          <label htmlFor="phone" className="font-inter text-xs ml-2 mb-1">Phone</label>
+                          <input type="number" id="phone" className="primary-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        </div>
+                      </div>
+                      
                     </motion.section>
                   )}
                 </AnimatePresence>
@@ -213,70 +286,45 @@ export const Checkout = () => {
                           opacity: 1,
                           height: "auto",
                           marginTop: "1.375rem",
+                          marginBottom: "1.375rem"
                         },
-                        collapsed: { opacity: 0, height: 0, marginTop: "0" },
+                        collapsed: { opacity: 0, height: 0, marginTop: "0", marginBottom: 0 },
                       }}
                       transition={{ type: "spring", stiffness: 150, damping: 15 }}
                     >
-                      inputs
+                      <div className="flex">
+                        <div className="flex flex-col w-3/4">
+                          <label htmlFor="street" className="font-inter text-xs ml-2 mb-1">Street</label>
+                          <input type="text" id="street" className="primary-input" value={street} onChange={(e) => setStreet(e.target.value)} />
+                        </div>
+                        <div className="flex flex-col w-1/4 pl-7">
+                          <label htmlFor="number" className="font-inter text-xs ml-2 mb-1">Number</label>
+                          <input type="number" id="number" className="primary-input" value={number} onChange={(e) => setNumber(e.target.value)} />
+                        </div>
+                      </div>
+                      <div className="flex mt-7">
+                        <div className="flex flex-col w-1/5">
+                          <label htmlFor="zip-code" className="font-inter text-xs ml-2 mb-1">Zip code</label>
+                          <input type="text" id="zip-code" className="primary-input" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
+                        </div>
+                        <div className="flex flex-col w-2/5 px-7">
+                          <label htmlFor="state" className="font-inter text-xs ml-2 mb-1">State</label>
+                          <input type="text" id="state" className="primary-input" value={state} onChange={(e) => setState(e.target.value)} />
+                        </div>
+                        <div className="flex flex-col  w-2/5">
+                          <label htmlFor="city" className="font-inter text-xs ml-2 mb-1">City</label>
+                          <input type="text" id="city" className="primary-input" value={city} onChange={(e) => setCity(e.target.value)} />
+                        </div>
+                      </div>
                     </motion.section>
                   )}
                 </AnimatePresence>
               </motion.div>
 
-              <motion.div
-                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white cursor-pointer mb-5"
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.4 }}
-                variants={{
-                  visible: { opacity: 1, y: 0 },
-                  hidden: { opacity: 0, y: 100 },
-                }}
-                onClick={() => setExpanded(2)}
-              >
-                <div className="flex items-center justify-between font-inter text-base uppercase">
-                  delivery options
-                  <motion.div
-                    className="expand"
-                    initial="collapsed"
-                    animate={expanded === 2 ? "open" : "collapsed"}
-                    variants={{
-                      open: { rotateZ: "180deg" },
-                      collapsed: { rotateZ: "0deg" },
-                    }}
-                  >
-                    <ArrowDown />
-                  </motion.div>
-                </div>
-
-                <AnimatePresence initial={false}>
-                  {expanded === 2 && (
-                    <motion.section
-                      className="overflow-hidden"
-                      key="content"
-                      initial="collapsed"
-                      animate="open"
-                      exit="collapsed"
-                      variants={{
-                        open: {
-                          opacity: 1,
-                          height: "auto",
-                          marginTop: "1.375rem",
-                        },
-                        collapsed: { opacity: 0, height: 0, marginTop: "0" },
-                      }}
-                      transition={{ type: "spring", stiffness: 150, damping: 15 }}
-                    >
-                      inputs
-                    </motion.section>
-                  )}
-                </AnimatePresence>
-              </motion.div>
             </div>
             <div className="flex justify-between">
               <div className="secondary-btn" onClick={reset}>Start over</div>
-              <div className="primary-btn">Generate invoice</div>
+              <div className={`primary-btn ${!validForm() && 'disabled-btn'}`} onClick={generateInvoice}>Generate invoice</div>
             </div>
           </div>
           <Summary configs={configs} checkout={true}/>
@@ -299,7 +347,7 @@ export const Checkout = () => {
               <p className="font-montserrat text-[#7E7E7E] text-sm">
                 Insert your client's purchase code
               </p>
-              <input type="text" value={code} onChange={(e) => setCode(e.target.value)} className={`bg-[#212121] rounded-[10px] outline-none text-white font-montserrat py-3 px-4 ${codeError ? 'border-[#E95652]' : 'border-transparent'} border`} />
+              <input type="text" value={code} onChange={(e) => setCode(e.target.value)} className={`primary-input ${codeError && 'border-[#E95652]'}`} />
               {codeError && <small className="font-montserrat text-[#E95652]">The code is incorrect!</small>}
               <div className="flex items-center justify-end">
                 <div className="primary-btn" onClick={getCodeInfo}>Proceed</div>

@@ -47,6 +47,10 @@ body {
   .disabled-btn {
     @apply opacity-50 pointer-events-none;
   }
+
+  .primary-input {
+    @apply bg-[#212121] rounded-[10px] outline-none text-white font-montserrat py-3 px-4 border border-transparent;
+  }
 }
 
 @layer utilities {
