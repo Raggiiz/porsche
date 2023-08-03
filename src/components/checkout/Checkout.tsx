@@ -5,6 +5,9 @@ import { Summary } from "../shared/summary/Summary";
 import { CarConfigs, Item } from "../configurator/interfaces";
 import { brakeColorOptions, leatherOptions, primaryColorOptions, secondaryColorOptions, wheelOptions } from "../configurator/carConfigs";
 import InputMask from 'react-input-mask';
+import Porsche from "../configurator/car/Porsche";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Stage } from "@react-three/drei";
 
 export const Checkout = () => {
   const [expanded, setExpanded] = useState(0);
@@ -213,9 +216,8 @@ export const Checkout = () => {
                           marginTop: "1.375rem",
                           marginBottom: "1.375rem",
                         },
-                        collapsed: { opacity: 0, height: 0, marginTop: "0", marginBottom: 0 },
+                        collapsed: { opacity: 0, height: 0, marginTop: 0, marginBottom: 0 },
                       }}
-                      transition={{ type: "spring", stiffness: 150, damping: 15 }}
                     >
                       <div className="flex">
                         <div className="flex flex-col w-1/2">
@@ -288,9 +290,8 @@ export const Checkout = () => {
                           marginTop: "1.375rem",
                           marginBottom: "1.375rem"
                         },
-                        collapsed: { opacity: 0, height: 0, marginTop: "0", marginBottom: 0 },
+                        collapsed: { opacity: 0, height: 0, marginTop: 0, marginBottom: 0 },
                       }}
-                      transition={{ type: "spring", stiffness: 150, damping: 15 }}
                     >
                       <div className="flex">
                         <div className="flex flex-col w-3/4">
@@ -320,7 +321,35 @@ export const Checkout = () => {
                   )}
                 </AnimatePresence>
               </motion.div>
-
+              <motion.div
+                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white cursor-pointer mb-5"
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: 0.4 }}
+                variants={{
+                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 100 },
+                }}
+              >
+                <div className="font-inter uppercase text-base">
+                  car preview
+                </div>
+                <div className="flex justify-center my-[1.375rem]">
+                  {!codeModal && 
+                    <div className="w-1/2">
+                      <Canvas shadows>
+                        <Stage>
+                          <OrbitControls autoRotate enableRotate={false} enableZoom={false}/>
+                          <Porsche
+                            exteriorDesign={configs.exteriorDesign}
+                            interiorDesign={configs.interiorDesign}
+                          />
+                        </Stage>
+                      </Canvas>
+                    </div>
+                  }
+                </div>
+              </motion.div>
             </div>
             <div className="flex justify-between">
               <div className="secondary-btn" onClick={reset}>Start over</div>
