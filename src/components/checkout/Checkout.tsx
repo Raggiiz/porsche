@@ -8,6 +8,7 @@ import InputMask from 'react-input-mask';
 import Porsche from "../configurator/car/Porsche";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stage } from "@react-three/drei";
+import jsPDF from "jspdf";
 
 export const Checkout = () => {
   const [expanded, setExpanded] = useState(0);
@@ -159,6 +160,14 @@ export const Checkout = () => {
 
   const generateInvoice = () => {
     console.log(fullName, dateOfBirth, driverLicense, phone, email)
+    const pdf = new jsPDF({unit: 'px'});
+    pdf.save(`911-gt2-${fullName.replaceAll(' ', '-')}.pdf`);
+  }
+
+  const getArrivalDate = () => {
+    const date = new Date(new Date().setDate(new Date().getDate() + 7));
+
+    return `${date.toLocaleDateString('en-us', { weekday: 'short' })}, ${date.getDate()} ${date.toLocaleString('en-us', { month: 'short' })}`
   }
 
   return (
@@ -177,7 +186,7 @@ export const Checkout = () => {
           <div className="flex flex-col flex-1 justify-between mr-5">
             <div className="flex flex-col">
               <motion.div
-                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white cursor-pointer mb-5"
+                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white mb-5"
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -186,7 +195,7 @@ export const Checkout = () => {
                 }}
                 onClick={() => setExpanded(0)}
               >
-                <div className="flex items-center justify-between font-inter text-base uppercase">
+                <div className="flex items-center justify-between font-inter text-base uppercase cursor-pointer">
                   buyer information
                   <motion.div
                     className="expand"
@@ -250,7 +259,7 @@ export const Checkout = () => {
               </motion.div>
 
               <motion.div
-                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white cursor-pointer mb-5"
+                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white mb-5"
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: 0.2 }}
@@ -260,7 +269,7 @@ export const Checkout = () => {
                 }}
                 onClick={() => setExpanded(1)}
               >
-                <div className="flex items-center justify-between font-inter text-base uppercase">
+                <div className="flex items-center justify-between font-inter text-base uppercase cursor-pointer">
                   recipent address
                   <motion.div
                     className="expand"
@@ -321,35 +330,55 @@ export const Checkout = () => {
                   )}
                 </AnimatePresence>
               </motion.div>
-              <motion.div
-                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white cursor-pointer mb-5"
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.4 }}
-                variants={{
-                  visible: { opacity: 1, y: 0 },
-                  hidden: { opacity: 0, y: 100 },
-                }}
-              >
-                <div className="font-inter uppercase text-base">
-                  car preview
-                </div>
-                <div className="flex justify-center my-[1.375rem]">
-                  {!codeModal && 
-                    <div className="w-1/2">
-                      <Canvas shadows>
-                        <Stage>
-                          <OrbitControls autoRotate enableRotate={false} enableZoom={false}/>
-                          <Porsche
-                            exteriorDesign={configs.exteriorDesign}
-                            interiorDesign={configs.interiorDesign}
-                          />
-                        </Stage>
-                      </Canvas>
-                    </div>
-                  }
-                </div>
-              </motion.div>
+              <div className="flex">
+                <motion.div
+                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white w-1/2 mr-5"
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: 0.4 }}
+                  variants={{
+                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 100 },
+                  }}
+                >
+                  <div className="font-inter uppercase text-base">
+                    car preview
+                  </div>
+                  <div className="flex justify-center my-[1.375rem]">
+                    {!codeModal && 
+                      <div className="">
+                        <Canvas shadows>
+                          <Stage>
+                            <OrbitControls autoRotate enableRotate={false} enableZoom={false}/>
+                            <Porsche
+                              exteriorDesign={configs.exteriorDesign}
+                              interiorDesign={configs.interiorDesign}
+                            />
+                          </Stage>
+                        </Canvas>
+                      </div>
+                    }
+                  </div>
+                </motion.div>
+                <motion.div
+                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white w-1/2 mr-5"
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: 0.4 }}
+                  variants={{
+                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 100 },
+                  }}
+                >
+                  <div className="font-inter uppercase text-base">
+                    arrival at
+                  </div>
+                  <div className="flex flex-col flex-1 items-center justify-center my-[1.375rem]">
+                    <span className="font-space text-xl text-[#E2B558]">{getArrivalDate()}</span>
+                    <small className="font-space text-base">10:00</small>
+                  </div>
+                </motion.div>
+              </div>
             </div>
             <div className="flex justify-between">
               <div className="secondary-btn" onClick={reset}>Start over</div>
