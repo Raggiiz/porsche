@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ArrowDown from "../../assets/icons/arrow-down.svg";
 import { Summary } from "../shared/summary/Summary";
 import { CarConfigs, Item } from "../configurator/interfaces";
-import { brakeColorOptions, leatherOptions, primaryColorOptions, secondaryColorOptions, wheelOptions } from "../configurator/carConfigs";
+import { brakeColorOptions, carPrice, leatherOptions, primaryColorOptions, secondaryColorOptions, wheelOptions } from "../configurator/carConfigs";
 import InputMask from 'react-input-mask';
 import Porsche from "../configurator/car/Porsche";
 import { Canvas } from "@react-three/fiber";
@@ -159,6 +159,16 @@ export const Checkout = () => {
     );
   }
 
+  const getConfigsPrice = () => {
+    return (
+      configs.exteriorDesign.primaryColor.price +
+      configs.exteriorDesign.secondaryColor.price +
+      configs.exteriorDesign.wheelType.price +
+      configs.exteriorDesign.brakesColor.price +
+      configs.interiorDesign.leatherColor.price
+    );
+  };
+
   const generateInvoice = () => {
     console.log(fullName, dateOfBirth, driverLicense, phone, email)
     const pdf = new jsPDF({unit: 'px'});
@@ -168,7 +178,7 @@ export const Checkout = () => {
     pdf.setTextColor('#fff');
     pdf.setFont('SpaceGrotesk-Bold', 'bold');
     pdf.setFontSize(42);
-    pdf.text('INVOICE', 280, 70);
+    pdf.text('INVOICE', 396, 70, {align: 'right'});
     pdf.setFontSize(18);
     pdf.setTextColor('#fff');
     pdf.text('BILLING TO', 50, 140);
@@ -179,7 +189,33 @@ export const Checkout = () => {
     pdf.text(`${number} ${street}`, 50, 180);
     pdf.text(`${city}, ${state}, ${zipCode}`, 50, 195);
     pdf.setFillColor('#fff');
-    pdf.rect(50, 205, 50, 1, "F");
+    pdf.rect(50, 250, 345, 0.5, "F");
+    pdf.setFont('SpaceGrotesk-Bold', 'bold');
+    pdf.setFontSize(16);
+    pdf.setTextColor('#fff');
+    pdf.text('Description', 50, 270);
+    pdf.text('Price', 396, 270, {align: 'right'});
+    pdf.setFillColor('#7d7d7d');
+    pdf.rect(50, 282, 345, 0.5, "F");
+    pdf.setFont('Inter-Regular', 'normal');
+    pdf.setFontSize(14);
+    pdf.setTextColor('#7d7d7d');
+    pdf.text('Porscha 911 GT2', 50, 300);
+    pdf.text(`$ ${carPrice.toLocaleString('en-us', { minimumFractionDigits: 2 })}`, 396, 300, {align: 'right'});
+    pdf.text('Configurations', 50, 320);
+    pdf.text(`$ ${getConfigsPrice().toLocaleString('en-us', { minimumFractionDigits: 2 })}`, 396, 320, {align: 'right'});
+    pdf.rect(50, 330, 345, 0.5, "F");
+    pdf.setFont('SpaceGrotesk-Bold', 'bold');
+    pdf.setFontSize(16);
+    pdf.setTextColor('#fff');
+    pdf.text('Total', 50, 350);
+    pdf.text(`$ ${(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}`, 396, 350, {align: 'right'});
+    pdf.setFillColor('#fff');
+    pdf.rect(50, 362, 345, 0.5, "F");
+    pdf.setFont('Inter-Regular', 'normal');
+    pdf.setFontSize(14);
+    pdf.setTextColor('#7d7d7d');
+    pdf.text(`Invoice nº ${Math.floor(1000 + Math.random() * 9000)}. Generated on ${new Date().toLocaleDateString('en-us', { weekday: 'short' })}, ${new Date().getDate()} ${new Date().toLocaleString('en-us', { month: 'short' })} ${new Date().getFullYear()}`, 50, 595);
     pdf.save(`911-gt2-${fullName.replaceAll(' ', '-')}.pdf`);
   }
 
