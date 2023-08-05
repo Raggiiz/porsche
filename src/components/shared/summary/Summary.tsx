@@ -104,9 +104,10 @@ export const Summary = ({handleUpdateEnviroment, configs, progress, checkout}: S
         pdf.rect(0, 0, 10000, 10000, "F");
         pdf.addImage(Logo, 60, 20, 60, 0);
         pdf.setTextColor('#fff');
-        pdf.setFont('Inter-Bold', 'bold');
+        pdf.setFont('SpaceGrotesk');
         pdf.setFontSize(12)
         pdf.text('911 GT2', 73, 70);
+        pdf.setFont('Inter-Bold', 'bold');
         pdf.setFontSize(10);
         pdf.text('PURCHASE CODE', 60, 450)
         pdf.addImage(imgData, 0, 80, 0, 0);

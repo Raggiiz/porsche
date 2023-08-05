@@ -9,6 +9,7 @@ import Porsche from "../configurator/car/Porsche";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stage } from "@react-three/drei";
 import jsPDF from "jspdf";
+import Logo from "../../assets/porscha-logo-white.png";
 
 export const Checkout = () => {
   const [expanded, setExpanded] = useState(0);
@@ -161,6 +162,24 @@ export const Checkout = () => {
   const generateInvoice = () => {
     console.log(fullName, dateOfBirth, driverLicense, phone, email)
     const pdf = new jsPDF({unit: 'px'});
+    pdf.setFillColor('#1c1c1c');
+    pdf.rect(0, 0, 10000, 10000, "F");
+    pdf.addImage(Logo, 50, 40, 60, 0);
+    pdf.setTextColor('#fff');
+    pdf.setFont('SpaceGrotesk-Bold', 'bold');
+    pdf.setFontSize(42);
+    pdf.text('INVOICE', 280, 70);
+    pdf.setFontSize(18);
+    pdf.setTextColor('#fff');
+    pdf.text('BILLING TO', 50, 140);
+    pdf.setFont('Inter-Regular', 'normal');
+    pdf.setFontSize(14);
+    pdf.setTextColor('#7d7d7d');
+    pdf.text(fullName, 50, 165);
+    pdf.text(`${number} ${street}`, 50, 180);
+    pdf.text(`${city}, ${state}, ${zipCode}`, 50, 195);
+    pdf.setFillColor('#fff');
+    pdf.rect(50, 205, 50, 1, "F");
     pdf.save(`911-gt2-${fullName.replaceAll(' ', '-')}.pdf`);
   }
 
@@ -361,7 +380,7 @@ export const Checkout = () => {
                   </div>
                 </motion.div>
                 <motion.div
-                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white w-1/2 mr-5"
+                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white w-1/2"
                   initial="hidden"
                   animate="visible"
                   transition={{ delay: 0.4 }}
