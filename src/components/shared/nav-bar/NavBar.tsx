@@ -4,14 +4,12 @@ import Profile from "../../../assets/icons/profile.svg";
 import Logo from "../../../assets/porscha-logo-white.png";
 import { Link } from "react-router-dom";
 import { SideBar } from "./SideBar";
+import { LoginModal } from "./LoginModal";
 
 export const NavBar = () => {
 
-  const [sideBarOpen, setSideBarOpen] = useState(false)
-
-  const closeSideBar = () => {
-    setSideBarOpen(false)
-  }
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
   return (
     <div className="flex justify-between items-center w-full py-4 px-10 bg-[#161616] relative z-20">
@@ -21,12 +19,11 @@ export const NavBar = () => {
       <Link to={"/"}>
         <img className="h-10" src={Logo} alt="Logo" />
       </Link>
-      <Link to={"/checkout"}>
-        <div className="cursor-pointer text-white">
-          <Profile />
-        </div>
-      </Link>
+      <div className="cursor-pointer text-white" onClick={() => setLoginModal(true)}>
+        <Profile />
+      </div>
       <SideBar sideBarOpen={sideBarOpen} setSideBarOpen={setSideBarOpen}/>
+      <LoginModal loginModal={loginModal} setLoginModal={setLoginModal}/>
     </div>
   );
 };
