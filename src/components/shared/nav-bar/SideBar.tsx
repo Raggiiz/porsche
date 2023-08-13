@@ -12,13 +12,13 @@ export const SideBar = ({ sideBarOpen, setSideBarOpen }: any) => {
       {sideBarOpen && (
         <>
           <motion.div
-            className="h-screen bg-[#1C1C1C] absolute left-0 top-0 bottom-0 shadow-xl z-10 flex flex-col p-12"
+            className="h-screen bg-[#161616] absolute left-0 top-0 bottom-0 shadow-xl z-10 flex flex-col p-12"
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: "25vw", opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{type: "spring",stiffness: 250,damping: 24}}
           >
-            <span className="text-white font-montserrat uppercase font-medium">models</span>
+            <span className="text-white font-inter uppercase font-medium">models</span>
             <div className="mt-8">
               <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
                 <img src={p911} alt="" width={'200px'} />
