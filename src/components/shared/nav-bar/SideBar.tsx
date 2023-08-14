@@ -7,6 +7,7 @@ import panamera from "../../../assets/car-models/panamera.webp";
 import React from "react";
 
 export const SideBar = ({ sideBarOpen, setSideBarOpen }: any) => {
+
   return (
     <AnimatePresence>
       {sideBarOpen && (
@@ -14,26 +15,26 @@ export const SideBar = ({ sideBarOpen, setSideBarOpen }: any) => {
           <motion.div
             className="h-screen bg-[#161616] absolute left-0 top-0 bottom-0 shadow-xl z-10 flex flex-col p-12"
             initial={{ width: 0, opacity: 0 }}
-            animate={{ width: "25vw", opacity: 1 }}
+            animate={{ width: `${window.innerWidth > 768 ? '28vw' : '80vw'}`, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{type: "spring",stiffness: 250,damping: 24}}
           >
             <span className="text-white font-inter uppercase font-medium">models</span>
             <div className="mt-8">
               <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={p911} alt="" width={'200px'} />
+                <img src={p911} alt="" className="w-48 md:max-xl:w-36" />
               </div>
               <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={p718} alt="" width={'200px'} />
+                <img src={p718} alt="" className="w-48 md:max-xl:w-36" />
               </div>
               <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={cayenne} alt="" width={'200px'} />
+                <img src={cayenne} alt="" className="w-48 md:max-xl:w-36" />
               </div>
               <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={macan} alt="" width={'200px'} />
+                <img src={macan} alt="" className="w-48 md:max-xl:w-36" />
               </div>
               <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={panamera} alt="" width={'200px'} />
+                <img src={panamera} alt="" className="w-48 md:max-xl:w-36" />
               </div>
             </div>
           </motion.div>

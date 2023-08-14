@@ -17,7 +17,7 @@ export const Home = () => {
         className="main-content absolute left-0 right-0 top-0 bottom-0 h-screen w-screen overflow-hidden
         object-cover z-10 flex flex-col justify-center bg-gradient-to-r from-[#00000066] to-50%"
       >
-        <div className="px-40 pt-72 flex flex-col h-full justify-between">
+        <div className="px-40 pt-72 md:max-xl:pt-48 flex flex-col h-full justify-between">
           <div className="flex flex-row">
             <div className="flex flex-col w-1/2">
               <motion.h1 className="font-porsche text-7xl text-white"

@@ -31,7 +31,9 @@ export const LoginModal = ({ loginModal, setLoginModal }: any) => {
     localStorage.setItem('porschaLogin', 'true');
     setIsLogged(true);
     setLoginModal(false);
-    navigate('/checkout');
+    setTimeout(() => {
+      navigate('/checkout');
+    }, 200)
   }
 
   const logOut = () => {
@@ -46,7 +48,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: any) => {
           <motion.div
             className="h-screen bg-[#161616] absolute right-0 top-0 bottom-0 shadow-xl z-10 flex flex-col items-center justify-between p-14"
             initial={{ width: 0, opacity: 0 }}
-            animate={{ width: "28vw", opacity: 1 }}
+            animate={{ width: `${window.innerWidth > 768 ? '28vw' : '80vw'}`, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 250, damping: 24 }}
           >
