@@ -13,19 +13,19 @@ import jsPDF from "jspdf";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface SummaryProps {
-  handleUpdateEnviroment?: any,
+  handleUpdateEnvironment?: any,
   configs: CarConfigs,
   progress?: number,
   checkout?: boolean
 }
 
-export const Summary = ({handleUpdateEnviroment, configs, progress, checkout}: SummaryProps) => {
+export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: SummaryProps) => {
   const [internal, setInternal] = useState(false);
   const [modalSend, setModalSend] = useState(false);
 
   function updateInternal(data: boolean) {
     setInternal(data)
-    handleUpdateEnviroment(data)
+    handleUpdateEnvironment(data)
   }
 
   const getConfigsPrice = () => {

@@ -53,7 +53,7 @@ export const Configurator = () => {
     setInteriorDesignToggle(!interiorDesignToggle);
   }
 
-  const handleUpdateEnviroment = (data: boolean) => {
+  const handleUpdateEnvironment = (data: boolean) => {
     setInteriorEnvironment(data)
   };
 
@@ -425,7 +425,7 @@ export const Configurator = () => {
             <Loader progress={progress}/>
           }
         </div>
-        <Summary handleUpdateEnviroment={handleUpdateEnviroment} configs={configs} progress={progress}/>
+        <Summary handleUpdateEnvironment={handleUpdateEnvironment} configs={configs} progress={progress}/>
       </div>
     </motion.div>
   );
