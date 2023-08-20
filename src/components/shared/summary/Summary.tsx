@@ -122,7 +122,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
 
   return (
     <>
-    <div className={`flex flex-col w-80 bg-[${checkout ? '#161616' : '#1C1C1C'}] items-center py-8 text-white ${checkout && 'rounded-[10px]'}`} id="print">
+    <div className={`flex flex-col ${checkout && 'max-lg:w-full'} w-80 bg-[${checkout ? '#161616' : '#1C1C1C'}] items-center py-8 text-white ${checkout && 'rounded-[10px]'}`} id="print">
       {!checkout && 
         (<div className="flex flex-col w-[214px]">
           <strong className="font-inter font-semibold uppercase">view</strong>

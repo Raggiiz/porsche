@@ -12,7 +12,7 @@ export const NavBar = () => {
   const [loginModal, setLoginModal] = useState(false);
 
   return (
-    <div className="flex justify-between items-center w-full py-4 px-10 bg-[#0D0D0D] relative z-20">
+    <div className="flex justify-between items-center w-full py-4 px-10 bg-[#0D0D0D] relative max-lg:fixed z-20">
       <div className="cursor-pointer text-white" onClick={() => setSideBarOpen(true)}>
         <Menu />
       </div>

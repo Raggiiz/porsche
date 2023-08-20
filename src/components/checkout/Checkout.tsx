@@ -228,17 +228,17 @@ export const Checkout = () => {
   return (
     <>
       <motion.div
-        className="flex flex-col bg-[#1c1c1c] text-white bg-topography w-full h-[calc(100vh-72px)] bg-no-repeat py-12 px-28"
+        className="flex flex-col bg-[#1c1c1c] text-white bg-topography w-full min-h-[calc(100vh-72px)] bg-no-repeat py-12 px-28 max-lg:pt-28 lg:max-xl:py-10 md:max-xl:px-12 max-lg:px-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="flex justify-between">
+        <div className="flex justify-between max-lg:flex-col">
           <h1 className="font-space font-medium text-3xl">{codeModal ? "--/--" : '911 GT2'} Checkout</h1>
           <span className="text-[#676767] font-space text-xl">{codeModal ? "--/--" : code}</span>
         </div>
-        <div className="flex mt-11">
-          <div className="flex flex-col flex-1 justify-between mr-5">
+        <div className="flex mt-11 md:max-xl:mt-8 max-lg:flex-col-reverse">
+          <div className="flex flex-col flex-1 justify-between lg:mr-5">
             <div className="flex flex-col">
               <motion.div
                 className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white mb-5"
@@ -283,26 +283,26 @@ export const Checkout = () => {
                         collapsed: { opacity: 0, height: 0, marginTop: 0, marginBottom: 0 },
                       }}
                     >
-                      <div className="flex">
-                        <div className="flex flex-col w-1/2">
+                      <div className="flex max-lg:flex-col">
+                        <div className="flex flex-col lg:w-1/2">
                           <label htmlFor="full-name" className="font-inter text-xs ml-2 mb-1">Full name</label>
                           <input type="text" id="full-name" className="primary-input" value={fullName} onChange={(e) => setFullName(e.target.value)} />
                         </div>
-                        <div className="flex flex-col w-1/4 px-7">
+                        <div className="flex flex-col lg:w-1/4 lg:px-7 max-lg:my-7">
                           <label htmlFor="birth" className="font-inter text-xs ml-2 mb-1">Date of birth</label>
                           <InputMask type="text" id="birth" mask="99/99/9999" className="primary-input" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
                         </div>
-                        <div className="flex flex-col w-1/4">
+                        <div className="flex flex-col lg:w-1/4">
                           <label htmlFor="driver-license" className="font-inter text-xs ml-2 mb-1">Driver license</label>
                           <input type="number" id="driver-license" className="primary-input" value={driverLicense} onChange={(e) => setDriverLicense(e.target.value)} />
                         </div>
                       </div>
-                      <div className="flex mt-7">
-                        <div className="flex flex-col w-1/2">
+                      <div className="flex mt-7 max-lg:flex-col">
+                        <div className="flex flex-col lg:w-1/2">
                           <label htmlFor="email" className="font-inter text-xs ml-2 mb-1">Email</label>
                           <input type="text" id="email" className="primary-input" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
-                        <div className="flex flex-col w-1/4 px-7">
+                        <div className="flex flex-col lg:w-1/4 lg:px-7 max-lg:mt-7">
                           <label htmlFor="phone" className="font-inter text-xs ml-2 mb-1">Phone</label>
                           <input type="number" id="phone" className="primary-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
                         </div>
@@ -357,26 +357,26 @@ export const Checkout = () => {
                         collapsed: { opacity: 0, height: 0, marginTop: 0, marginBottom: 0 },
                       }}
                     >
-                      <div className="flex">
-                        <div className="flex flex-col w-3/4">
+                      <div className="flex max-lg:flex-col">
+                        <div className="flex flex-col lg:w-3/4">
                           <label htmlFor="street" className="font-inter text-xs ml-2 mb-1">Street</label>
                           <input type="text" id="street" className="primary-input" value={street} onChange={(e) => setStreet(e.target.value)} />
                         </div>
-                        <div className="flex flex-col w-1/4 pl-7">
+                        <div className="flex flex-col lg:w-1/4 lg:pl-7 max-lg:pt-7">
                           <label htmlFor="number" className="font-inter text-xs ml-2 mb-1">Number</label>
                           <input type="number" id="number" className="primary-input" value={number} onChange={(e) => setNumber(e.target.value)} />
                         </div>
                       </div>
-                      <div className="flex mt-7">
-                        <div className="flex flex-col w-1/5">
+                      <div className="flex mt-7 max-lg:flex-col">
+                        <div className="flex flex-col lg:w-1/5">
                           <label htmlFor="zip-code" className="font-inter text-xs ml-2 mb-1">Zip code</label>
                           <input type="text" id="zip-code" className="primary-input" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
                         </div>
-                        <div className="flex flex-col w-2/5 px-7">
+                        <div className="flex flex-col lg:w-2/5 lg:px-7 max-lg:py-7">
                           <label htmlFor="state" className="font-inter text-xs ml-2 mb-1">State</label>
                           <input type="text" id="state" className="primary-input" value={state} onChange={(e) => setState(e.target.value)} />
                         </div>
-                        <div className="flex flex-col  w-2/5">
+                        <div className="flex flex-col  lg:w-2/5">
                           <label htmlFor="city" className="font-inter text-xs ml-2 mb-1">City</label>
                           <input type="text" id="city" className="primary-input" value={city} onChange={(e) => setCity(e.target.value)} />
                         </div>
@@ -385,9 +385,9 @@ export const Checkout = () => {
                   )}
                 </AnimatePresence>
               </motion.div>
-              <div className="flex">
+              <div className="flex max-lg:flex-col">
                 <motion.div
-                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white w-1/2 mr-5"
+                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white lg:w-1/2 lg:mr-5"
                   initial="hidden"
                   animate="visible"
                   transition={{ delay: 0.4 }}
@@ -399,7 +399,7 @@ export const Checkout = () => {
                   <div className="font-inter uppercase text-base">
                     car preview
                   </div>
-                  <div className="flex justify-center my-[1.375rem]">
+                  <div className="flex justify-center my-[1.375rem] md:max-xl:my-3">
                     {!codeModal && 
                       <div className="">
                         <Canvas shadows>
@@ -416,7 +416,7 @@ export const Checkout = () => {
                   </div>
                 </motion.div>
                 <motion.div
-                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white w-1/2"
+                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white lg:w-1/2 max-lg:mt-7"
                   initial="hidden"
                   animate="visible"
                   transition={{ delay: 0.4 }}
@@ -428,19 +428,21 @@ export const Checkout = () => {
                   <div className="font-inter uppercase text-base">
                     arrival at
                   </div>
-                  <div className="flex flex-col flex-1 items-center justify-center my-[1.375rem]">
+                  <div className="flex flex-col flex-1 items-center justify-center my-[1.375rem] md:max-xl:my-3">
                     <span className="font-space text-xl text-[#E2B558]">{getArrivalDate()}</span>
                     <small className="font-space text-base">10:00</small>
                   </div>
                 </motion.div>
               </div>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between max-lg:mt-8">
               <div className="secondary-btn" onClick={reset}>Start over</div>
               <div className={`primary-btn ${!validForm() && 'disabled-btn'}`} onClick={generateInvoice}>Generate invoice</div>
             </div>
           </div>
-          <Summary configs={configs} checkout={true}/>
+          <div className="max-lg:mb-8">
+            <Summary configs={configs} checkout={true}/>
+          </div>
         </div>
       </motion.div>
       <AnimatePresence>

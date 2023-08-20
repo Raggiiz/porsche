@@ -20,7 +20,19 @@ export const LoginModal = ({ loginModal, setLoginModal }: any) => {
 
   useEffect(() =>{
     setIsLogged(localStorage.getItem('porschaLogin') === 'true')
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    const handleTouchMove = (event: { preventDefault: () => void; }) => {
+      if (loginModal) {
+        event.preventDefault();
+      }
+    };
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    return () => {
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [loginModal]);
 
   const login = () => {
     setloginError(false);
@@ -58,7 +70,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: any) => {
           >
             <img src={Logo} alt="Logo" className="h-16 w-fit" />
             {isLogged ? (
-              <p className='font-montserrat text-white text-base text-center max-h-12 overflow-hidden'>
+              <p className='font-montserrat text-white text-base text-center max-h-[5rem] overflow-hidden'>
                 You're already logged in. <br/>
                 Go to <Link to={'/checkout'} onClick={() => setLoginModal(false)} className='text-[#E2B558]'>Checkout page</Link> or <span className='cursor-pointer text-[#E2B558]' onClick={logOut}>Log out</span>
               </p>

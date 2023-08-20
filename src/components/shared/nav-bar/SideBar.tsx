@@ -4,9 +4,21 @@ import p718 from "../../../assets/car-models/718.webp";
 import cayenne from "../../../assets/car-models/cayenne.webp";
 import macan from "../../../assets/car-models/macan.webp";
 import panamera from "../../../assets/car-models/panamera.webp";
-import React from "react";
+import React, { useEffect } from "react";
 
 export const SideBar = ({ sideBarOpen, setSideBarOpen }: any) => {
+
+  useEffect(() => {
+    const handleTouchMove = (event: { preventDefault: () => void; }) => {
+      if (sideBarOpen) {
+        event.preventDefault();
+      }
+    };
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    return () => {
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [sideBarOpen]);
 
   return (
     <AnimatePresence>
