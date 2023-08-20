@@ -1,11 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from "../../../assets/porscha-logo-white.png";
 import React, { useEffect, useState } from 'react'
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
 
 export const LoginModal = ({ loginModal, setLoginModal }: any) => {
 
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
@@ -34,11 +36,13 @@ export const LoginModal = ({ loginModal, setLoginModal }: any) => {
     setTimeout(() => {
       navigate('/checkout');
     }, 200)
-  }
+  } 
 
   const logOut = () => {
     localStorage.removeItem('porschaLogin');
     setIsLogged(false);
+    setLoginModal(false);
+    if(location.pathname === '/checkout') navigate('/');
   }
 
   return (
@@ -54,7 +58,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: any) => {
           >
             <img src={Logo} alt="Logo" className="h-16 w-fit" />
             {isLogged ? (
-              <p className='font-montserrat text-white text-base text-center'>
+              <p className='font-montserrat text-white text-base text-center max-h-12 overflow-hidden'>
                 You're already logged in. <br/>
                 Go to <Link to={'/checkout'} onClick={() => setLoginModal(false)} className='text-[#E2B558]'>Checkout page</Link> or <span className='cursor-pointer text-[#E2B558]' onClick={logOut}>Log out</span>
               </p>
