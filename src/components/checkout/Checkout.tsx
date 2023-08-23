@@ -452,8 +452,8 @@ export const Checkout = () => {
             initial={{background: '#00000000'}} 
             exit={{background: '#00000000'}}
           >
-            <motion.div className="flex absolute flex-col justify-between h-[220px] w-[375px] z-50 bg-[#1C1C1C] rounded-[10px] p-4 overflow-hidden shadow-md" 
-              animate={{height: '220px', width: '375px', opacity: 1}} 
+            <motion.div className="flex absolute flex-col justify-between z-50 bg-[#1C1C1C] rounded-[10px] p-4 overflow-hidden shadow-md" 
+              animate={{height: '220px', width: `${window.innerWidth > 768 ? '375px' : '290px'}`, opacity: 1}} 
               initial={{height: 0, width: 0, opacity: 0}} 
               exit={{height: 0, width: 0, opacity: 0}} 
               transition={{type: "spring",stiffness: 250,damping: 24}}
