@@ -17,16 +17,16 @@ export const Home = () => {
         className="main-content absolute left-0 right-0 top-0 bottom-0 h-screen w-screen overflow-hidden
         object-cover z-10 flex flex-col justify-center bg-gradient-to-r from-[#00000066] to-50%"
       >
-        <div className="px-40 pt-72 md:max-xl:pt-48 flex flex-col h-full justify-between">
-          <div className="flex flex-row">
-            <div className="flex flex-col w-1/2">
-              <motion.h1 className="font-porsche text-7xl text-white"
+        <div className="px-40 pt-72 md:max-xl:pt-44 md:max-xl:px-28 max-md:px-10 max-md:pt-28 flex flex-col h-full justify-between">
+          <div className="flex sm:max-lg:flex-col">
+            <div className="flex flex-col lg:w-1/2">
+              <motion.h1 className="font-porsche text-7xl max-md:text-5xl text-white"
               animate={{y: 0, opacity: 1}}
               initial={{y: 75, opacity: 0}}
               transition={{delay: 1}}>
                 911 gt2
               </motion.h1>
-              <motion.p className="text-white w-[500px] font-montserrat text-sm font-medium mt-3"
+              <motion.p className="text-white lg:w-[500px] font-montserrat text-sm max-md:text-xs font-medium mt-3"
               animate={{y: 0, opacity: 1}}
               initial={{y: 75, opacity: 0}}
               transition={{delay: 1.2}}>
@@ -48,7 +48,7 @@ export const Home = () => {
                 </Link>
               </motion.div>
             </div>
-            <motion.div className="flex w-1/2 justify-center"
+            <motion.div className="flex lg:w-1/2 justify-center lg:max-xl:justify-end max-md:hidden max-lg:mt-8"
             animate={{opacity: 1}}
             initial={{opacity: 0}}
             transition={{delay: 1.4}}>
@@ -66,8 +66,8 @@ export const Home = () => {
               </div>
             </motion.div>
           </div>
-          <div className="flex flex-row items-end">
-            <motion.div className="all-slider relative mb-28"
+          <div className="flex flex-row max-lg:flex-col items-end max-lg:items-center">
+            <motion.div className="all-slider relative mb-28 lg:max-xl:mb-14 md:max-lg:mb-24 max-md:mb-8 max-md:hidden"
             animate={{opacity: 1}}
             initial={{opacity: 0}}
             transition={{delay: 1.5}}>
@@ -94,41 +94,41 @@ export const Home = () => {
                 </div>
               </div>
             </motion.div>
-            <div className="flex flex-row justify-between backdrop-blur-md bg-[#0000004D] h-52 w-3/5 rounded-ss-[10px] absolute right-0 pr-40 pl-32 py-12 font-inter">
+            <div className="flex max-md:flex-col justify-between md:backdrop-blur-md bg-[#0000004D] md:h-52 w-3/5 max-lg:w-screen rounded-ss-[10px] absolute max-lg:relative right-0 pr-40 md:max-xl:pr-28 pl-32 py-12 max-md:py-5 md:max-lg:px-28 max-md:px-10 font-inter">
               <motion.div className="flex flex-col text-white"
               animate={{y: 0, opacity: 1}}
               initial={{y: 75, opacity: 0}}
               transition={{delay: 1.6}}>
-                <span className="text-base font-medium">Aceleration</span>
-                <small className="text-sm text-[#B7B7B7] font-light">0 to 100km/h</small>
-                <strong className="font-space text-xl">3.5 seg</strong>
+                <span className="text-base max-sm:text-sm font-medium">Aceleration</span>
+                <small className="text-sm max-sm:text-xs text-[#B7B7B7] font-light">0 to 100km/h</small>
+                <strong className="font-space text-xl max-sm:text-lg">3.5 seg</strong>
               </motion.div>
-              <div className="h-2/3 w-px bg-white"></div>
+              <div className="h-2/3 w-px max-md:w-full max-md:min-h-[1px] max-md:my-3 bg-white"></div>
               <motion.div className="flex flex-col text-white"
               animate={{y: 0, opacity: 1}}
               initial={{y: 75, opacity: 0}}
               transition={{delay: 1.7}}>
-                <span className="text-base font-medium">Horse Power</span>
-                <small className="text-sm text-[#B7B7B7] font-light">6 shifts</small>
-                <strong className="font-space text-xl">560</strong>
+                <span className="text-base max-sm:text-sm font-medium">Horse Power</span>
+                <small className="text-sm max-sm:text-xs text-[#B7B7B7] font-light">6 shifts</small>
+                <strong className="font-space text-xl max-sm:text-lg">560</strong>
               </motion.div>
-              <div className="h-2/3 w-px bg-white"></div>
+              <div className="h-2/3 w-px max-md:w-full max-md:min-h-[1px] max-md:my-3 bg-white"></div>
               <motion.div className="flex flex-col text-white"
               animate={{y: 0, opacity: 1}}
               initial={{y: 75, opacity: 0}}
               transition={{delay: 1.8}}>
-                <span className="text-base font-medium">Maximum speed</span>
-                <small className="text-sm text-[#B7B7B7] font-light">650 rpm</small>
-                <strong className="font-space text-xl">390 km/h</strong>
+                <span className="text-base max-sm:text-sm font-medium">Maximum speed</span>
+                <small className="text-sm max-sm:text-xs text-[#B7B7B7] font-light">650 rpm</small>
+                <strong className="font-space text-xl max-sm:text-lg">390 km/h</strong>
               </motion.div>
-              <div className="h-2/3 w-px bg-white"></div>
+              <div className="h-2/3 w-px max-md:w-full max-md:min-h-[1px] max-md:my-3 bg-white"></div>
               <motion.div className="flex flex-col text-white"
               animate={{y: 0, opacity: 1}}
               initial={{y: 75, opacity: 0}}
               transition={{delay: 1.9}}>
-                <span className="text-base font-medium">Tork</span>
-                <small className="text-sm text-[#B7B7B7] font-light">1750-450 rpm</small>
-                <strong className="font-space text-xl">479 lb-ft</strong>
+                <span className="text-base max-sm:text-sm font-medium">Tork</span>
+                <small className="text-sm max-sm:text-xs text-[#B7B7B7] font-light">1750-450 rpm</small>
+                <strong className="font-space text-xl max-sm:text-lg">479 lb-ft</strong>
               </motion.div>
             </div>
           </div>

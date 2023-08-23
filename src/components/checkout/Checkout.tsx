@@ -228,7 +228,7 @@ export const Checkout = () => {
   return (
     <>
       <motion.div
-        className="flex flex-col bg-[#1c1c1c] text-white bg-topography w-full min-h-[calc(100vh-72px)] bg-no-repeat py-12 px-28 max-lg:pt-28 lg:max-xl:py-10 md:max-xl:px-12 max-lg:px-10"
+        className="flex flex-col bg-[#1c1c1c] text-white bg-topography w-full min-h-[calc(100vh-72px)] bg-no-repeat py-12 px-28 max-lg:pt-28 lg:max-xl:py-10 md:max-xl:px-12 max-md:px-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
