@@ -440,7 +440,7 @@ export const Checkout = () => {
               <div className={`primary-btn ${!validForm() && 'disabled-btn'}`} onClick={generateInvoice}>Generate invoice</div>
             </div>
           </div>
-          <div className="max-lg:mb-8">
+          <div className="max-lg:mb-8 max-lg:w-full w-80">
             <Summary configs={configs} checkout={true}/>
           </div>
         </div>

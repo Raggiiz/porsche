@@ -122,9 +122,9 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
 
   return (
     <>
-    <div className={`flex flex-col ${checkout && 'max-lg:w-full'} w-80 bg-[${checkout ? '#161616' : '#1C1C1C'}] items-center py-8 text-white ${checkout && 'rounded-[10px]'}`} id="print">
+    <div className={`flex flex-col bg-[#161616] items-center py-8 text-white ${checkout ? 'rounded-[10px] px-8' : 'px-12'}`} id="print">
       {!checkout && 
-        (<div className="flex flex-col w-[214px]">
+        (<div className="flex flex-col w-full">
           <strong className="font-inter font-semibold uppercase">view</strong>
           <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${progress !== 100 && 'disabled-btn'}`}>
             <div className={`flex justify-center rounded-s-[10px] w-full border border-[#E2B558] ${internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
@@ -132,7 +132,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
           </div>
         </div>)
       }
-      <div className={`flex flex-col w-[214px] ${!checkout && 'mt-14'}`}>
+      <div className={`flex flex-col w-full ${!checkout && 'mt-14'}`}>
         <strong className="font-inter font-semibold uppercase">summary</strong>
         <div className="flex flex-row mt-5">
           <div className="flex flex-col items-center py-1">
@@ -143,7 +143,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
             <span className="font-inter text-sm ml-4">Exterior design</span>
             <div className="flex justify-between items-center my-8">
               <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-17px]`}>
+                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-17px]`}>
                   <PrimaryColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -155,7 +155,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
             </div>
             <div className="flex justify-between items-center mb-8">
               <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-15px]`}>
+                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-15px]`}>
                   <SecondaryColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -167,7 +167,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
             </div>
             <div className="flex justify-between items-center mb-8">
               <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-16px]`}>
+                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
                   <WheelType />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -179,7 +179,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
             </div>
             <div className="flex justify-between items-center mb-8">
               <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-16px]`}>
+                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
                   <BrakeColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -200,7 +200,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
             <span className="font-inter text-sm ml-4">Exterior design</span>
             <div className="flex justify-between items-center mt-8">
               <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[${checkout ? '#161616' : '#1C1C1C'}] p-1 absolute left-[-16px]`}>
+                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
                   <LeatherColor />
                 </div>
                 <div className="flex flex-col pl-4">
@@ -213,7 +213,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-[214px] mt-14">
+      <div className="flex flex-col w-full mt-14">
         <strong className="font-inter font-semibold uppercase">total</strong>
         <div className="flex flex-col text-[#7D7D7D] font-space mt-1">
           <div className="flex justify-between">

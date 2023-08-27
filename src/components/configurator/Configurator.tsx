@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ArrowDown from "../../assets/icons/arrow-down.svg";
 import { CarConfigs, Item } from "./interfaces";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import { Scene } from "./Scene";
 import PrimaryColor from "../../assets/icons/primary-color.svg";
 import SecondaryColor from "../../assets/icons/secondary-color.svg";
@@ -61,13 +61,13 @@ export const Configurator = () => {
 
   return (
     <motion.div
-      className="w-full h-[calc(100vh-72px)] bg-[#e4f3f5] flex justify-center flex-col relative"
+      className="w-full lg:h-[calc(100vh-72px)] max-lg:mt-[72px] bg-[#161616] flex justify-center relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="flex  h-[calc(100vh-72px)]">
-        <div className="w-[calc(100vw-320px)] relative">
+      <div className="flex max-lg:flex-col">
+        <div className="w-[calc(100vw-320px)] max-lg:w-screen max-lg:h-[80vh] relative">
           <div className="flex justify-center items-center w-[inherit] h-14 bg-black/70 absolute top-0 backdrop-blur-sm z-10">
             <motion.span
               className="btn-custom-menu"
@@ -123,7 +123,7 @@ export const Configurator = () => {
             </motion.span>
           </div>
           <motion.div
-            className="flex justify-between py-4 px-10 bg-black/30 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[46rem]"
+            className="flex justify-between max-lg:items-center py-4 px-10 bg-black/30 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[46rem] max-lg:w-[90vw]"
             animate={[
               exteriorDesignToggle ? "open" : "closed",
               selectedExterior ? "selectedExterior" : "",
@@ -140,7 +140,7 @@ export const Configurator = () => {
                   <div className="mb-2">
                     <PrimaryColor />
                   </div>
-                  Primary color
+                  <span className="max-lg:hidden">Primary color</span>
                 </motion.div>
                 <motion.div
                   className="flex flex-col font-space text-xs cursor-pointer"
@@ -150,7 +150,7 @@ export const Configurator = () => {
                   <div className="mb-2">
                     <SecondaryColor />
                   </div>
-                  Secondary color
+                  <span className="max-lg:hidden">Secondary color</span>
                 </motion.div>
                 <motion.div
                   className="flex flex-col font-space text-xs cursor-pointer"
@@ -160,7 +160,7 @@ export const Configurator = () => {
                   <div className="mb-2">
                     <Wheels />
                   </div>
-                  Wheels
+                  <span className="max-lg:hidden">Wheels</span>
                 </motion.div>
                 <motion.div
                   className="flex flex-col font-space text-xs cursor-pointer"
@@ -170,7 +170,7 @@ export const Configurator = () => {
                   <div className="mb-2">
                     <Brakes />
                   </div>
-                  Brakes color
+                  <span className="max-lg:hidden">Brakes color</span>
                 </motion.div>
               </>
             ) : (
@@ -188,7 +188,7 @@ export const Configurator = () => {
                   </span>
                   <motion.div className="w-full flex justify-center" variants={upItem} animate={"open"}>
                     <motion.div
-                      className="flex justify-between mt-4 w-[28rem] px-10"
+                      className="flex justify-between mt-4 w-[28rem] lg:px-10"
                       variants={upItem}
                       animate={"open"}
                     >
@@ -379,7 +379,7 @@ export const Configurator = () => {
             )}
           </motion.div>
           <motion.div
-            className="py-4 px-10 bg-black/30 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[28rem]"
+            className="py-4 px-10 bg-black/30 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[28rem] max-lg:w-[80vw]"
             animate={[
               interiorDesignToggle ? "open" : "closed",
               "selectedExterior",
@@ -425,7 +425,16 @@ export const Configurator = () => {
             <Loader progress={progress}/>
           }
         </div>
-        <Summary handleUpdateEnvironment={handleUpdateEnvironment} configs={configs} progress={progress}/>
+        { progress === 100 && 
+          <div className="flex items-center justify-center w-screen py-8 bg-[#161616] lg:hidden">
+            <motion.div className="flex flex-col cursor-pointer">
+              <motion.div className="rounded-full bg-[#E2B558] w-3 opacity-0"animate={{y: [35,-5], opacity: [1,1,1,0], height: [12,18]}} transition={{duration: 0.5,repeat: Infinity, repeatDelay: 2, delay: 2, ease: 'circInOut'}}></motion.div>
+            </motion.div>
+          </div>
+        }
+        <div className="max-lg:w-full w-80 lg:max-2xl::h-[calc(100vh-72px)] lg:max-2xl:overflow-y-auto">
+          <Summary handleUpdateEnvironment={handleUpdateEnvironment} configs={configs} progress={progress}/>
+        </div>
       </div>
     </motion.div>
   );
@@ -434,7 +443,8 @@ export const Configurator = () => {
 const customBlockAnimation = {
   open: {
     clipPath: "inset(0% 0% 0% 0% round 10px)",
-    height: "79px",
+    // height: `${window.innerWidth > 1024 ? '79px' : '200px'}`,
+    height: '79px',
     transition: {
       type: "spring",
       bounce: 0,
