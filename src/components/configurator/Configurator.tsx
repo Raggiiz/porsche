@@ -39,11 +39,11 @@ export const Configurator = () => {
     },
   };
 
-  const [selectedExterior, setSelectedExterior] = useState<string | null>(null);
+  const [selectedExteriorType, setSelectedExteriorType] = useState<string | null>(null);
 
   function activeExterior() {
     if (!exteriorDesignToggle){
-      setSelectedExterior(null)
+      setSelectedExteriorType(null)
       setInteriorDesignToggle(false);
     } 
     setExteriorDesignToggle(!exteriorDesignToggle);
@@ -126,16 +126,16 @@ export const Configurator = () => {
             className="flex justify-between max-lg:items-center py-4 px-10 bg-black/30 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[46rem] max-lg:w-[90vw]"
             animate={[
               exteriorDesignToggle ? "open" : "closed",
-              selectedExterior ? "selectedExterior" : "",
+              selectedExteriorType ? "selectedExteriorType" : "",
             ]}
             variants={customBlockAnimation}
           >
-            {!selectedExterior ? (
+            {!selectedExteriorType ? (
               <>
                 <motion.div
                   className="flex flex-col font-space text-xs cursor-pointer"
                   variants={upItem}
-                  onClick={() => setSelectedExterior("primaryColor")}
+                  onClick={() => setSelectedExteriorType("primaryColor")}
                 >
                   <div className="mb-2">
                     <PrimaryColor />
@@ -145,7 +145,7 @@ export const Configurator = () => {
                 <motion.div
                   className="flex flex-col font-space text-xs cursor-pointer"
                   variants={upItem}
-                  onClick={() => setSelectedExterior("secondaryColor")}
+                  onClick={() => setSelectedExteriorType("secondaryColor")}
                 >
                   <div className="mb-2">
                     <SecondaryColor />
@@ -155,7 +155,7 @@ export const Configurator = () => {
                 <motion.div
                   className="flex flex-col font-space text-xs cursor-pointer"
                   variants={upItem}
-                  onClick={() => setSelectedExterior("wheels")}
+                  onClick={() => setSelectedExteriorType("wheels")}
                 >
                   <div className="mb-2">
                     <Wheels />
@@ -165,7 +165,7 @@ export const Configurator = () => {
                 <motion.div
                   className="flex flex-col font-space text-xs cursor-pointer"
                   variants={upItem}
-                  onClick={() => setSelectedExterior("brakes")}
+                  onClick={() => setSelectedExteriorType("brakes")}
                 >
                   <div className="mb-2">
                     <Brakes />
@@ -174,13 +174,13 @@ export const Configurator = () => {
                 </motion.div>
               </>
             ) : (
-              (selectedExterior === "primaryColor" && (
+              (selectedExteriorType === "primaryColor" && (
                 <motion.div
                   className="flex flex-col w-full"
                   variants={upItem}
                   animate={"open"}
                 >
-                  <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExterior(null)}>
+                  <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExteriorType(null)}>
                     <div className="mr-4">
                       <ArrowBack />
                     </div>
@@ -238,9 +238,9 @@ export const Configurator = () => {
                   </motion.div>
                 </motion.div>
               )) ||
-              (selectedExterior === "secondaryColor" && (
+              (selectedExteriorType === "secondaryColor" && (
                 <div className="flex flex-col w-full">
-                  <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExterior(null)}>
+                  <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExteriorType(null)}>
                     <div className="mr-4">
                       <ArrowBack />
                     </div>
@@ -288,11 +288,11 @@ export const Configurator = () => {
                   </div>
                 </div>
               )) ||
-              (selectedExterior === "wheels" && (
+              (selectedExteriorType === "wheels" && (
                 <div className="flex flex-col w-full">
                   <span
                     className="flex items-center font-space text-xs cursor-pointer"
-                    onClick={() => setSelectedExterior(null)}
+                    onClick={() => setSelectedExteriorType(null)}
                   >
                     <div className="mr-4">
                       <ArrowBack />
@@ -332,9 +332,9 @@ export const Configurator = () => {
                   </div>
                 </div>
               )) ||
-              (selectedExterior === "brakes" && (
+              (selectedExteriorType === "brakes" && (
                 <div className="flex flex-col w-full">
-                  <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExterior(null)}>
+                  <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExteriorType(null)}>
                     <div className="mr-4">
                       <ArrowBack />
                     </div>
@@ -382,7 +382,7 @@ export const Configurator = () => {
             className="py-4 px-10 bg-black/30 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[28rem] max-lg:w-[80vw]"
             animate={[
               interiorDesignToggle ? "open" : "closed",
-              "selectedExterior",
+              "selectedExteriorType",
             ]}
             variants={customBlockAnimation}
           >
@@ -461,7 +461,7 @@ const customBlockAnimation = {
       duration: 0.3,
     },
   },
-  selectedExterior: {
+  selectedExteriorType: {
     height: "112px",
   },
 };

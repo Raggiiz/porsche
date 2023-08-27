@@ -1,9 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from "../../../assets/porscha-logo-white.png";
-import React, { useEffect, useState } from 'react'
+import React, { SetStateAction, useEffect, useState } from 'react'
 import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
 
-export const LoginModal = ({ loginModal, setLoginModal }: any) => {
+interface LoginModalInterface {
+  loginModal: boolean,
+  setLoginModal: any
+}
+
+export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) => {
 
   const navigate = useNavigate();
   const location = useLocation();

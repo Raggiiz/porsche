@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 
-export const Loader = ({progress}: any) => {
+export const Loader = ({progress}: {progress: number}) => {
   return (
     <div className='flex flex-col items-center justify-center h-full bg-[#161616]'>
         <span className='font-space font-medium text-white'>{progress.toFixed(0)}%</span>

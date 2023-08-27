@@ -6,7 +6,12 @@ import macan from "../../../assets/car-models/macan.webp";
 import panamera from "../../../assets/car-models/panamera.webp";
 import React, { useEffect } from "react";
 
-export const SideBar = ({ sideBarOpen, setSideBarOpen }: any) => {
+interface SideBarInterface {
+  sideBarOpen: boolean,
+  setSideBarOpen: any
+}
+
+export const SideBar = ({ sideBarOpen, setSideBarOpen }: SideBarInterface) => {
 
   useEffect(() => {
     const handleTouchMove = (event: { preventDefault: () => void; }) => {

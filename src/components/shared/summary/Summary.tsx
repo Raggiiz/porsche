@@ -71,8 +71,9 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
 
   const downloadPDF = () => {
     setModalSend(false);
-    const input: any = document.getElementById('print');
-    html2canvas(input)
+    const input: HTMLElement | null = document.getElementById('print');
+    if(input) 
+      html2canvas(input)
       .then((canvas) => {
         const croppedCanvas = document.createElement('canvas');
         const croppedContext = croppedCanvas.getContext('2d');
@@ -98,7 +99,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
           croppedHeight
         );
 
-        const imgData: any = croppedCanvas.toDataURL('image/png');
+        const imgData: string = croppedCanvas.toDataURL('image/png');
         const pdf = new jsPDF({unit: 'px', format: [180,490]});
         pdf.setFillColor('#1c1c1c');
         pdf.rect(0, 0, 10000, 10000, "F");

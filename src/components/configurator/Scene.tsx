@@ -15,8 +15,14 @@ import {
 import Road from "./road/Road";
 import { Garage } from "./garage/Garage";
 import Porsche from "./car/Porsche";
+import { CarConfigs } from "./interfaces";
 
-export const Scene = ({ configs, interiorEnvironment }: any) => {
+interface SceneProps {
+  configs: CarConfigs,
+  interiorEnvironment: boolean
+}
+
+export const Scene = ({ configs, interiorEnvironment }: SceneProps) => {
   return (
     <Canvas shadows style={{ background: "#161616" }}>
       <Suspense fallback={null}>
