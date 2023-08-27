@@ -427,12 +427,12 @@ export const Configurator = () => {
         </div>
         { progress === 100 && 
           <div className="flex items-center justify-center w-screen py-8 bg-[#161616] lg:hidden">
-            <motion.div className="flex flex-col cursor-pointer">
+            <motion.div className="flex flex-col cursor-pointer absolute">
               <motion.div className="rounded-full bg-[#E2B558] w-3 opacity-0"animate={{y: [35,-5], opacity: [1,1,1,0], height: [12,18]}} transition={{duration: 0.5,repeat: Infinity, repeatDelay: 2, delay: 2, ease: 'circInOut'}}></motion.div>
             </motion.div>
           </div>
         }
-        <div className="max-lg:w-full w-80 lg:max-2xl::h-[calc(100vh-72px)] lg:max-2xl:overflow-y-auto">
+        <div className="flex justify-center max-lg:w-full">
           <Summary handleUpdateEnvironment={handleUpdateEnvironment} configs={configs} progress={progress}/>
         </div>
       </div>

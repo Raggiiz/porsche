@@ -75,33 +75,10 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
     if(input) 
       html2canvas(input)
       .then((canvas) => {
-        const croppedCanvas = document.createElement('canvas');
-        const croppedContext = croppedCanvas.getContext('2d');
-
-        const sourceWidth = canvas.width;
-        const sourceHeight = canvas.height;
-
-        const croppedWidth = sourceWidth - 2;
-        const croppedHeight = sourceHeight - 250;
-
-        croppedCanvas.width = croppedWidth;
-        croppedCanvas.height = croppedHeight;
-
-        croppedContext?.drawImage(
-          canvas,
-          0,
-          150,
-          croppedWidth,
-          croppedHeight,
-          0,
-          0,
-          croppedWidth,
-          croppedHeight
-        );
-
-        const imgData: string = croppedCanvas.toDataURL('image/png');
+        const imgData: string = canvas.toDataURL('image/png');
+        console.log(canvas.height, canvas.width)
         const pdf = new jsPDF({unit: 'px', format: [180,490]});
-        pdf.setFillColor('#1c1c1c');
+        pdf.setFillColor('#161616');
         pdf.rect(0, 0, 10000, 10000, "F");
         pdf.addImage(Logo, 60, 20, 60, 0);
         pdf.setTextColor('#fff');
@@ -111,7 +88,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
         pdf.setFont('Inter-Bold', 'bold');
         pdf.setFontSize(10);
         pdf.text('PURCHASE CODE', 60, 450)
-        pdf.addImage(imgData, 0, 80, 0, 0);
+        pdf.addImage(imgData, (canvas.width - 180) / 2 + 5, 95, 0, 0);
         pdf.setTextColor('#E2B558')
         pdf.setFontSize(10);
         pdf.text(`pc=${configs.exteriorDesign.primaryColor.code}&sc=${configs.exteriorDesign.secondaryColor.code}&wt=${configs.exteriorDesign.wheelType.code}&bc=${configs.exteriorDesign.brakesColor.code}&lc=${configs.interiorDesign.leatherColor.code}`,
@@ -123,7 +100,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
 
   return (
     <>
-    <div className={`flex flex-col bg-[#161616] items-center py-8 text-white ${checkout ? 'rounded-[10px] px-8' : 'px-12'}`} id="print">
+    <div className={`flex flex-col bg-[#161616] items-center py-8 text-white w-80 ${checkout ? 'rounded-[10px] px-8 max-lg:w-full' : 'px-12 lg:max-2xl:h-[calc(100vh-72px)] lg:max-2xl:overflow-y-auto'}`}>
       {!checkout && 
         (<div className="flex flex-col w-full">
           <strong className="font-inter font-semibold uppercase">view</strong>
@@ -133,98 +110,100 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
           </div>
         </div>)
       }
-      <div className={`flex flex-col w-full ${!checkout && 'mt-14'}`}>
-        <strong className="font-inter font-semibold uppercase">summary</strong>
-        <div className="flex flex-row mt-5">
-          <div className="flex flex-col items-center py-1">
-            <div className="h-3 w-3 bg-[#7d7d7d] rounded" />
-            <div className="w-px bg-[#7d7d7d] h-[16.5rem] mt-4"></div>
+      <div className={`flex flex-col w-full bg-[#161616] pb-[6px] ${!checkout && 'mt-10'}`} id="print">
+        <div className={`flex flex-col w-full`}>
+          <strong className="font-inter font-semibold uppercase">summary</strong>
+          <div className="flex flex-row mt-5">
+            <div className="flex flex-col items-center py-1">
+              <div className="h-3 w-3 bg-[#7d7d7d] rounded" />
+              <div className="w-px bg-[#7d7d7d] h-[16.5rem] mt-4"></div>
+            </div>
+            <div className="flex flex-col flex-1">
+              <span className="font-inter text-sm ml-4">Exterior design</span>
+              <div className="flex justify-between items-center my-8">
+                <div className="flex flex-row items-center relative">
+                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-17px]`}>
+                    <PrimaryColor />
+                  </div>
+                  <div className="flex flex-col pl-4">
+                    <small className="font-space text-[10px]">Primary color</small>
+                    <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.primaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                  </div>
+                </div>
+                <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.primaryColor.value)}`}></div>
+              </div>
+              <div className="flex justify-between items-center mb-8">
+                <div className="flex flex-row items-center relative">
+                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-15px]`}>
+                    <SecondaryColor />
+                  </div>
+                  <div className="flex flex-col pl-4">
+                    <small className="font-space text-[10px]">Secondary color</small>
+                    <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.secondaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                  </div>
+                </div>
+                <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.secondaryColor.value)}`}></div>
+              </div>
+              <div className="flex justify-between items-center mb-8">
+                <div className="flex flex-row items-center relative">
+                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
+                    <WheelType />
+                  </div>
+                  <div className="flex flex-col pl-4">
+                    <small className="font-space text-[10px]">Wheel type</small>
+                    <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.wheelType.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                  </div>
+                </div>
+                <div className="font-space text-[8px]">{configs.exteriorDesign.wheelType.value}</div>
+              </div>
+              <div className="flex justify-between items-center mb-8">
+                <div className="flex flex-row items-center relative">
+                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
+                    <BrakeColor />
+                  </div>
+                  <div className="flex flex-col pl-4">
+                    <small className="font-space text-[10px]">Brake color</small>
+                    <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.brakesColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                  </div>
+                </div>
+                <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.brakesColor.value)}`}></div>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col flex-1">
-            <span className="font-inter text-sm ml-4">Exterior design</span>
-            <div className="flex justify-between items-center my-8">
-              <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-17px]`}>
-                  <PrimaryColor />
-                </div>
-                <div className="flex flex-col pl-4">
-                  <small className="font-space text-[10px]">Primary color</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.primaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
-                </div>
-              </div>
-              <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.primaryColor.value)}`}></div>
+          <div className="flex flex-row">
+            <div className="flex flex-col items-center py-1">
+              <div className="h-3 w-3 bg-[#7d7d7d] rounded" />
+              <div className="w-px bg-[#7d7d7d] h-10 mt-4"></div>
             </div>
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-15px]`}>
-                  <SecondaryColor />
+            <div className="flex flex-col flex-1">
+              <span className="font-inter text-sm ml-4">Exterior design</span>
+              <div className="flex justify-between items-center mt-8">
+                <div className="flex flex-row items-center relative">
+                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
+                    <LeatherColor />
+                  </div>
+                  <div className="flex flex-col pl-4">
+                    <small className="font-space text-[10px]">Leather color</small>
+                    <span className="text-[#E2B558] font-space text-xs">$ {configs.interiorDesign.leatherColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                  </div>
                 </div>
-                <div className="flex flex-col pl-4">
-                  <small className="font-space text-[10px]">Secondary color</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.secondaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
-                </div>
+                <div className={`w-4 h-8 ${getGradient(configs.interiorDesign.leatherColor.value)}`}></div>
               </div>
-              <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.secondaryColor.value)}`}></div>
-            </div>
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
-                  <WheelType />
-                </div>
-                <div className="flex flex-col pl-4">
-                  <small className="font-space text-[10px]">Wheel type</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.wheelType.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
-                </div>
-              </div>
-              <div className="font-space text-[8px]">{configs.exteriorDesign.wheelType.value}</div>
-            </div>
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
-                  <BrakeColor />
-                </div>
-                <div className="flex flex-col pl-4">
-                  <small className="font-space text-[10px]">Brake color</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.brakesColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
-                </div>
-              </div>
-              <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.brakesColor.value)}`}></div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row">
-          <div className="flex flex-col items-center py-1">
-            <div className="h-3 w-3 bg-[#7d7d7d] rounded" />
-            <div className="w-px bg-[#7d7d7d] h-10 mt-4"></div>
-          </div>
-          <div className="flex flex-col flex-1">
-            <span className="font-inter text-sm ml-4">Exterior design</span>
-            <div className="flex justify-between items-center mt-8">
-              <div className="flex flex-row items-center relative">
-                <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
-                  <LeatherColor />
-                </div>
-                <div className="flex flex-col pl-4">
-                  <small className="font-space text-[10px]">Leather color</small>
-                  <span className="text-[#E2B558] font-space text-xs">$ {configs.interiorDesign.leatherColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
-                </div>
-              </div>
-              <div className={`w-4 h-8 ${getGradient(configs.interiorDesign.leatherColor.value)}`}></div>
+        <div className="flex flex-col w-full mt-10">
+          <strong className="font-inter font-semibold uppercase">total</strong>
+          <div className="flex flex-col text-[#7D7D7D] font-space mt-1">
+            <div className="flex justify-between">
+              <small className="text-xs">Car</small><small className="text-xs">$ {carPrice.toLocaleString('en-us', { minimumFractionDigits: 2 })}</small>
             </div>
+            <div className="flex justify-between">
+              <small className="text-xs">Configurations</small>
+              <small className="text-xs">$ {getConfigsPrice().toLocaleString('en-us', { minimumFractionDigits: 2 })}</small>
+            </div>
+            <span className="text-[#E2B558] text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
           </div>
-        </div>
-      </div>
-      <div className="flex flex-col w-full mt-14">
-        <strong className="font-inter font-semibold uppercase">total</strong>
-        <div className="flex flex-col text-[#7D7D7D] font-space mt-1">
-          <div className="flex justify-between">
-            <small className="text-xs">Car</small><small className="text-xs">$ {carPrice.toLocaleString('en-us', { minimumFractionDigits: 2 })}</small>
-          </div>
-          <div className="flex justify-between">
-            <small className="text-xs">Configurations</small>
-            <small className="text-xs">$ {getConfigsPrice().toLocaleString('en-us', { minimumFractionDigits: 2 })}</small>
-          </div>
-          <span className="text-[#E2B558] text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
         </div>
       </div>
       {!checkout && <div className={`primary-btn mt-6 ${progress !== 100 && 'disabled-btn'}`} onClick={() => setModalSend(true)}>Send to dealer</div>}
