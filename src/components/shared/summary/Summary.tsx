@@ -88,7 +88,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
         pdf.setFont('Inter-Bold', 'bold');
         pdf.setFontSize(10);
         pdf.text('PURCHASE CODE', 60, 450)
-        pdf.addImage(imgData, (canvas.width - 180) / 2 + 5, 95, 0, 0);
+        pdf.addImage(imgData, 28, 95, 124, 317 );
         pdf.setTextColor('#E2B558')
         pdf.setFontSize(10);
         pdf.text(`pc=${configs.exteriorDesign.primaryColor.code}&sc=${configs.exteriorDesign.secondaryColor.code}&wt=${configs.exteriorDesign.wheelType.code}&bc=${configs.exteriorDesign.brakesColor.code}&lc=${configs.interiorDesign.leatherColor.code}`,
