@@ -12,6 +12,7 @@ import { Summary } from "../shared/summary/Summary";
 import { primaryColorOptions, leatherOptions, secondaryColorOptions, wheelOptions, brakeColorOptions } from "./carConfigs";
 import { useProgress } from "@react-three/drei";
 import { Loader } from "./Loader";
+import { customBlockAnimation, rotateArrowAnimation, upItem } from "./animations";
 
 export const Configurator = () => {
   const [wheel, setWheel] = useState<Item>(wheelOptions.original);
@@ -456,50 +457,4 @@ export const Configurator = () => {
       </div>
     </motion.div>
   );
-};
-
-const customBlockAnimation = {
-  open: {
-    clipPath: "inset(0% 0% 0% 0% round 10px)",
-    // height: `${window.innerWidth > 1024 ? '79px' : '200px'}`,
-    height: '79px',
-    transition: {
-      type: "spring",
-      bounce: 0,
-      duration: 0.7,
-      delayChildren: 0.3,
-      staggerChildren: 0.05,
-    },
-  },
-  closed: {
-    clipPath: "inset(10% 50% 90% 50% round 10px)",
-    transition: {
-      type: "spring",
-      bounce: 0,
-      duration: 0.3,
-    },
-  },
-  selectedExteriorType: {
-    height: "112px",
-  },
-};
-
-const rotateArrowAnimation = {
-  open: { rotate: 180 },
-  closed: { rotate: 0 },
-};
-
-const upItem = {
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 24,
-      delayChildren: 0.3,
-      staggerChildren: 0.05,
-    },
-  },
-  closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };

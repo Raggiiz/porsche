@@ -171,6 +171,7 @@ export const Checkout = () => {
 
   const generateInvoice = () => {
     console.log(fullName, dateOfBirth, driverLicense, phone, email)
+    if(!validForm()) return;
     const pdf = new jsPDF({unit: 'px'});
     pdf.setFillColor('#1c1c1c');
     pdf.rect(0, 0, 10000, 10000, "F");
@@ -385,7 +386,7 @@ export const Checkout = () => {
                   )}
                 </AnimatePresence>
               </motion.div>
-              <div className="flex max-lg:flex-col">
+              <div className="flex max-lg:flex-col lg:max-h-56">
                 <motion.div
                   className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white lg:w-1/2 lg:mr-5"
                   initial="hidden"

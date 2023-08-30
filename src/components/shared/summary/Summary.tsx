@@ -13,7 +13,7 @@ import jsPDF from "jspdf";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface SummaryProps {
-  handleUpdateEnvironment: (data: boolean) => void,
+  handleUpdateEnvironment?: (data: boolean) => void,
   configs: CarConfigs,
   loaded?: boolean,
   checkout?: boolean
@@ -25,7 +25,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
 
   function updateInternal(data: boolean) {
     setInternal(data)
-    handleUpdateEnvironment(data)
+    if(handleUpdateEnvironment) handleUpdateEnvironment(data)
   }
 
   const getConfigsPrice = () => {
