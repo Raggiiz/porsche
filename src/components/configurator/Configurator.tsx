@@ -198,68 +198,54 @@ export const Configurator = () => {
               </>
             ) : (
               (selectedExteriorType === "primaryColor" && (
-                <motion.div
-                  className="flex flex-col w-full"
-                  variants={upItem}
-                  animate={"open"}
-                >
+                <div className="flex flex-col w-full">
                   <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExteriorType(null)}>
                     <div className="mr-4">
                       <ArrowBack />
                     </div>
                     Primary color
                   </span>
-                  <motion.div className="w-full flex justify-center" variants={upItem} animate={"open"}>
-                    <motion.div
-                      className="flex justify-between mt-4 w-[28rem] lg:px-10"
-                      variants={upItem}
-                      animate={"open"}
-                    >
-                      <motion.div
+                  <div className="w-full flex justify-center">
+                    <div className="flex justify-between mt-4 w-[25rem]">
+                      <div
                         className={`flex h-12 w-6 silverGradient cursor-pointer ${
                           primaryColor === primaryColorOptions.silver ? "border-b-4" : ""
                         }`}
                         onClick={() => setPrimaryColor(primaryColorOptions.silver)}
-                        variants={upItem}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`flex h-12 w-6 blackGradient cursor-pointer ${
                           primaryColor === primaryColorOptions.black ? "border-b-4" : ""
                         }`}
                         onClick={() => setPrimaryColor(primaryColorOptions.black)}
-                        variants={upItem}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`flex h-12 w-6 blueGradient cursor-pointer ${
                           primaryColor === primaryColorOptions.blue ? "border-b-4" : ""
                         }`}
                         onClick={() => setPrimaryColor(primaryColorOptions.blue)}
-                        variants={upItem}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`flex h-12 w-6 redGradient cursor-pointer ${
                           primaryColor === primaryColorOptions.red ? "border-b-4" : ""
                         }`}
                         onClick={() => setPrimaryColor(primaryColorOptions.red)}
-                        variants={upItem}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`flex h-12 w-6 yellowGradient cursor-pointer ${
                           primaryColor === primaryColorOptions.yellow ? "border-b-4" : ""
                         }`}
                         onClick={() => setPrimaryColor(primaryColorOptions.yellow )}
-                        variants={upItem}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`flex h-12 w-6 greenGradient cursor-pointer ${
                           primaryColor === primaryColorOptions.green  ? "border-b-4" : ""
                         }`}
                         onClick={() => setPrimaryColor(primaryColorOptions.green)}
-                        variants={upItem}
-                      ></motion.div>
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
+                      ></div>
+                    </div>
+                  </div>
+                </div>
               )) ||
               (selectedExteriorType === "secondaryColor" && (
                 <div className="flex flex-col w-full">
@@ -270,44 +256,44 @@ export const Configurator = () => {
                     Secondary color
                   </span>
                   <div className="w-full flex justify-center">
-                    <motion.div className="flex justify-between mt-4 w-[25rem]">
-                      <motion.div
+                    <div className="flex justify-between mt-4 w-[25rem]">
+                      <div
                         className={`h-12 w-6 carbonGradient cursor-pointer ${
                           secondaryColor === secondaryColorOptions.carbon ? "border-b-4" : ""
                         }`}
                         onClick={() => setSecondaryColor(secondaryColorOptions.carbon)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 silverGradient cursor-pointer ${
                           secondaryColor === secondaryColorOptions.silver ? "border-b-4" : ""
                         }`}
                         onClick={() => setSecondaryColor(secondaryColorOptions.silver)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 blueGradient cursor-pointer ${
                           secondaryColor === secondaryColorOptions.blue ? "border-b-4" : ""
                         }`}
                         onClick={() => setSecondaryColor(secondaryColorOptions.blue)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 redGradient cursor-pointer ${
                           secondaryColor === secondaryColorOptions.red ? "border-b-4" : ""
                         }`}
                         onClick={() => setSecondaryColor(secondaryColorOptions.red)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 yellowGradient cursor-pointer ${
                           secondaryColor === secondaryColorOptions.yellow ? "border-b-4" : ""
                         }`}
                         onClick={() => setSecondaryColor(secondaryColorOptions.yellow)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 greenGradient cursor-pointer ${
                           secondaryColor === secondaryColorOptions.green ? "border-b-4" : ""
                         }`}
                         onClick={() => setSecondaryColor(secondaryColorOptions.green)}
-                      ></motion.div>
-                    </motion.div>
+                      ></div>
+                    </div>
                   </div>
                 </div>
               )) ||
@@ -323,8 +309,8 @@ export const Configurator = () => {
                     Wheels
                   </span>
                   <div className="w-full flex justify-center">
-                    <motion.div className="flex justify-between mt-4 w-[25rem]">
-                      <motion.div
+                    <div className="flex justify-between mt-4 w-[25rem]">
+                      <div
                         className={`${wheel === wheelOptions.original && 'border-b-4 border-[#E2B558]'} font-space text-xs cursor-pointer pb-1`}
                         onClick={() => setWheel(wheelOptions.original)}
                       >
@@ -332,8 +318,8 @@ export const Configurator = () => {
                           <Wheels />
                         </div>
                         Original
-                      </motion.div>
-                      <motion.div
+                      </div>
+                      <div
                         className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type01 && 'border-b-4 border-[#E2B558]'} pb-1`}
                         onClick={() => setWheel(wheelOptions.type01)}
                       >
@@ -341,8 +327,8 @@ export const Configurator = () => {
                           <Wheels />
                         </div>
                         Type 01
-                      </motion.div>
-                      <motion.div
+                      </div>
+                      <div
                         className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type02 && 'border-b-4 border-[#E2B558]'} pb-1`}
                         onClick={() => setWheel(wheelOptions.type02)}
                       >
@@ -350,8 +336,8 @@ export const Configurator = () => {
                           <Wheels />
                         </div>
                         Type 02
-                      </motion.div>
-                    </motion.div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )) ||
@@ -364,38 +350,38 @@ export const Configurator = () => {
                     Brakes color
                   </span>
                   <div className="w-full flex justify-center">
-                    <motion.div className="flex justify-between mt-4 w-[25rem]">
-                      <motion.div
+                    <div className="flex justify-between mt-4 w-[25rem]">
+                      <div
                         className={`h-12 w-6 limeGradient cursor-pointer ${
                           brakesColor === brakeColorOptions.green ? "border-b-4" : ""
                         }`}
                         onClick={() => setBrakeColor(brakeColorOptions.green)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 blueGradient cursor-pointer ${
                           brakesColor === brakeColorOptions.blue ? "border-b-4" : ""
                         }`}
                         onClick={() => setBrakeColor(brakeColorOptions.blue)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 redGradient cursor-pointer ${
                           brakesColor === brakeColorOptions.red ? "border-b-4" : ""
                         }`}
                         onClick={() => setBrakeColor(brakeColorOptions.red)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 yellowGradient cursor-pointer ${
                           brakesColor === brakeColorOptions.yellow ? "border-b-4" : ""
                         }`}
                         onClick={() => setBrakeColor(brakeColorOptions.yellow)}
-                      ></motion.div>
-                      <motion.div
+                      ></div>
+                      <div
                         className={`h-12 w-6 blackGradient cursor-pointer ${
                           brakesColor === brakeColorOptions.black ? "border-b-4" : ""
                         }`}
                         onClick={() => setBrakeColor(brakeColorOptions.black)}
-                      ></motion.div>
-                    </motion.div>
+                      ></div>
+                    </div>
                   </div>
                 </div>
               ))
@@ -410,45 +396,41 @@ export const Configurator = () => {
             variants={customBlockAnimation}
           >
             <span className="flex font-space text-xs">Leather color</span>
-            <motion.div className="flex justify-between mt-4" variants={upItem} animate={"open"}>
-              <motion.div
+            <div className="flex justify-between mt-4">
+              <div
                 className={`flex h-12 w-6 coffeeLeatherGradient cursor-pointer ${
                   leatherColor === leatherOptions.coffeeLeather? "border-b-4" : ""
                 }`}
                 onClick={() => setLeatherColor(leatherOptions.coffeeLeather)}
-                variants={upItem}
-              ></motion.div>
-              <motion.div
+              ></div>
+              <div
                 className={`flex h-12 w-6 lightLeatherGradient cursor-pointer ${
                   leatherColor === leatherOptions.lightLeather ? "border-b-4" : ""
                 }`}
                 onClick={() => setLeatherColor(leatherOptions.lightLeather)}
-                variants={upItem}
-              ></motion.div>
-              <motion.div
+              ></div>
+              <div
                 className={`flex h-12 w-6 greyLeatherGradient cursor-pointer ${
                   leatherColor === leatherOptions.greyLeather ? "border-b-4" : ""
                 }`}
                 onClick={() => setLeatherColor(leatherOptions.greyLeather)}
-                variants={upItem}
-              ></motion.div>
-              <motion.div
+              ></div>
+              <div
                 className={`flex h-12 w-6 blackLeatherGradient cursor-pointer ${
                   leatherColor === leatherOptions.blackLeather ? "border-b-4" : ""
                 }`}
                 onClick={() => setLeatherColor(leatherOptions.blackLeather)}
-                variants={upItem}
-              ></motion.div>
-            </motion.div>
+              ></div>
+            </div>
           </motion.div>
           {!loaded && <Loader progress={progress}/>}
           <Scene configs={configs} interiorEnvironment={interiorEnvironment}/>
         </div>
         { (loaded) && 
           <div className="flex items-center justify-center w-screen py-8 bg-[#161616] lg:hidden">
-            <motion.div className="flex flex-col cursor-pointer absolute">
+            <div className="flex flex-col cursor-pointer absolute">
               <motion.div className="rounded-full bg-[#E2B558] w-3 opacity-0"animate={{y: [35,-5], opacity: [1,1,1,0], height: [12,18]}} transition={{duration: 0.5,repeat: Infinity, repeatDelay: 2, delay: 2, ease: 'circInOut'}}></motion.div>
-            </motion.div>
+            </div>
           </div>
         }
         <div className="flex justify-center max-lg:w-full">

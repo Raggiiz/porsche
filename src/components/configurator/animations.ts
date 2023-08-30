@@ -36,8 +36,6 @@ export const upItem = {
       type: "spring",
       stiffness: 300,
       damping: 24,
-      delayChildren: 0.3,
-      staggerChildren: 0.05,
     },
   },
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
