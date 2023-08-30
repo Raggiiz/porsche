@@ -67,7 +67,7 @@ export const Configurator = () => {
   },[progress])
 
   function debounce(func: () => void, delay: number) {
-    let timerId: any;
+    let timerId: ReturnType<typeof setTimeout>;
 
     return () => {
         clearTimeout(timerId);

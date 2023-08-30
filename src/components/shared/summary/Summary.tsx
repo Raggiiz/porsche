@@ -13,7 +13,7 @@ import jsPDF from "jspdf";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface SummaryProps {
-  handleUpdateEnvironment?: any,
+  handleUpdateEnvironment: (data: boolean) => void,
   configs: CarConfigs,
   loaded?: boolean,
   checkout?: boolean

@@ -8,7 +8,7 @@ import React, { useEffect } from "react";
 
 interface SideBarInterface {
   sideBarOpen: boolean,
-  setSideBarOpen: any
+  setSideBarOpen: (data: boolean) => void
 }
 
 export const SideBar = ({ sideBarOpen, setSideBarOpen }: SideBarInterface) => {

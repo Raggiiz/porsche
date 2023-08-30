@@ -5,7 +5,7 @@ import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
 
 interface LoginModalInterface {
   loginModal: boolean,
-  setLoginModal: any
+  setLoginModal: (data: boolean) => void
 }
 
 export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) => {
