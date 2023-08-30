@@ -59,6 +59,28 @@ export const Configurator = () => {
 
   const { progress } = useProgress();
 
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    if(progress === 100) debouncedFunction()
+    else setLoaded(false)
+  },[progress])
+
+  function debounce(func: () => void, delay: number) {
+    let timerId: any;
+
+    return () => {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => {
+            func();
+        }, delay);
+    };
+}
+
+  const debouncedFunction = debounce(() => {
+    setLoaded(true);
+  }, 3000);
+
   return (
     <motion.div
       className="w-full lg:h-[calc(100vh-72px)] max-lg:mt-[72px] bg-[#161616] flex justify-center relative"
@@ -418,14 +440,10 @@ export const Configurator = () => {
               ></motion.div>
             </motion.div>
           </motion.div>
-          {
-            progress === 100 || progress === 0 ? 
-            <Scene configs={configs} interiorEnvironment={interiorEnvironment}/>
-            : 
-            <Loader progress={progress}/>
-          }
+          {!loaded && <Loader progress={progress}/>}
+          <Scene configs={configs} interiorEnvironment={interiorEnvironment}/>
         </div>
-        { progress === 100 && 
+        { (loaded) && 
           <div className="flex items-center justify-center w-screen py-8 bg-[#161616] lg:hidden">
             <motion.div className="flex flex-col cursor-pointer absolute">
               <motion.div className="rounded-full bg-[#E2B558] w-3 opacity-0"animate={{y: [35,-5], opacity: [1,1,1,0], height: [12,18]}} transition={{duration: 0.5,repeat: Infinity, repeatDelay: 2, delay: 2, ease: 'circInOut'}}></motion.div>
@@ -433,7 +451,7 @@ export const Configurator = () => {
           </div>
         }
         <div className="flex justify-center max-lg:w-full">
-          <Summary handleUpdateEnvironment={handleUpdateEnvironment} configs={configs} progress={progress}/>
+          <Summary handleUpdateEnvironment={handleUpdateEnvironment} configs={configs} loaded={loaded}/>
         </div>
       </div>
     </motion.div>

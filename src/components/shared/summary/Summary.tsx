@@ -15,11 +15,11 @@ import { AnimatePresence, motion } from "framer-motion";
 interface SummaryProps {
   handleUpdateEnvironment?: any,
   configs: CarConfigs,
-  progress?: number,
+  loaded?: boolean,
   checkout?: boolean
 }
 
-export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: SummaryProps) => {
+export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: SummaryProps) => {
   const [internal, setInternal] = useState(false);
   const [modalSend, setModalSend] = useState(false);
 
@@ -104,7 +104,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
       {!checkout && 
         (<div className="flex flex-col w-full">
           <strong className="font-inter font-semibold uppercase">view</strong>
-          <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${progress !== 100 && 'disabled-btn'}`}>
+          <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${!loaded && 'disabled-btn'}`}>
             <div className={`flex justify-center rounded-s-[10px] w-full border border-[#E2B558] ${internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
             <div className={`flex justify-center rounded-e-[10px] w-full border border-[#E2B558] ${!internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(false)}>road</div>
           </div>
@@ -206,7 +206,7 @@ export const Summary = ({handleUpdateEnvironment, configs, progress, checkout}: 
           </div>
         </div>
       </div>
-      {!checkout && <div className={`primary-btn mt-6 ${progress !== 100 && 'disabled-btn'}`} onClick={() => setModalSend(true)}>Send to dealer</div>}
+      {!checkout && <div className={`primary-btn mt-6 ${!loaded && 'disabled-btn'}`} onClick={() => setModalSend(true)}>Send to dealer</div>}
     </div>
     <AnimatePresence>
       {modalSend && <>
