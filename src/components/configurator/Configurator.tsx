@@ -12,7 +12,7 @@ import { Summary } from "../shared/summary/Summary";
 import { primaryColorOptions, leatherOptions, secondaryColorOptions, wheelOptions, brakeColorOptions } from "./carConfigs";
 import { useProgress } from "@react-three/drei";
 import { Loader } from "./Loader";
-import { customBlockAnimation, rotateArrowAnimation, upItem } from "./animations";
+import { customBlockAnimation, rotateArrowAnimation, toggleAnimation, toggleHolderAnimation, upItem } from "./animations";
 
 export const Configurator = () => {
   const [wheel, setWheel] = useState<Item>(wheelOptions.original);
@@ -25,6 +25,8 @@ export const Configurator = () => {
   const [interiorDesignToggle, setInteriorDesignToggle] = useState(false);
 
   const [interiorEnvironment, setInteriorEnvironment] = useState(false);
+
+  const [highQuality, setHighQuality] = useState(false)
 
   const configs: CarConfigs = {
     exteriorDesign: {
@@ -423,8 +425,19 @@ export const Configurator = () => {
               ></div>
             </div>
           </motion.div>
+          <motion.div className="absolute rounded-[10px] border border-[#E2B558] bg-[#161616] w-16 p-[2px] z-10 bottom-4 left-10"
+            animate={highQuality ? "on" : "off"}
+            variants={toggleHolderAnimation}>
+            <motion.div 
+              className="flex font-inter uppercase font-medium text-xs cursor-pointer text-white bg-[#E2B558] w-fit rounded-[8px] p-[6px]" 
+              onClick={() => setHighQuality(!highQuality)}
+              animate={highQuality ? "on" : "off"}
+              variants={toggleAnimation}>
+              HQ
+            </motion.div>
+          </motion.div>
           {!loaded && <Loader progress={progress}/>}
-          <Scene configs={configs} interiorEnvironment={interiorEnvironment}/>
+          <Scene configs={configs} interiorEnvironment={interiorEnvironment} highQuality={highQuality}/>
         </div>
         { (loaded) && 
           <div className="flex items-center justify-center w-screen py-8 bg-[#161616] lg:hidden">

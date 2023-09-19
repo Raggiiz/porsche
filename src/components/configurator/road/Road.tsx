@@ -8,8 +8,8 @@ Title: Autumn mountain road scene
 */
 
 import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useMemo, useRef } from 'react'
+import { useGLTF, useHelper } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
@@ -60,8 +60,26 @@ type GLTFResult = GLTF & {
 
 export default function Road(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/models/externalEnvironment/scene.gltf') as GLTFResult
+
+  const spotlight = useMemo(() => new THREE.SpotLight("#ede7d3"), []);
+
+  // const spotLightHelper = useRef<any>(null);
+  //   useHelper(spotLightHelper, SpotLightHelper, 1);
   return (
     <group {...props} dispose={null} position={[520,18.3,480]} rotation-z={-Math.PI / -30}>
+      <group>
+        <primitive
+          object={spotlight}
+          position={[-500, 100, -470]}
+          intensity={1.2}
+          angle={1}
+          castShadow
+          penumbra={0.9}
+          shadow-radius={10}
+          shadow-bias={-0.0001}
+        />
+        <primitive object={spotlight.target} position={[-520, 20, -480]} />
+      </group>
       <group scale={0.0084}>
         <group position={[-49695.98, 3837.65, -45093.66]} rotation={[0, 0.15, 0]} scale={100}>
           <mesh geometry={nodes.Road016_Tree_Trunk_0.geometry} material={materials.Tree_Trunk} receiveShadow/>
@@ -69,7 +87,8 @@ export default function Road(props: JSX.IntrinsicElements['group']) {
           <mesh geometry={nodes.Road016_Tree_Trunk_0_2.geometry} material={materials.Tree_Trunk} receiveShadow/>
         </group>
         <mesh geometry={nodes.Road006_Fallen_Leaves_0.geometry} material={materials.Fallen_Leaves} position={[-46697.9, 3718.04, -48355.88]} rotation={[-Math.PI / 2, 0, 0]} scale={100} castShadow receiveShadow/>
-        <mesh geometry={nodes.Road013_Asphalt_Edge_0.geometry} material={materials.Asphalt_Edge} position={[-49695.98, 3837.65, -45093.66]} rotation={[0, 0.15, 0]} scale={100} castShadow receiveShadow/>
+        
+        <mesh geometry={nodes.Road013_Asphalt_Edge_0.geometry} material={materials.Asphalt} position={[-49695.98, 3837.65, -45093.66]} rotation={[0, 0.15, 0]} scale={100} castShadow receiveShadow/>
         <mesh geometry={nodes.Road001_Rock_Decal_0.geometry} material={materials.Rock_Decal} position={[-49695.98, 3837.65, -45093.66]} rotation={[0, 0.15, 0]} scale={100} castShadow receiveShadow/>
         <mesh geometry={nodes.Road002_Green_tree_0.geometry} material={materials.Green_tree} position={[-49695.98, 3837.65, -45093.66]} rotation={[0, 0.15, 0]} scale={100} castShadow receiveShadow/>
         {/* <mesh geometry={nodes.Road003_OFFICIAL_MARKINGS_0.geometry} material={materials['OFFICIAL_MARKINGS.']} position={[-49695.98, 3837.65, -45093.66]} rotation={[0, 0.15, 0]} scale={100} /> */}

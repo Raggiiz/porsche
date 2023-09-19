@@ -40,3 +40,13 @@ export const upItem = {
   },
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };
+
+export const toggleHolderAnimation = {
+  on: {backgroundColor: '#E2B558'},
+  off: {backgroundColor: '#161616'},
+}
+
+export const toggleAnimation = {
+  on: {x: 28, backgroundColor: '#161616'},
+  off: {x: 0, backgroundColor: '#E2B558'},
+}
