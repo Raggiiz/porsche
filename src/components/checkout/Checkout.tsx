@@ -242,7 +242,7 @@ export const Checkout = () => {
           <div className="flex flex-col flex-1 justify-between lg:mr-5">
             <div className="flex flex-col">
               <motion.div
-                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white mb-5"
+                className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white mb-5"
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -315,7 +315,7 @@ export const Checkout = () => {
               </motion.div>
 
               <motion.div
-                className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white mb-5"
+                className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white mb-5"
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: 0.2 }}
@@ -388,7 +388,7 @@ export const Checkout = () => {
               </motion.div>
               <div className="flex max-lg:flex-col lg:max-h-56">
                 <motion.div
-                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white lg:w-1/2 lg:mr-5"
+                  className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white lg:w-1/2 lg:mr-5"
                   initial="hidden"
                   animate="visible"
                   transition={{ delay: 0.4 }}
@@ -417,7 +417,7 @@ export const Checkout = () => {
                   </div>
                 </motion.div>
                 <motion.div
-                  className="flex flex-col py-3 px-8 bg-[#161616] rounded-[10px] text-white lg:w-1/2 max-lg:mt-7"
+                  className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white lg:w-1/2 max-lg:mt-7"
                   initial="hidden"
                   animate="visible"
                   transition={{ delay: 0.4 }}
@@ -430,7 +430,7 @@ export const Checkout = () => {
                     arrival at
                   </div>
                   <div className="flex flex-col flex-1 items-center justify-center my-[1.375rem] md:max-xl:my-3">
-                    <span className="font-space text-xl text-[#E2B558]">{getArrivalDate()}</span>
+                    <span className="font-space text-xl text-yellow-primary">{getArrivalDate()}</span>
                     <small className="font-space text-base">10:00</small>
                   </div>
                 </motion.div>

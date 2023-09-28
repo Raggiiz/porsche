@@ -30,7 +30,7 @@ export const SideBar = ({ sideBarOpen, setSideBarOpen }: SideBarInterface) => {
       {sideBarOpen && (
         <>
           <motion.div
-            className="h-screen bg-[#161616] absolute left-0 top-0 bottom-0 shadow-xl z-10 flex flex-col p-12"
+            className="h-screen bg-dark-primary absolute left-0 top-0 bottom-0 shadow-xl z-10 flex flex-col p-12"
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: `${window.innerWidth > 768 ? '28vw' : '80vw'}`, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}

@@ -50,10 +50,10 @@ body {
   }
 
   .primary-btn {
-    @apply py-3 px-8 max-sm:px-7 max-sm:py-2 text-white bg-[#E2B558] w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
+    @apply py-3 px-8 max-sm:px-7 max-sm:py-2 text-white bg-yellow-primary w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
   }
   .secondary-btn {
-    @apply py-3 px-8 max-sm:px-7 max-sm:py-2 text-white border-[#E2B558] border w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
+    @apply py-3 px-8 max-sm:px-7 max-sm:py-2 text-white border-yellow-primary border w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
   }
   .primary-btn .arrow, .secondary-btn .arrow {
     @apply ml-2;

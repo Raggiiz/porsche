@@ -67,7 +67,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
       {loginModal && (
         <>
           <motion.div
-            className="h-screen bg-[#161616] absolute right-0 top-0 bottom-0 shadow-xl z-10 flex flex-col items-center justify-between p-14"
+            className="h-screen bg-dark-primary absolute right-0 top-0 bottom-0 shadow-xl z-10 flex flex-col items-center justify-between p-14"
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: `${window.innerWidth > 768 ? '28vw' : '80vw'}`, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
@@ -77,7 +77,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
             {isLogged ? (
               <p className='font-montserrat text-white text-base text-center max-h-[5rem] overflow-hidden'>
                 You're already logged in. <br/>
-                Go to <Link to={'/checkout'} onClick={() => setLoginModal(false)} className='text-[#E2B558]'>Checkout page</Link> or <span className='cursor-pointer text-[#E2B558]' onClick={logOut}>Log out</span>
+                Go to <Link to={'/checkout'} onClick={() => setLoginModal(false)} className='text-yellow-primary'>Checkout page</Link> or <span className='cursor-pointer text-yellow-primary' onClick={logOut}>Log out</span>
               </p>
             ) : (
               <div className="flex flex-col w-full">

@@ -86,7 +86,7 @@ export const Configurator = () => {
 
   return (
     <motion.div
-      className="w-full lg:h-[calc(100vh-72px)] max-lg:mt-[72px] bg-[#161616] flex justify-center relative"
+      className="w-full lg:h-[calc(100vh-72px)] max-lg:mt-[72px] bg-dark-primary flex justify-center relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -313,7 +313,7 @@ export const Configurator = () => {
                   <div className="w-full flex justify-center">
                     <div className="flex justify-between mt-4 w-[25rem]">
                       <div
-                        className={`${wheel === wheelOptions.original && 'border-b-4 border-[#E2B558]'} font-space text-xs cursor-pointer pb-1`}
+                        className={`${wheel === wheelOptions.original && 'border-b-4 border-yellow-primary'} font-space text-xs cursor-pointer pb-1`}
                         onClick={() => setWheel(wheelOptions.original)}
                       >
                         <div className="mb-2">
@@ -322,7 +322,7 @@ export const Configurator = () => {
                         Original
                       </div>
                       <div
-                        className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type01 && 'border-b-4 border-[#E2B558]'} pb-1`}
+                        className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type01 && 'border-b-4 border-yellow-primary'} pb-1`}
                         onClick={() => setWheel(wheelOptions.type01)}
                       >
                         <div className="mb-2">
@@ -331,7 +331,7 @@ export const Configurator = () => {
                         Type 01
                       </div>
                       <div
-                        className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type02 && 'border-b-4 border-[#E2B558]'} pb-1`}
+                        className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type02 && 'border-b-4 border-yellow-primary'} pb-1`}
                         onClick={() => setWheel(wheelOptions.type02)}
                       >
                         <div className="mb-2">
@@ -425,11 +425,11 @@ export const Configurator = () => {
               ></div>
             </div>
           </motion.div>
-          <motion.div className="absolute rounded-[10px] border border-[#E2B558] bg-[#161616] w-16 p-[2px] z-10 bottom-4 left-10"
+          <motion.div className="absolute rounded-[10px] border border-yellow-primary bg-dark-primary w-16 p-[2px] z-10 bottom-4 left-10"
             animate={highQuality ? "on" : "off"}
             variants={toggleHolderAnimation}>
             <motion.div 
-              className="flex font-inter uppercase font-medium text-xs cursor-pointer text-white bg-[#E2B558] w-fit rounded-[8px] p-[6px]" 
+              className="flex font-inter uppercase font-medium text-xs cursor-pointer text-white bg-yellow-primary w-fit rounded-[8px] p-[6px]" 
               onClick={() => setHighQuality(!highQuality)}
               animate={highQuality ? "on" : "off"}
               variants={toggleAnimation}>
@@ -440,9 +440,9 @@ export const Configurator = () => {
           <Scene configs={configs} interiorEnvironment={interiorEnvironment} highQuality={highQuality}/>
         </div>
         { (loaded) && 
-          <div className="flex items-center justify-center w-screen py-8 bg-[#161616] lg:hidden">
+          <div className="flex items-center justify-center w-screen py-8 bg-dark-primary lg:hidden">
             <div className="flex flex-col cursor-pointer absolute">
-              <motion.div className="rounded-full bg-[#E2B558] w-3 opacity-0"animate={{y: [35,-5], opacity: [1,1,1,0], height: [12,18]}} transition={{duration: 0.5,repeat: Infinity, repeatDelay: 2, delay: 2, ease: 'circInOut'}}></motion.div>
+              <motion.div className="rounded-full bg-yellow-primary w-3 opacity-0"animate={{y: [35,-5], opacity: [1,1,1,0], height: [12,18]}} transition={{duration: 0.5,repeat: Infinity, repeatDelay: 2, delay: 2, ease: 'circInOut'}}></motion.div>
             </div>
           </div>
         }

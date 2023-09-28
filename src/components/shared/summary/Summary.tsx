@@ -100,17 +100,17 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
 
   return (
     <>
-    <div className={`flex flex-col bg-[#161616] items-center py-8 text-white w-80 ${checkout ? 'rounded-[10px] px-8 max-lg:w-full' : 'px-12 lg:max-2xl:h-[calc(100vh-72px)] lg:max-2xl:overflow-y-auto'}`}>
+    <div className={`flex flex-col bg-dark-primary items-center py-8 text-white w-80 ${checkout ? 'rounded-[10px] px-8 max-lg:w-full' : 'px-12 lg:max-2xl:h-[calc(100vh-72px)] lg:max-2xl:overflow-y-auto'}`}>
       {!checkout && 
         (<div className="flex flex-col w-full">
           <strong className="font-inter font-semibold uppercase">view</strong>
           <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${!loaded && 'disabled-btn'}`}>
-            <div className={`flex justify-center rounded-s-[10px] w-full border border-[#E2B558] ${internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
-            <div className={`flex justify-center rounded-e-[10px] w-full border border-[#E2B558] ${!internal && 'bg-[#E2B558]'} py-[6px] px-6`} onClick={() => updateInternal(false)}>road</div>
+            <div className={`flex justify-center rounded-s-[10px] w-full border border-yellow-primary ${internal && 'bg-yellow-primary'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
+            <div className={`flex justify-center rounded-e-[10px] w-full border border-yellow-primary ${!internal && 'bg-yellow-primary'} py-[6px] px-6`} onClick={() => updateInternal(false)}>road</div>
           </div>
         </div>)
       }
-      <div className={`flex flex-col w-full bg-[#161616] pb-[6px] ${!checkout && 'mt-10'}`} id="print">
+      <div className={`flex flex-col w-full bg-dark-primary pb-[6px] ${!checkout && 'mt-10'}`} id="print">
         <div className={`flex flex-col w-full`}>
           <strong className="font-inter font-semibold uppercase">summary</strong>
           <div className="flex flex-row mt-5">
@@ -122,48 +122,48 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               <span className="font-inter text-sm ml-4">Exterior design</span>
               <div className="flex justify-between items-center my-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-17px]`}>
+                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-17px]`}>
                     <PrimaryColor />
                   </div>
                   <div className="flex flex-col pl-4">
                     <small className="font-space text-[10px]">Primary color</small>
-                    <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.primaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                    <span className="text-yellow-primary font-space text-xs">$ {configs.exteriorDesign.primaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                   </div>
                 </div>
                 <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.primaryColor.value)}`}></div>
               </div>
               <div className="flex justify-between items-center mb-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-15px]`}>
+                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-15px]`}>
                     <SecondaryColor />
                   </div>
                   <div className="flex flex-col pl-4">
                     <small className="font-space text-[10px]">Secondary color</small>
-                    <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.secondaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                    <span className="text-yellow-primary font-space text-xs">$ {configs.exteriorDesign.secondaryColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                   </div>
                 </div>
                 <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.secondaryColor.value)}`}></div>
               </div>
               <div className="flex justify-between items-center mb-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
+                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-16px]`}>
                     <WheelType />
                   </div>
                   <div className="flex flex-col pl-4">
                     <small className="font-space text-[10px]">Wheel type</small>
-                    <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.wheelType.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                    <span className="text-yellow-primary font-space text-xs">$ {configs.exteriorDesign.wheelType.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                   </div>
                 </div>
                 <div className="font-space text-[8px]">{configs.exteriorDesign.wheelType.value}</div>
               </div>
               <div className="flex justify-between items-center mb-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
+                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-16px]`}>
                     <BrakeColor />
                   </div>
                   <div className="flex flex-col pl-4">
                     <small className="font-space text-[10px]">Brake color</small>
-                    <span className="text-[#E2B558] font-space text-xs">$ {configs.exteriorDesign.brakesColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                    <span className="text-yellow-primary font-space text-xs">$ {configs.exteriorDesign.brakesColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                   </div>
                 </div>
                 <div className={`w-4 h-8 ${getGradient(configs.exteriorDesign.brakesColor.value)}`}></div>
@@ -179,12 +179,12 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               <span className="font-inter text-sm ml-4">Exterior design</span>
               <div className="flex justify-between items-center mt-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-[#161616] p-1 absolute left-[-16px]`}>
+                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-16px]`}>
                     <LeatherColor />
                   </div>
                   <div className="flex flex-col pl-4">
                     <small className="font-space text-[10px]">Leather color</small>
-                    <span className="text-[#E2B558] font-space text-xs">$ {configs.interiorDesign.leatherColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+                    <span className="text-yellow-primary font-space text-xs">$ {configs.interiorDesign.leatherColor.price.toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
                   </div>
                 </div>
                 <div className={`w-4 h-8 ${getGradient(configs.interiorDesign.leatherColor.value)}`}></div>
@@ -202,7 +202,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               <small className="text-xs">Configurations</small>
               <small className="text-xs">$ {getConfigsPrice().toLocaleString('en-us', { minimumFractionDigits: 2 })}</small>
             </div>
-            <span className="text-[#E2B558] text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
+            <span className="text-yellow-primary text-xl mt-1 text-end">$ {(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}</span>
           </div>
         </div>
       </div>
@@ -225,7 +225,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
             <p className="font-montserrat text-[#7E7E7E] text-sm">
               Downlaod the PDF to get your configurations detailed.<br/>
               Purchase code: <br/>
-              <span className="text-[#E2B558]">
+              <span className="text-yellow-primary">
                 {`pc=${configs.exteriorDesign.primaryColor.code}&sc=${configs.exteriorDesign.secondaryColor.code}&wt=${configs.exteriorDesign.wheelType.code}&bc=${configs.exteriorDesign.brakesColor.code}&lc=${configs.interiorDesign.leatherColor.code}`}
               </span>
             </p>

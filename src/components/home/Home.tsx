@@ -87,7 +87,7 @@ export const Home = () => {
                 The award-winning 911 GT2 is an epitome of engineering excellence."
                 </p>
               </div>
-              <div className="flex items-center justify-center absolute top-0 right-0 bg-[#E2B558] cursor-pointer rounded-[10px] h-7 w-[4.5rem] text-[10px] text-white">
+              <div className="flex items-center justify-center absolute top-0 right-0 bg-yellow-primary cursor-pointer rounded-[10px] h-7 w-[4.5rem] text-[10px] text-white">
                 More
                 <div className="ml-1">
                   <ArrowRight />
