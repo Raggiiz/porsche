@@ -5,5 +5,6 @@ import svgr from 'vite-plugin-svgr'
 export default defineConfig({
   plugins: [react(), svgr({
     exportAsDefault: true
-  })]
+  })],
+  base: '/porsche-custom-tests/'
 })
