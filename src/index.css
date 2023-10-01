@@ -123,31 +123,31 @@ video::-webkit-media-controls {
 }
 
 .carbonGradient{
-  background: url(../public/textures/carbon.jpg);
+  background: url(/textures/carbon.jpg);
   background-size: cover;
   border-color: #E2B558;
 }
 
 .blackLeatherGradient{
-  background: url(../public/textures/black-leather.png);
+  background: url(/textures/black-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
 .lightLeatherGradient{
-  background: url(../public/textures/light-leather.png);
+  background: url(/textures/light-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
 .coffeeLeatherGradient{
-  background: url(../public/textures/coffee-leather.png);
+  background: url(/textures/coffee-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
 .greyLeatherGradient{
-  background: url(../public/textures/grey-leather.png);
+  background: url(/textures/grey-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import { useLoader } from "@react-three/fiber";
-import textureWall from "../../../../public/textures/grunge-wall-texture.jpg";
-import textureFloor from "../../../../public/textures/old-grunge-concrete.jpg";
-import textureBrick from "../../../../public/textures/bricks.jpg";
-import textureBrickGraffiti from "../../../../public/textures/brick-graffiti.jpg";
-import steelDoor from "../../../../public/textures/steeldoor.jpg";
-import roof from "../../../../public/textures/roof.jpg";
+import textureWall from "/textures/grunge-wall-texture.jpg";
+import textureFloor from "/textures/old-grunge-concrete.jpg";
+import textureBrick from "/textures/bricks.jpg";
+import textureBrickGraffiti from "/textures/brick-graffiti.jpg";
+import steelDoor from "/textures/steeldoor.jpg";
+import roof from "/textures/roof.jpg";
 import * as THREE from "three";
 import Lamp from "./Lamp";
 import HangingLight from "./HangingLight";

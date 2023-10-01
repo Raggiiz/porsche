@@ -33,7 +33,7 @@ export const Scene = ({ configs, interiorEnvironment, highQuality }: SceneProps)
           getObjectsByProperty={undefined}
         />
         <Environment
-          files={`/public/hdris/${
+          files={`/hdris/${
             interiorEnvironment
               ? "dikhololo_night_4k.hdr"
               : "rolling_hills_4k.hdr"
