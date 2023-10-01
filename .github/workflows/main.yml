@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  build:
+  build_and_deploy:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -21,11 +21,6 @@ jobs:
         with:
           name: build
           path: build
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Checkout Repo
         uses: actions/checkout@v2.3.2
       - name: Deploy to Firebase
