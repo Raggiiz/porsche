@@ -122,7 +122,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               <span className="font-inter text-sm ml-4">Exterior design</span>
               <div className="flex justify-between items-center my-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-17px]`}>
+                  <div className={`icon-holder left-[-17px]`}>
                     <PrimaryColor />
                   </div>
                   <div className="flex flex-col pl-4">
@@ -134,7 +134,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               </div>
               <div className="flex justify-between items-center mb-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-15px]`}>
+                  <div className={`icon-holder left-[-15px]`}>
                     <SecondaryColor />
                   </div>
                   <div className="flex flex-col pl-4">
@@ -146,7 +146,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               </div>
               <div className="flex justify-between items-center mb-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-16px]`}>
+                  <div className={`icon-holder left-[-16px]`}>
                     <WheelType />
                   </div>
                   <div className="flex flex-col pl-4">
@@ -158,7 +158,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               </div>
               <div className="flex justify-between items-center mb-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-16px]`}>
+                  <div className={`icon-holder left-[-16px]`}>
                     <BrakeColor />
                   </div>
                   <div className="flex flex-col pl-4">
@@ -179,7 +179,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               <span className="font-inter text-sm ml-4">Exterior design</span>
               <div className="flex justify-between items-center mt-8">
                 <div className="flex flex-row items-center relative">
-                  <div className={`icon-holder bg-dark-primary p-1 absolute left-[-16px]`}>
+                  <div className={`icon-holder left-[-16px]`}>
                     <LeatherColor />
                   </div>
                   <div className="flex flex-col pl-4">

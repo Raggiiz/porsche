@@ -66,6 +66,10 @@ body {
   .primary-input {
     @apply bg-[#212121] rounded-[10px] outline-none text-white font-montserrat py-3 px-4 border border-[#2B2B2B];
   }
+
+  .icon-holder {
+    @apply bg-dark-primary p-1 absolute w-fit
+  }
 }
 
 @layer utilities {
