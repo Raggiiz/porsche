@@ -4,7 +4,7 @@ import {
   PerspectiveCamera,
   useHelper,
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import Road from "./road/Road";
@@ -12,6 +12,8 @@ import { Garage } from "./garage/Garage";
 import Porsche from "./car/Porsche";
 import { CarConfigs } from "./interfaces";
 import { BrightnessContrast, ChromaticAberration, DepthOfField, EffectComposer, Vignette } from "@react-three/postprocessing";
+import * as THREE from "three";
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
 interface SceneProps {
   configs: CarConfigs,
@@ -20,6 +22,7 @@ interface SceneProps {
 }
 
 export const Scene = ({ configs, interiorEnvironment, highQuality }: SceneProps) => {
+  console.log('aaaaa')
   return (
     <Canvas shadows style={{ background: "#161616" }}>
       <Suspense fallback={null}>
@@ -32,14 +35,14 @@ export const Scene = ({ configs, interiorEnvironment, highQuality }: SceneProps)
           matrixWorldAutoUpdate={undefined}
           getObjectsByProperty={undefined}
         />
-        <Environment
+        {/* <Environment
           files={`/hdris/${
             interiorEnvironment
               ? "dikhololo_night_4k.hdr"
               : "rolling_hills_4k.hdr"
           }`}
           background={!interiorEnvironment}
-        />
+        /> */}
 
         <Porsche
           exteriorDesign={configs.exteriorDesign}
