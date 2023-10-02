@@ -14,6 +14,7 @@ import { CarConfigs } from "./interfaces";
 import { BrightnessContrast, ChromaticAberration, DepthOfField, EffectComposer, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+import { suspend } from 'suspend-react'
 
 interface SceneProps {
   configs: CarConfigs,
@@ -22,7 +23,9 @@ interface SceneProps {
 }
 
 export const Scene = ({ configs, interiorEnvironment, highQuality }: SceneProps) => {
-  console.log('aaaaa')
+
+  // const city = import('@pmndrs/assets/hdri/city.exr').then((module) => module.default)
+  
   return (
     <Canvas shadows style={{ background: "#161616" }}>
       <Suspense fallback={null}>
@@ -35,14 +38,14 @@ export const Scene = ({ configs, interiorEnvironment, highQuality }: SceneProps)
           matrixWorldAutoUpdate={undefined}
           getObjectsByProperty={undefined}
         />
-        {/* <Environment
+        <Environment
           files={`/hdris/${
             interiorEnvironment
               ? "dikhololo_night_4k.hdr"
               : "rolling_hills_4k.hdr"
           }`}
           background={!interiorEnvironment}
-        /> */}
+        />
 
         <Porsche
           exteriorDesign={configs.exteriorDesign}
