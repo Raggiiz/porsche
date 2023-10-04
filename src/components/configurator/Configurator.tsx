@@ -92,7 +92,7 @@ export const Configurator = () => {
       transition={{ duration: 1 }}
     >
       <div className="flex max-lg:flex-col">
-        <div className="w-[calc(100vw-320px)] max-lg:w-screen max-lg:h-[72vh] relative">
+        <div className="w-[calc(100vw-320px)] max-lg:w-screen max-lg:h-[68vh] relative">
           <div className="flex justify-center items-center w-[inherit] h-14 bg-black/70 absolute top-0 backdrop-blur-sm z-10">
             <motion.span
               className="btn-custom-menu"
