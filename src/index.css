@@ -68,7 +68,7 @@ body {
   }
 
   .icon-holder {
-    @apply bg-dark-primary p-1 absolute w-fit
+    @apply bg-dark-primary p-1 absolute w-[21px]
   }
 }
 
@@ -158,5 +158,5 @@ video::-webkit-media-controls {
 
 .icon-holder svg{
   height: 13px;
-  width: fit-content;
+  width: 13px;
 }

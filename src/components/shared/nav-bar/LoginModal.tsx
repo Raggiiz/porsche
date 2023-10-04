@@ -73,7 +73,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
             exit={{ width: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 250, damping: 24 }}
           >
-            <img src={Logo} alt="Logo" className="h-16 w-fit" />
+            <img src={Logo} alt="Logo" className="h-16 w-[118.63px]" />
             {isLogged ? (
               <p className='font-montserrat text-white text-base text-center max-h-[5rem] overflow-hidden'>
                 You're already logged in. <br/>
