@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./src/**/*.{html,js,jsx,tsx}"],
+  content: ["./src/**/*.{html,js,jsx,tsx,svg}"],
   theme: {
     extend: {
       fontFamily: {
@@ -9,8 +9,8 @@ module.exports = {
         'porsche': ['porscheregular']
       },
       backgroundImage: {
-        'customize': "url('src/assets/custom-bg.png')",
-        'topography': "url('src/assets/topography-bg.svg')"
+        'customize': "url('./src/assets/custom-bg.png')",
+        'topography': "url('./src/assets/topography-bg.svg')"
       },
       backgroundColor: {
         'dark-primary': '#161616',
