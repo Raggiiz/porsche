@@ -12,6 +12,7 @@
     "@react-three/drei": "^9.77.4",
     "@react-three/fiber": "^8.14.2",
     "@react-three/postprocessing": "^2.15.1",
+    "firebase-tools": "^12.6.2",
     "framer-motion": "^10.12.16",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
