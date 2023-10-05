@@ -189,6 +189,16 @@ export const Checkout = () => {
     pdf.text(fullName, 50, 165);
     pdf.text(`${number} ${street}`, 50, 180);
     pdf.text(`${city}, ${state}, ${zipCode}`, 50, 195);
+    pdf.setFont('SpaceGrotesk-Bold', 'bold');
+    pdf.setFontSize(18);
+    pdf.setTextColor('#fff');
+    pdf.text('PAYMENT INFORMATION', 50, 430);
+    pdf.setFont('Inter-Regular', 'normal');
+    pdf.setFontSize(14);
+    pdf.setTextColor('#7d7d7d');
+    pdf.text('Porcha bank', 50, 455);
+    pdf.text(`1290389283-3`, 50, 470);
+    pdf.text(`Payment due within 30 days`, 50, 485);
     pdf.setFillColor('#fff');
     pdf.rect(50, 250, 345, 0.5, "F");
     pdf.setFont('SpaceGrotesk-Bold', 'bold');
