@@ -28,6 +28,7 @@ jobs:
     environment:
         name: firebase
         url: "https://porscha-configurator.web.app/"
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Firebase
