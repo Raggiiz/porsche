@@ -1,5 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import video from "../../assets/video-bg.webm";
+import React, { useEffect, useRef, useState } from "react";
+import video1 from "../../assets/video/video1.mp4";
+import video2 from "../../assets/video/video2.mp4";
+import video3 from "../../assets/video/video3.mp4";
+import video4 from "../../assets/video/video4.mp4";
+import video5 from "../../assets/video/video5.mp4";
+import video6 from "../../assets/video/video6.mp4";
+import video7 from "../../assets/video/video7.mp4";
 import ArrowRight from "../../assets/icons/arrow-right.svg";
 import Cup from "../../assets/icons/cup.svg";
 import { Link, Outlet } from "react-router-dom";
@@ -7,6 +13,29 @@ import CustomCar from "../../assets/custom-car.png";
 import { motion } from "framer-motion";
 
 export const Home = () => {
+
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videos = [
+    video1, video2, video3, video4, video5, video6, video7
+  ];
+
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
+  const handleVideoEnded = () => {
+    // Verifique se ainda há vídeos na lista
+    if (currentVideoIndex < videos.length - 1) {
+      // Se houver, avance para o próximo vídeo
+      setCurrentVideoIndex(currentVideoIndex + 1);
+      videoRef.current?.load(); // Usando o operador de acesso condicional
+    } else {
+      // Se não houver mais vídeos, reinicie a lista
+      setCurrentVideoIndex(0);
+      videoRef.current?.load(); // Usando o operador de acesso condicional
+    }
+    
+    console.log(currentVideoIndex + 2)
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -135,14 +164,16 @@ export const Home = () => {
         </div>
       </div>
       <video
+        ref={videoRef}
         className="absolute left-0 right-0 top-0 bottom-0 h-screen w-screen object-cover -z-10 pointer-events-none"
         disablePictureInPicture={true}
         autoPlay
         muted
-        loop
+        loop={false}
         id="myVideo"
+        onEnded={handleVideoEnded}
       >
-        <source src={video} type="video/mp4" />
+        <source src={videos[currentVideoIndex]} type="video/mp4" />
       </video>
     </motion.div>
   );
