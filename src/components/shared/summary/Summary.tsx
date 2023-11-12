@@ -102,7 +102,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
     <>
     <div className={`flex flex-col bg-dark-primary items-center py-8 text-white w-80 ${checkout ? 'rounded-[10px] px-8 max-lg:w-full' : 'px-12 lg:max-2xl:h-[calc(100vh-72px)] lg:max-2xl:overflow-y-auto'}`}>
       {!checkout && 
-        (<div className="flex flex-col w-full">
+        (<div className="flex flex-col w-full max-lg:hidden">
           <strong className="font-inter font-semibold uppercase">view</strong>
           <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${!loaded && 'disabled-btn'}`}>
             <div className={`flex justify-center rounded-s-[10px] w-full border border-yellow-primary ${internal && 'bg-yellow-primary'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
