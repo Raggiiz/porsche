@@ -20,20 +20,20 @@ export const Home = () => {
   ];
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [videoKey, setVideoKey] = useState(0)
 
   const handleVideoEnded = () => {
     // Verifique se ainda há vídeos na lista
     if (currentVideoIndex < videos.length - 1) {
       // Se houver, avance para o próximo vídeo
       setCurrentVideoIndex(currentVideoIndex + 1);
-      videoRef.current?.load(); // Usando o operador de acesso condicional
     } else {
       // Se não houver mais vídeos, reinicie a lista
       setCurrentVideoIndex(0);
-      videoRef.current?.load(); // Usando o operador de acesso condicional
     }
     
-    console.log(currentVideoIndex + 2)
+    setVideoKey((prevKey) => prevKey + 1); // Incrementa uma chave única para forçar a remontagem do componente <video>
+    videoRef.current?.load(); // Carrega o video
   };
 
   return (
@@ -172,6 +172,8 @@ export const Home = () => {
         loop={false}
         id="myVideo"
         onEnded={handleVideoEnded}
+        playsInline
+        key={videoKey}
       >
         <source src={videos[currentVideoIndex]} type="video/mp4" />
       </video>
