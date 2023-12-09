@@ -14,8 +14,8 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
   const location = useLocation();
 
   const [isLogged, setIsLogged] = useState(false);
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState(''); // varivavel para o campo user
+  const [password, setPassword] = useState(''); // variavel para o campo senha
   const [loginError, setloginError] = useState(false);
 
   const credentials = {
@@ -23,11 +23,11 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
     password: 'admin123'
   }
 
-  useEffect(() =>{
+  useEffect(() => { // Verifica login pelo local storage quando inicia o componente
     setIsLogged(localStorage.getItem('porschaLogin') === 'true')
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { 
     const handleTouchMove = (event: { preventDefault: () => void; }) => {
       if (loginModal) {
         event.preventDefault();
@@ -42,7 +42,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
   const login = () => {
     setloginError(false);
 
-    if(user !== credentials.user || password !== credentials.password) {
+    if(user !== credentials.user || password !== credentials.password) { // 
       setloginError(true);
       return;
     }

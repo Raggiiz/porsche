@@ -10,13 +10,10 @@ module.exports = {
       },
       backgroundImage: {
         'customize': "url('./src/assets/custom-bg.png')",
-        'topography': "url('./src/assets/topography-bg.svg')"
       },
-      backgroundColor: {
+      colors: {
+        'yellow-primary': '#E2B558',
         'dark-primary': '#161616',
-        'yellow-primary': '#E2B558'
-      },
-      borderColor: {
         'yellow-primary': '#E2B558'
       }
     },

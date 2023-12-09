@@ -30,8 +30,9 @@ export const Scene = ({ configs, interiorEnvironment, highQuality }: SceneProps)
     <Canvas shadows style={{ background: "#161616" }}>
       <Suspense fallback={null}>
         {/* <Perf position="bottom-right" /> */}
-        <OrbitControls enableZoom={false} maxPolarAngle={Math.PI * 0.45} />
-        <PerspectiveCamera
+        <OrbitControls enableZoom={false} maxPolarAngle={Math.PI * 0.45} //  permite ao usuário interagir com a cena, como controlar a rotação e o zoom da câmera.
+        />
+        <PerspectiveCamera // Usa projeção de perspectiva, é a câmera mais semelhante à forma como nossos olhos percebem o mundo real.
           makeDefault
           fov={70}
           position={[0, 11, 20]}

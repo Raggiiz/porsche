@@ -132,25 +132,25 @@ video::-webkit-media-controls {
   border-color: #E2B558;
 }
 
-.blackLeatherGradient{
+.blackLeatherTexture{
   background: url(/textures/black-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
-.lightLeatherGradient{
+.lightLeatherTexture{
   background: url(/textures/light-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
-.coffeeLeatherGradient{
+.coffeeLeatherTexture{
   background: url(/textures/coffee-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
-.greyLeatherGradient{
+.greyLeatherTexture{
   background: url(/textures/grey-leather.png);
   background-size: cover;
   border-color: #E2B558;

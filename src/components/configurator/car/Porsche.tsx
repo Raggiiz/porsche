@@ -125,15 +125,6 @@ export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
   const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor.value === 'carbon' ? 'black' : exteriorDesign.secondaryColor.value, roughness: 0.2, metalness: exteriorDesign.secondaryColor.value === '#ffee05' || exteriorDesign.secondaryColor.value === '#1a6dd9' ? 0.2 : 0.8, clearcoat: 1 });
   const wheelMaterial = new THREE.MeshStandardMaterial({ color: 'silver', roughness: 0.2, metalness: 0.8, side: THREE.DoubleSide  });
   const braksMaterial = new THREE.MeshStandardMaterial({ color: exteriorDesign.brakesColor.value, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide });
-
-
-  // const normalMap = useLoader(THREE.TextureLoader, 
-  //   '/textures/leather.jpg',
-  // )
-
-  // normalMap.repeat.set(5,5)
-  // normalMap.offset.set(1, 1);
-
   
   const internalColorMaterial = new THREE.MeshStandardMaterial({ color: interiorDesign.leatherColor.value });
 

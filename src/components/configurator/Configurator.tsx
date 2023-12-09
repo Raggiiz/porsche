@@ -13,6 +13,7 @@ import { primaryColorOptions, leatherOptions, secondaryColorOptions, wheelOption
 import { useProgress } from "@react-three/drei";
 import { Loader } from "./Loader";
 import { customBlockAnimation, rotateArrowAnimation, toggleAnimation, toggleHolderAnimation, upItem } from "./animations";
+import { debounce } from "../shared/utils";
 
 export const Configurator = () => {
   const [wheel, setWheel] = useState<Item>(wheelOptions.original);
@@ -69,16 +70,8 @@ export const Configurator = () => {
     else setLoaded(false)
   },[progress])
 
-  function debounce(func: () => void, delay: number) {
-    let timerId: ReturnType<typeof setTimeout>;
-
-    return () => {
-        clearTimeout(timerId);
-        timerId = setTimeout(() => {
-            func();
-        }, delay);
-    };
-}
+  // debounce é uma técnica usada para controlar a frequência com que uma função é chamada em resposta a um evento, 
+  // como por exemplo um evento de digitação. Isso é útil para evitar execuções desnecessárias e melhorar a eficiência do código.
 
   const debouncedFunction = debounce(() => {
     setLoaded(true);
@@ -104,20 +97,10 @@ export const Configurator = () => {
               }}
             >
               exterior design
-              <motion.div
-                className="arrow"
-                variants={rotateArrowAnimation}
-                transition={{ duration: 0.2 }}
-                style={{ originY: 0.55 }}
-              >
+              <motion.div className="arrow" variants={rotateArrowAnimation} transition={{ duration: 0.2 }} style={{ originY: 0.55 }}>
                 <ArrowDown />
               </motion.div>
-              <motion.hr
-                className="active-border"
-                variants={{
-                  open: { width: "33%" },
-                  closed: { width: 0 },
-                }}
+              <motion.hr className="active-border" variants={{open: { width: "33%" },closed: { width: 0 }}}
               />
             </motion.span>
             <motion.span
@@ -130,20 +113,10 @@ export const Configurator = () => {
               }}
             >
               interior design
-              <motion.div
-                className="arrow"
-                variants={rotateArrowAnimation}
-                transition={{ duration: 0.2 }}
-                style={{ originY: 0.55 }}
-              >
+              <motion.div className="arrow" variants={rotateArrowAnimation} transition={{ duration: 0.2 }} style={{ originY: 0.55 }}>
                 <ArrowDown />
               </motion.div>
-              <motion.hr
-                className="active-border"
-                variants={{
-                  open: { width: "33%" },
-                  closed: { width: 0 },
-                }}
+              <motion.hr className="active-border" variants={{open: { width: "33%" }, closed: { width: 0 }}}
               />
             </motion.span>
           </div>
@@ -158,8 +131,7 @@ export const Configurator = () => {
             {!selectedExteriorType ? (
               <>
                 <motion.div
-                  className="flex flex-col font-space text-xs cursor-pointer"
-                  variants={upItem}
+                  className="flex flex-col font-space text-xs cursor-pointer" variants={upItem}
                   onClick={() => setSelectedExteriorType("primaryColor")}
                 >
                   <div className="mb-2">
@@ -168,8 +140,7 @@ export const Configurator = () => {
                   <span className="max-lg:hidden">Primary color</span>
                 </motion.div>
                 <motion.div
-                  className="flex flex-col font-space text-xs cursor-pointer"
-                  variants={upItem}
+                  className="flex flex-col font-space text-xs cursor-pointer" variants={upItem}
                   onClick={() => setSelectedExteriorType("secondaryColor")}
                 >
                   <div className="mb-2">
@@ -178,8 +149,7 @@ export const Configurator = () => {
                   <span className="max-lg:hidden">Secondary color</span>
                 </motion.div>
                 <motion.div
-                  className="flex flex-col font-space text-xs cursor-pointer"
-                  variants={upItem}
+                  className="flex flex-col font-space text-xs cursor-pointer" variants={upItem}
                   onClick={() => setSelectedExteriorType("wheels")}
                 >
                   <div className="mb-2">
@@ -188,8 +158,7 @@ export const Configurator = () => {
                   <span className="max-lg:hidden">Wheels</span>
                 </motion.div>
                 <motion.div
-                  className="flex flex-col font-space text-xs cursor-pointer"
-                  variants={upItem}
+                  className="flex flex-col font-space text-xs cursor-pointer" variants={upItem}
                   onClick={() => setSelectedExteriorType("brakes")}
                 >
                   <div className="mb-2">
@@ -209,42 +178,13 @@ export const Configurator = () => {
                   </span>
                   <div className="w-full flex justify-center">
                     <div className="flex justify-between mt-4 w-[25rem]">
-                      <div
-                        className={`flex h-12 w-6 silverGradient cursor-pointer ${
-                          primaryColor === primaryColorOptions.silver ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setPrimaryColor(primaryColorOptions.silver)}
-                      ></div>
-                      <div
-                        className={`flex h-12 w-6 blackGradient cursor-pointer ${
-                          primaryColor === primaryColorOptions.black ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setPrimaryColor(primaryColorOptions.black)}
-                      ></div>
-                      <div
-                        className={`flex h-12 w-6 blueGradient cursor-pointer ${
-                          primaryColor === primaryColorOptions.blue ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setPrimaryColor(primaryColorOptions.blue)}
-                      ></div>
-                      <div
-                        className={`flex h-12 w-6 redGradient cursor-pointer ${
-                          primaryColor === primaryColorOptions.red ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setPrimaryColor(primaryColorOptions.red)}
-                      ></div>
-                      <div
-                        className={`flex h-12 w-6 yellowGradient cursor-pointer ${
-                          primaryColor === primaryColorOptions.yellow ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setPrimaryColor(primaryColorOptions.yellow )}
-                      ></div>
-                      <div
-                        className={`flex h-12 w-6 greenGradient cursor-pointer ${
-                          primaryColor === primaryColorOptions.green  ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setPrimaryColor(primaryColorOptions.green)}
-                      ></div>
+                      {Object.keys(primaryColorOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
+                        <div 
+                          className={`flex h-12 w-6 ${option}Gradient cursor-pointer 
+                          ${primaryColor === primaryColorOptions[option] && "border-b-4"}`}
+                          onClick={() => setPrimaryColor(primaryColorOptions[option])}
+                        ></div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -259,47 +199,43 @@ export const Configurator = () => {
                   </span>
                   <div className="w-full flex justify-center">
                     <div className="flex justify-between mt-4 w-[25rem]">
-                      <div
-                        className={`h-12 w-6 carbonGradient cursor-pointer ${
-                          secondaryColor === secondaryColorOptions.carbon ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setSecondaryColor(secondaryColorOptions.carbon)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 silverGradient cursor-pointer ${
-                          secondaryColor === secondaryColorOptions.silver ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setSecondaryColor(secondaryColorOptions.silver)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 blueGradient cursor-pointer ${
-                          secondaryColor === secondaryColorOptions.blue ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setSecondaryColor(secondaryColorOptions.blue)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 redGradient cursor-pointer ${
-                          secondaryColor === secondaryColorOptions.red ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setSecondaryColor(secondaryColorOptions.red)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 yellowGradient cursor-pointer ${
-                          secondaryColor === secondaryColorOptions.yellow ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setSecondaryColor(secondaryColorOptions.yellow)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 greenGradient cursor-pointer ${
-                          secondaryColor === secondaryColorOptions.green ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setSecondaryColor(secondaryColorOptions.green)}
-                      ></div>
+                      {Object.keys(secondaryColorOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
+                        <div 
+                          className={`flex h-12 w-6 ${option}Gradient cursor-pointer 
+                          ${secondaryColor === secondaryColorOptions[option] && "border-b-4"}`}
+                          onClick={() => setSecondaryColor(secondaryColorOptions[option])}
+                        ></div>
+                      ))}
                     </div>
                   </div>
                 </div>
               )) ||
               (selectedExteriorType === "wheels" && (
+                <div className="flex flex-col w-full">
+                  <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExteriorType(null)}>
+                    <div className="mr-4">
+                      <ArrowBack />
+                    </div>
+                    Wheels
+                  </span>
+                  <div className="w-full flex justify-center">
+                    <div className="flex justify-between mt-4 w-[25rem]">
+                      {Object.keys(wheelOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
+                        <div 
+                          className={`${wheel === wheelOptions[option] && 'border-b-4 border-yellow-primary'} font-space text-xs cursor-pointer pb-1`}
+                          onClick={() => setWheel(wheelOptions[option])}
+                        >
+                          <div className="mb-2">
+                            <Wheels />
+                          </div>
+                          {wheelOptions[option].value}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )) ||
+              (selectedExteriorType === "brakes" && (
                 <div className="flex flex-col w-full">
                   <span
                     className="flex items-center font-space text-xs cursor-pointer"
@@ -308,81 +244,17 @@ export const Configurator = () => {
                     <div className="mr-4">
                       <ArrowBack />
                     </div>
-                    Wheels
-                  </span>
-                  <div className="w-full flex justify-center">
-                    <div className="flex justify-between mt-4 w-[25rem]">
-                      <div
-                        className={`${wheel === wheelOptions.original && 'border-b-4 border-yellow-primary'} font-space text-xs cursor-pointer pb-1`}
-                        onClick={() => setWheel(wheelOptions.original)}
-                      >
-                        <div className="mb-2">
-                          <Wheels />
-                        </div>
-                        Original
-                      </div>
-                      <div
-                        className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type01 && 'border-b-4 border-yellow-primary'} pb-1`}
-                        onClick={() => setWheel(wheelOptions.type01)}
-                      >
-                        <div className="mb-2">
-                          <Wheels />
-                        </div>
-                        Type 01
-                      </div>
-                      <div
-                        className={`font-space text-xs cursor-pointer ${wheel === wheelOptions.type02 && 'border-b-4 border-yellow-primary'} pb-1`}
-                        onClick={() => setWheel(wheelOptions.type02)}
-                      >
-                        <div className="mb-2">
-                          <Wheels />
-                        </div>
-                        Type 02
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )) ||
-              (selectedExteriorType === "brakes" && (
-                <div className="flex flex-col w-full">
-                  <span className="flex items-center font-space text-xs cursor-pointer" onClick={() => setSelectedExteriorType(null)}>
-                    <div className="mr-4">
-                      <ArrowBack />
-                    </div>
                     Brakes color
                   </span>
                   <div className="w-full flex justify-center">
                     <div className="flex justify-between mt-4 w-[25rem]">
-                      <div
-                        className={`h-12 w-6 limeGradient cursor-pointer ${
-                          brakesColor === brakeColorOptions.green ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setBrakeColor(brakeColorOptions.green)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 blueGradient cursor-pointer ${
-                          brakesColor === brakeColorOptions.blue ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setBrakeColor(brakeColorOptions.blue)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 redGradient cursor-pointer ${
-                          brakesColor === brakeColorOptions.red ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setBrakeColor(brakeColorOptions.red)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 yellowGradient cursor-pointer ${
-                          brakesColor === brakeColorOptions.yellow ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setBrakeColor(brakeColorOptions.yellow)}
-                      ></div>
-                      <div
-                        className={`h-12 w-6 blackGradient cursor-pointer ${
-                          brakesColor === brakeColorOptions.black ? "border-b-4" : ""
-                        }`}
-                        onClick={() => setBrakeColor(brakeColorOptions.black)}
-                      ></div>
+                      {Object.keys(brakeColorOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
+                        <div 
+                          className={`flex h-12 w-6 ${option}Gradient cursor-pointer 
+                          ${brakesColor === brakeColorOptions[option] && "border-b-4"}`}
+                          onClick={() => setBrakeColor(brakeColorOptions[option])}
+                        ></div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -391,61 +263,32 @@ export const Configurator = () => {
           </motion.div>
           <motion.div
             className="py-4 px-10 bg-black/30 text-white absolute top-[10%] backdrop-blur-sm z-10 m-auto left-0 right-0 w-[28rem] max-lg:w-[80vw]"
-            animate={[
-              interiorDesignToggle ? "open" : "closed",
-              "selectedExteriorType",
-            ]}
-            variants={customBlockAnimation}
+            animate={[interiorDesignToggle ? "open" : "closed", "selectedExteriorType"]} variants={customBlockAnimation}
           >
             <span className="flex font-space text-xs">Leather color</span>
             <div className="flex justify-between mt-4">
-              <div
-                className={`flex h-12 w-6 coffeeLeatherGradient cursor-pointer ${
-                  leatherColor === leatherOptions.coffeeLeather? "border-b-4" : ""
-                }`}
-                onClick={() => setLeatherColor(leatherOptions.coffeeLeather)}
-              ></div>
-              <div
-                className={`flex h-12 w-6 lightLeatherGradient cursor-pointer ${
-                  leatherColor === leatherOptions.lightLeather ? "border-b-4" : ""
-                }`}
-                onClick={() => setLeatherColor(leatherOptions.lightLeather)}
-              ></div>
-              <div
-                className={`flex h-12 w-6 greyLeatherGradient cursor-pointer ${
-                  leatherColor === leatherOptions.greyLeather ? "border-b-4" : ""
-                }`}
-                onClick={() => setLeatherColor(leatherOptions.greyLeather)}
-              ></div>
-              <div
-                className={`flex h-12 w-6 blackLeatherGradient cursor-pointer ${
-                  leatherColor === leatherOptions.blackLeather ? "border-b-4" : ""
-                }`}
-                onClick={() => setLeatherColor(leatherOptions.blackLeather)}
-              ></div>
+              {Object.keys(leatherOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
+                <div 
+                  className={`flex h-12 w-6 ${option}Texture cursor-pointer 
+                  ${leatherColor === leatherOptions[option] && "border-b-4"}`}
+                  onClick={() => setLeatherColor(leatherOptions[option])}
+                ></div>
+              ))}
             </div>
           </motion.div>
           <motion.div className="absolute rounded-[10px] border border-yellow-primary bg-dark-primary w-16 p-[2px] z-10 bottom-4 left-10"
-            animate={highQuality ? "on" : "off"}
-            variants={toggleHolderAnimation}>
+            animate={highQuality ? "on" : "off"} variants={toggleHolderAnimation}
+          >
             <motion.div 
               className="flex font-inter uppercase font-medium text-xs cursor-pointer text-white bg-yellow-primary w-fit rounded-[8px] p-[6px]" 
-              onClick={() => setHighQuality(!highQuality)}
-              animate={highQuality ? "on" : "off"}
-              variants={toggleAnimation}>
+              onClick={() => setHighQuality(!highQuality)} animate={highQuality ? "on" : "off"} variants={toggleAnimation}
+            >
               HQ
             </motion.div>
           </motion.div>
-          {!loaded && <Loader progress={progress}/>}
+          {!loaded && <Loader progress={progress} />}
           <Scene configs={configs} interiorEnvironment={interiorEnvironment} highQuality={highQuality}/>
         </div>
-        { (loaded) && 
-          <div className="flex items-center justify-center w-screen py-8 bg-dark-primary lg:hidden">
-            <div className="flex flex-col cursor-pointer absolute">
-              <motion.div className="rounded-full bg-yellow-primary w-3 opacity-0"animate={{y: [35,-5], opacity: [1,1,1,0], height: [12,18]}} transition={{duration: 0.5,repeat: Infinity, repeatDelay: 2, delay: 2, ease: 'circInOut'}}></motion.div>
-            </div>
-          </div>
-        }
         <div className="flex justify-center max-lg:w-full">
           <Summary handleUpdateEnvironment={handleUpdateEnvironment} configs={configs} loaded={loaded}/>
         </div>

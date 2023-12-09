@@ -57,13 +57,13 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
       case '#12ff4d':
         return 'limeGradient'
       case '#593915':
-        return 'coffeeLeatherGradient'
+        return 'coffeeLeatherTexture'
       case '#c7b695':
-        return 'lightLeatherGradient'
+        return 'lightLeatherTexture'
       case '#9c9a95':
-        return 'greyLeatherGradient'
+        return 'greyLeatherTexture'
       case '#1a1a1a':
-        return 'blackLeatherGradient'
+        return 'blackLeatherTexture'
       default:
         break;
     }
@@ -100,7 +100,16 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
 
   return (
     <>
+    
     <div className={`flex flex-col bg-dark-primary items-center py-8 text-white w-80 ${checkout ? 'rounded-[10px] px-8 max-lg:w-full' : 'px-12 lg:max-2xl:h-[calc(100vh-72px)] lg:max-2xl:overflow-y-auto'}`}>
+      {loaded &&
+        <div className="flex items-center justify-center w-screen py-8 bg-dark-primary lg:hidden"> 
+          <div className="flex flex-col cursor-pointer absolute">
+            <motion.div className="rounded-full bg-yellow-primary w-3 opacity-0" animate={{y: [35,-5], opacity: [1,1,1,0], height: [12,18]}} transition={{duration: 0.5,repeat: Infinity, repeatDelay: 2, delay: 2, ease: 'circInOut'}}>
+            </motion.div>
+          </div>
+        </div>
+      }
       {!checkout && 
         (<div className="flex flex-col w-full max-lg:hidden">
           <strong className="font-inter font-semibold uppercase">view</strong>
