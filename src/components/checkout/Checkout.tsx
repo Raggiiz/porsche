@@ -3,16 +3,17 @@ import React, { useState } from "react";
 import ArrowDown from "../../assets/icons/arrow-down.svg";
 import { Summary } from "../shared/summary/Summary";
 import { CarConfigs, Item } from "../configurator/interfaces";
-import { brakeColorOptions, carPrice, leatherOptions, primaryColorOptions, secondaryColorOptions, wheelOptions } from "../configurator/carConfigs";
+import { brakeColorOptions, leatherOptions, primaryColorOptions, secondaryColorOptions, wheelOptions } from "../configurator/carConfigs";
 import InputMask from 'react-input-mask';
 import Porsche from "../configurator/car/Porsche";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stage } from "@react-three/drei";
-import jsPDF from "jspdf";
-import Logo from "../../assets/porscha-logo-white.png";
+
+import { arrowAnimation, collapsibleFormAnimation, initialFadeInAnimation } from "./animations";
+import { generateInvoice } from "../shared/generatePdf";
 
 export const Checkout = () => {
-  const [expanded, setExpanded] = useState(0);
+  const [expanded, setExpanded] = useState(0); // Collapsibles expansiveis por index
 
   const [wheel, setWheel] = useState<Item>(wheelOptions.original);
   const [primaryColor, setPrimaryColor] = useState<Item>(primaryColorOptions.silver);
@@ -32,7 +33,7 @@ export const Checkout = () => {
     },
   };
 
-  const [codeModal, setCodeModal] = useState(true);
+  const [codeModalOpen, setCodeModalOpen] = useState(true);
   const [code, setCode] = useState('');
   const [codeError, setCodeError] = useState(false);
 
@@ -71,78 +72,39 @@ export const Checkout = () => {
     setZipCode('');
 
     setExpanded(0);
-
-    setCodeModal(true);
+    setCodeModalOpen(true);
   }
 
   const getCodeInfo = () => {
     setCodeError(false)
 
-    const urlParams = new URLSearchParams(code);
-    const params = Object.fromEntries(urlParams);
+    const params = Object.fromEntries(new URLSearchParams(code)); // Transforma o código em um objeto por meio de query params
 
-    const pc = setCodePrimaryColor(params.pc);
-    const sc = setCodeSecondaryColor(params.sc);
-    const wt = setCodeWheelType(params.wt);
-    const bc = setCodeBrakeColor(params.bc);
-    const lc = setCodeLeatherColor(params.lc)
+    const pc = setCodeValue(params.pc, primaryColorOptions);
+    const sc = setCodeValue(params.sc, secondaryColorOptions);
+    const wt = setCodeValue(params.wt, wheelOptions);
+    const bc = setCodeValue(params.bc, brakeColorOptions);
+    const lc = setCodeValue(params.lc, leatherOptions);
 
-    if (pc && sc && wt && bc && lc) {
+    if (pc && sc && wt && bc && lc) { // Verifica se o código é valido
       setPrimaryColor(pc);
       setSecondaryColor(sc);
       setWheel(wt);
       setBrakeColor(bc);
       setLeatherColor(lc)
 
-      setCodeModal(false);
+      setCodeModalOpen(false);
     } else setCodeError(true)
 
   }
 
-  const setCodePrimaryColor = (code: string) => {
-    for (const key in primaryColorOptions) {
-      if (primaryColorOptions.hasOwnProperty(key) && primaryColorOptions[key].code === code) {
-        return primaryColorOptions[key]
+  const setCodeValue = (code: string, options: Record<string, Item>) => {
+    for (const key in options) { // Percorre as opções dentro de um item
+      if (options.hasOwnProperty(key) && options[key].code === code) { // Procura a opção de personalicação referente ao código
+        return options[key];
       }
     }
-    return null
-  }
-
-  const setCodeSecondaryColor = (code: string) => {
-    for (const key in secondaryColorOptions) {
-      if (secondaryColorOptions.hasOwnProperty(key) && secondaryColorOptions[key].code === code) {
-        return secondaryColorOptions[key]
-      }
-    }
-    return null
-  }
-
-  const setCodeWheelType = (code: string) => {
-    for (const key in wheelOptions) {
-      if (wheelOptions.hasOwnProperty(key) && wheelOptions[key].code === code) {
-        return wheelOptions[key]
-      }
-    }
-    return null
-  }
-
-  const setCodeBrakeColor = (code: string) => {
-    for (const key in brakeColorOptions) {
-      if (brakeColorOptions.hasOwnProperty(key) && brakeColorOptions[key].code === code) {
-        return brakeColorOptions[key]
-      }
-    }
-    return null
-  }
-
-  const setCodeLeatherColor = (code: string) => {
-    for (const key in leatherOptions) {
-      if (leatherOptions.hasOwnProperty(key) && leatherOptions[key].code === code) {
-        return leatherOptions[key]
-      }
-    }
-    return null
-  }
+  };
 
   const validForm = () => {
     return (
@@ -169,96 +131,31 @@ export const Checkout = () => {
     );
   };
 
-  const generateInvoice = () => {
-    console.log(fullName, dateOfBirth, driverLicense, phone, email)
-    if(!validForm()) return;
-    const pdf = new jsPDF({unit: 'px'});
-    pdf.setFillColor('#1c1c1c');
-    pdf.rect(0, 0, 10000, 10000, "F");
-    pdf.addImage(Logo, 50, 40, 60, 0);
-    pdf.setTextColor('#fff');
-    pdf.setFont('SpaceGrotesk-Bold', 'bold');
-    pdf.setFontSize(42);
-    pdf.text('INVOICE', 396, 70, {align: 'right'});
-    pdf.setFontSize(18);
-    pdf.setTextColor('#fff');
-    pdf.text('BILLING TO', 50, 140);
-    pdf.setFont('Inter-Regular', 'normal');
-    pdf.setFontSize(14);
-    pdf.setTextColor('#7d7d7d');
-    pdf.text(fullName, 50, 165);
-    pdf.text(`${number} ${street}`, 50, 180);
-    pdf.text(`${city}, ${state}, ${zipCode}`, 50, 195);
-    pdf.setFont('SpaceGrotesk-Bold', 'bold');
-    pdf.setFontSize(18);
-    pdf.setTextColor('#fff');
-    pdf.text('PAYMENT INFORMATION', 50, 430);
-    pdf.setFont('Inter-Regular', 'normal');
-    pdf.setFontSize(14);
-    pdf.setTextColor('#7d7d7d');
-    pdf.text('Porcha bank', 50, 455);
-    pdf.text(`1290389283-3`, 50, 470);
-    pdf.text(`Payment due within 30 days`, 50, 485);
-    pdf.setFillColor('#fff');
-    pdf.rect(50, 250, 345, 0.5, "F");
-    pdf.setFont('SpaceGrotesk-Bold', 'bold');
-    pdf.setFontSize(16);
-    pdf.setTextColor('#fff');
-    pdf.text('Description', 50, 270);
-    pdf.text('Price', 396, 270, {align: 'right'});
-    pdf.setFillColor('#7d7d7d');
-    pdf.rect(50, 282, 345, 0.5, "F");
-    pdf.setFont('Inter-Regular', 'normal');
-    pdf.setFontSize(14);
-    pdf.setTextColor('#7d7d7d');
-    pdf.text('Porscha 911 GT2', 50, 300);
-    pdf.text(`$ ${carPrice.toLocaleString('en-us', { minimumFractionDigits: 2 })}`, 396, 300, {align: 'right'});
-    pdf.text('Configurations', 50, 320);
-    pdf.text(`$ ${getConfigsPrice().toLocaleString('en-us', { minimumFractionDigits: 2 })}`, 396, 320, {align: 'right'});
-    pdf.rect(50, 330, 345, 0.5, "F");
-    pdf.setFont('SpaceGrotesk-Bold', 'bold');
-    pdf.setFontSize(16);
-    pdf.setTextColor('#fff');
-    pdf.text('Total', 50, 350);
-    pdf.text(`$ ${(getConfigsPrice() + carPrice).toLocaleString('en-us', { minimumFractionDigits: 2 })}`, 396, 350, {align: 'right'});
-    pdf.setFillColor('#fff');
-    pdf.rect(50, 362, 345, 0.5, "F");
-    pdf.setFont('Inter-Regular', 'normal');
-    pdf.setFontSize(14);
-    pdf.setTextColor('#7d7d7d');
-    pdf.text(`Invoice nº ${Math.floor(1000 + Math.random() * 9000)}. Generated on ${new Date().toLocaleDateString('en-us', { weekday: 'short' })}, ${new Date().getDate()} ${new Date().toLocaleString('en-us', { month: 'short' })} ${new Date().getFullYear()}`, 50, 595);
-    pdf.save(`911-gt2-${fullName.replaceAll(' ', '-')}.pdf`);
-  }
-
   const getArrivalDate = () => {
     const date = new Date(new Date().setDate(new Date().getDate() + 7));
-
     return `${date.toLocaleDateString('en-us', { weekday: 'short' })}, ${date.getDate()} ${date.toLocaleString('en-us', { month: 'short' })}`
   }
 
   return (
     <>
       <motion.div
-        className="flex flex-col bg-[#1c1c1c] text-white w-full min-h-[calc(100vh-72px)] bg-no-repeat py-12 px-28 max-lg:pt-28 lg:max-xl:py-10 md:max-xl:px-12 max-md:px-10"
+        className="flex flex-col bg-[#1c1c1c] text-white w-full min-h-[calc(100vh-72px)] bg-no-repeat py-12 px-28 max-lg:pt-28 lg:max-xl:py-10 md:max-xl:px-12 max-md:px-10 gap-11 md:max-xl:gap-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <div className="flex justify-between max-lg:flex-col">
-          <h1 className="font-space font-medium text-3xl">{codeModal ? "--/--" : '911 GT2'} Checkout</h1>
-          <span className="text-[#676767] font-space text-xl">{codeModal ? "--/--" : code}</span>
+          <h1 className="font-space font-medium text-3xl">{codeModalOpen ? "--/--" : '911 GT2'} Checkout</h1>
+          <span className="text-[#676767] font-space text-xl">{codeModalOpen ? "--/--" : code}</span>
         </div>
-        <div className="flex mt-11 md:max-xl:mt-8 max-lg:flex-col-reverse">
-          <div className="flex flex-col flex-1 justify-between lg:mr-5">
-            <div className="flex flex-col">
+        <div className="flex max-lg:flex-col-reverse gap-5">
+          <div className="flex flex-col flex-1 justify-between max-lg:gap-8">
+            <div className="flex flex-col gap-5">
               <motion.div
-                className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white mb-5"
+                className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white"
                 initial="hidden"
                 animate="visible"
-                variants={{
-                  visible: { opacity: 1, y: 0 },
-                  hidden: { opacity: 0, y: 100 },
-                }}
+                variants={initialFadeInAnimation}
                 onClick={() => setExpanded(0)}
               >
                 <div className="flex items-center justify-between font-inter text-base uppercase cursor-pointer">
@@ -267,10 +164,7 @@ export const Checkout = () => {
                     className="expand"
                     initial="collapsed"
                     animate={expanded === 0 ? "open" : "collapsed"}
-                    variants={{
-                      open: { rotateZ: "180deg" },
-                      collapsed: { rotateZ: "0deg" },
-                    }}
+                    variants={arrowAnimation}
                   >
                     <ArrowDown />
                   </motion.div>
@@ -279,42 +173,34 @@ export const Checkout = () => {
                 <AnimatePresence initial={false}>
                   {expanded === 0 && (
                     <motion.section
-                      className="overflow-hidden"
+                      className="overflow-hidden gap-7 flex flex-col"
                       key="content"
                       initial="collapsed"
                       animate="open"
                       exit="collapsed"
-                      variants={{
-                        open: {
-                          opacity: 1,
-                          height: "auto",
-                          marginTop: "1.375rem",
-                          marginBottom: "1.375rem",
-                        },
-                        collapsed: { opacity: 0, height: 0, marginTop: 0, marginBottom: 0 },
-                      }}
+                      variants={collapsibleFormAnimation}
                     >
-                      <div className="flex max-lg:flex-col">
+                      <div className="flex max-lg:flex-col max-lg:gap-7">
                         <div className="flex flex-col lg:w-1/2">
-                          <label htmlFor="full-name" className="font-inter text-xs ml-2 mb-1">Full name</label>
+                          <label htmlFor="full-name" className="primary-input-label">Full name</label>
                           <input type="text" id="full-name" className="primary-input" value={fullName} onChange={(e) => setFullName(e.target.value)} />
                         </div>
-                        <div className="flex flex-col lg:w-1/4 lg:px-7 max-lg:my-7">
-                          <label htmlFor="birth" className="font-inter text-xs ml-2 mb-1">Date of birth</label>
+                        <div className="flex flex-col lg:w-1/4 lg:px-7">
+                          <label htmlFor="birth" className="primary-input-label">Date of birth</label>
                           <InputMask type="text" id="birth" mask="99/99/9999" className="primary-input" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
                         </div>
                         <div className="flex flex-col lg:w-1/4">
-                          <label htmlFor="driver-license" className="font-inter text-xs ml-2 mb-1">Driver license</label>
+                          <label htmlFor="driver-license" className="primary-input-label">Driver license</label>
                           <input type="number" id="driver-license" className="primary-input" value={driverLicense} onChange={(e) => setDriverLicense(e.target.value)} />
                         </div>
                       </div>
-                      <div className="flex mt-7 max-lg:flex-col">
+                      <div className="flex max-lg:flex-col max-lg:gap-7">
                         <div className="flex flex-col lg:w-1/2">
-                          <label htmlFor="email" className="font-inter text-xs ml-2 mb-1">Email</label>
+                          <label htmlFor="email" className="primary-input-label">Email</label>
                           <input type="text" id="email" className="primary-input" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
-                        <div className="flex flex-col lg:w-1/4 lg:px-7 max-lg:mt-7">
-                          <label htmlFor="phone" className="font-inter text-xs ml-2 mb-1">Phone</label>
+                        <div className="flex flex-col lg:w-1/4 lg:px-7">
+                          <label htmlFor="phone" className="primary-input-label">Phone</label>
                           <input type="number" id="phone" className="primary-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
                         </div>
                       </div>
@@ -325,14 +211,11 @@ export const Checkout = () => {
               </motion.div>
 
               <motion.div
-                className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white mb-5"
+                className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white"
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: 0.2 }}
-                variants={{
-                  visible: { opacity: 1, y: 0 },
-                  hidden: { opacity: 0, y: 100 },
-                }}
+                variants={initialFadeInAnimation}
                 onClick={() => setExpanded(1)}
               >
                 <div className="flex items-center justify-between font-inter text-base uppercase cursor-pointer">
@@ -341,10 +224,7 @@ export const Checkout = () => {
                     className="expand"
                     initial="collapsed"
                     animate={expanded === 1 ? "open" : "collapsed"}
-                    variants={{
-                      open: { rotateZ: "180deg" },
-                      collapsed: { rotateZ: "0deg" },
-                    }}
+                    variants={arrowAnimation}
                   >
                     <ArrowDown />
                   </motion.div>
@@ -353,42 +233,34 @@ export const Checkout = () => {
                 <AnimatePresence initial={false}>
                   {expanded === 1 && (
                     <motion.section
-                      className="overflow-hidden"
+                      className="overflow-hidden gap-7 flex flex-col"
                       key="content"
                       initial="collapsed"
                       animate="open"
                       exit="collapsed"
-                      variants={{
-                        open: {
-                          opacity: 1,
-                          height: "auto",
-                          marginTop: "1.375rem",
-                          marginBottom: "1.375rem"
-                        },
-                        collapsed: { opacity: 0, height: 0, marginTop: 0, marginBottom: 0 },
-                      }}
+                      variants={collapsibleFormAnimation}
                     >
                       <div className="flex max-lg:flex-col">
                         <div className="flex flex-col lg:w-3/4">
-                          <label htmlFor="street" className="font-inter text-xs ml-2 mb-1">Street</label>
+                          <label htmlFor="street" className="primary-input-label">Street</label>
                           <input type="text" id="street" className="primary-input" value={street} onChange={(e) => setStreet(e.target.value)} />
                         </div>
                         <div className="flex flex-col lg:w-1/4 lg:pl-7 max-lg:pt-7">
-                          <label htmlFor="number" className="font-inter text-xs ml-2 mb-1">Number</label>
+                          <label htmlFor="number" className="primary-input-label">Number</label>
                           <input type="number" id="number" className="primary-input" value={number} onChange={(e) => setNumber(e.target.value)} />
                         </div>
                       </div>
-                      <div className="flex mt-7 max-lg:flex-col">
+                      <div className="flex max-lg:flex-col">
                         <div className="flex flex-col lg:w-1/5">
-                          <label htmlFor="zip-code" className="font-inter text-xs ml-2 mb-1">Zip code</label>
+                          <label htmlFor="zip-code" className="primary-input-label">Zip code</label>
                           <input type="text" id="zip-code" className="primary-input" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
                         </div>
                         <div className="flex flex-col lg:w-2/5 lg:px-7 max-lg:py-7">
-                          <label htmlFor="state" className="font-inter text-xs ml-2 mb-1">State</label>
+                          <label htmlFor="state" className="primary-input-label">State</label>
                           <input type="text" id="state" className="primary-input" value={state} onChange={(e) => setState(e.target.value)} />
                         </div>
                         <div className="flex flex-col  lg:w-2/5">
-                          <label htmlFor="city" className="font-inter text-xs ml-2 mb-1">City</label>
+                          <label htmlFor="city" className="primary-input-label">City</label>
                           <input type="text" id="city" className="primary-input" value={city} onChange={(e) => setCity(e.target.value)} />
                         </div>
                       </div>
@@ -396,22 +268,19 @@ export const Checkout = () => {
                   )}
                 </AnimatePresence>
               </motion.div>
-              <div className="flex max-lg:flex-col lg:max-h-56">
+              <div className="flex max-lg:flex-col lg:max-h-56 gap-5">
                 <motion.div
-                  className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white lg:w-1/2 lg:mr-5"
+                  className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white lg:w-1/2"
                   initial="hidden"
                   animate="visible"
                   transition={{ delay: 0.4 }}
-                  variants={{
-                    visible: { opacity: 1, y: 0 },
-                    hidden: { opacity: 0, y: 100 },
-                  }}
+                  variants={initialFadeInAnimation}
                 >
                   <div className="font-inter uppercase text-base">
                     car preview
                   </div>
                   <div className="flex justify-center my-[1.375rem] md:max-xl:my-3">
-                    {!codeModal && 
+                    {!codeModalOpen && 
                       <div className="">
                         <Canvas shadows>
                           <Stage>
@@ -427,14 +296,11 @@ export const Checkout = () => {
                   </div>
                 </motion.div>
                 <motion.div
-                  className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white lg:w-1/2 max-lg:mt-7"
+                  className="flex flex-col py-3 px-8 bg-dark-primary rounded-[10px] text-white lg:w-1/2"
                   initial="hidden"
                   animate="visible"
                   transition={{ delay: 0.4 }}
-                  variants={{
-                    visible: { opacity: 1, y: 0 },
-                    hidden: { opacity: 0, y: 100 },
-                  }}
+                  variants={initialFadeInAnimation}
                 >
                   <div className="font-inter uppercase text-base">
                     arrival at
@@ -446,18 +312,18 @@ export const Checkout = () => {
                 </motion.div>
               </div>
             </div>
-            <div className="flex justify-between max-lg:mt-8">
+            <div className="flex justify-between">
               <div className="secondary-btn" onClick={reset}>Start over</div>
-              <div className={`primary-btn ${!validForm() && 'disabled-btn'}`} onClick={generateInvoice}>Generate invoice</div>
+              <div className={`primary-btn ${!validForm() && 'disabled-btn'}`} onClick={() => validForm() && generateInvoice(fullName, street, number, city, state, zipCode, getConfigsPrice())}>Generate invoice</div>
             </div>
           </div>
-          <div className="max-lg:mb-8 max-lg:w-full w-80">
+          <div className="max-lg:w-full w-80">
             <Summary configs={configs} checkout={true}/>
           </div>
         </div>
       </motion.div>
       <AnimatePresence>
-        {codeModal && 
+        {codeModalOpen && 
           <motion.div className="flex items-center justify-center bg-opacity-50 h-screen w-screen fixed left-0 top-0 bottom-0 z-40" 
             animate={{background: '#00000080'}} 
             initial={{background: '#00000000'}} 

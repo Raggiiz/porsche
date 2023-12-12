@@ -21,7 +21,9 @@ function App() {
             <Route path="/" element={<Navigate to="/911/gt2" />} />
             <Route path="/911/gt2" element={<Home />} />
             <Route path="/911/gt2/configurator" element={<Configurator />} />
-            <Route path="/checkout" element={localStorage.getItem('porschaLogin') === 'true' ? <Checkout /> : <Navigate to="/" />} />
+            <Route path="/checkout" element={
+              localStorage.getItem('porschaLogin') === 'true' ? <Checkout /> : <Navigate to="/" /> // Check if the user is logged by local storage
+              } />
           </Routes>
       </div>
     </>

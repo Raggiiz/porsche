@@ -7,10 +7,9 @@ import LeatherColor from "../../../assets/icons/leather-color.svg"
 import DownloadIcon from "../../../assets/icons/download.svg"
 import { CarConfigs } from "../../configurator/interfaces";
 import { carPrice } from "../../configurator/carConfigs";
-import Logo from "../../../assets/porscha-logo-white.png";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import { AnimatePresence, motion } from "framer-motion";
+import { downloadSummary } from "../generatePdf";
+import { getPurchaseCode } from "../utils";
 
 interface SummaryProps {
   handleUpdateEnvironment?: (data: boolean) => void,
@@ -38,7 +37,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
     );
   };
 
-  const getGradient = (value: string) => {
+  const getGradient = (value: string) => { // TODO remover essa funcao
     switch (value) {
       case '#ededed':
         return 'silverGradient'
@@ -67,35 +66,6 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
       default:
         break;
     }
-  }
-
-  const downloadPDF = () => {
-    setModalSend(false);
-    const input: HTMLElement | null = document.getElementById('print');
-    if(input) 
-      html2canvas(input)
-      .then((canvas) => {
-        const imgData: string = canvas.toDataURL('image/png');
-        console.log(canvas.height, canvas.width)
-        const pdf = new jsPDF({unit: 'px', format: [180,490]});
-        pdf.setFillColor('#161616');
-        pdf.rect(0, 0, 10000, 10000, "F");
-        pdf.addImage(Logo, 60, 20, 60, 0);
-        pdf.setTextColor('#fff');
-        pdf.setFont('SpaceGrotesk');
-        pdf.setFontSize(12)
-        pdf.text('911 GT2', 73, 70);
-        pdf.setFont('Inter-Bold', 'bold');
-        pdf.setFontSize(10);
-        pdf.text('PURCHASE CODE', 60, 450)
-        pdf.addImage(imgData, 28, 95, 124, 317 );
-        pdf.setTextColor('#E2B558')
-        pdf.setFontSize(10);
-        pdf.text(`pc=${configs.exteriorDesign.primaryColor.code}&sc=${configs.exteriorDesign.secondaryColor.code}&wt=${configs.exteriorDesign.wheelType.code}&bc=${configs.exteriorDesign.brakesColor.code}&lc=${configs.interiorDesign.leatherColor.code}`,
-         35, 460)
-        pdf.save(`911-gt2-${new Date().toDateString().replaceAll(' ', '-')}.pdf`);
-      })
-    ;
   }
 
   return (
@@ -235,12 +205,12 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               Downlaod the PDF to get your configurations detailed.<br/>
               Purchase code: <br/>
               <span className="text-yellow-primary">
-                {`pc=${configs.exteriorDesign.primaryColor.code}&sc=${configs.exteriorDesign.secondaryColor.code}&wt=${configs.exteriorDesign.wheelType.code}&bc=${configs.exteriorDesign.brakesColor.code}&lc=${configs.interiorDesign.leatherColor.code}`}
+                {getPurchaseCode(configs)}
               </span>
             </p>
             <div className="flex items-center justify-between">
               <span className="py-3 px-8 text-white font-inter text-sm cursor-pointer" onClick={() => setModalSend(false)}>Close</span>
-              <div className="primary-btn" onClick={() => downloadPDF()}>
+              <div className="primary-btn" onClick={() => {downloadSummary(configs); setModalSend(false)}}>
                 PDF
                 <div className="ml-3">
                   <DownloadIcon />

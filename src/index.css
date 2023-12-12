@@ -67,6 +67,10 @@ body {
     @apply bg-[#212121] rounded-[10px] outline-none text-white font-montserrat py-3 px-4 border border-[#2B2B2B];
   }
 
+  .primary-input-label {
+    @apply font-inter text-xs ml-2 mb-1
+  }
+
   .icon-holder {
     @apply bg-dark-primary p-1 absolute w-[21px]
   }
