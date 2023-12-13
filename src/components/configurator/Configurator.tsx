@@ -10,8 +10,7 @@ import Brakes from "../../assets/icons/brakes.svg";
 import ArrowBack from "../../assets/icons/back-arrow.svg";
 import { Summary } from "../shared/summary/Summary";
 import { primaryColorOptions, leatherOptions, secondaryColorOptions, wheelOptions, brakeColorOptions } from "./carConfigs";
-import { useProgress } from "@react-three/drei";
-import { Loader } from "./Loader";
+import { Loader, useProgress } from "@react-three/drei";
 import { customBlockAnimation, rotateArrowAnimation, toggleAnimation, toggleHolderAnimation, upItem } from "./animations";
 import { debounce } from "../shared/utils";
 
@@ -27,7 +26,7 @@ export const Configurator = () => {
 
   const [interiorEnvironment, setInteriorEnvironment] = useState(false);
 
-  const [highQuality, setHighQuality] = useState(false)
+  const [highQuality, setHighQuality] = useState(false) // Ativa ou desativa o post processing
 
   const configs: CarConfigs = {
     exteriorDesign: {
@@ -43,7 +42,7 @@ export const Configurator = () => {
     },
   };
 
-  const [selectedExteriorType, setSelectedExteriorType] = useState<string | null>(null);
+  const [selectedExteriorType, setSelectedExteriorType] = useState<'primaryColor' | 'secondaryColor' | 'wheels' | 'brakes' | null>(null);
 
   function activeExterior() {
     if (!exteriorDesignToggle){
@@ -57,11 +56,12 @@ export const Configurator = () => {
     setInteriorDesignToggle(!interiorDesignToggle);
   }
 
-  const handleUpdateEnvironment = (data: boolean) => {
+  const handleUpdateEnvironment = (data: boolean) => { // Recebe os dados do toggle de ambientes do summary
     setInteriorEnvironment(data)
   };
 
-  const { progress } = useProgress();
+  const { progress } = useProgress(); // Função do Drei que pega de 0 a 100 o carregamento da cena, 
+  // porém o useProgress flicka quando chega em 100 se trocarmos o cenario, por isso usamos o debounce
 
   const [loaded, setLoaded] = useState(false)
 
@@ -286,7 +286,8 @@ export const Configurator = () => {
               HQ
             </motion.div>
           </motion.div>
-          {!loaded && <Loader progress={progress} />}
+          {/* Componente de loader do drei */}
+          {!loaded && <Loader dataInterpolation={(p) => `Loading ${Math.trunc(p)}%`} barStyles={{background: '#E2B558'}} />}
           <Scene configs={configs} interiorEnvironment={interiorEnvironment} highQuality={highQuality}/>
         </div>
         <div className="flex justify-center max-lg:w-full">
