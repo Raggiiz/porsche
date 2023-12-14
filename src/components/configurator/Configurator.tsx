@@ -44,14 +44,14 @@ export const Configurator = () => {
 
   const [selectedExteriorType, setSelectedExteriorType] = useState<'primaryColor' | 'secondaryColor' | 'wheels' | 'brakes' | null>(null);
 
-  function activeExterior() {
+  const activeExterior = () => {
     if (!exteriorDesignToggle){
       setSelectedExteriorType(null)
       setInteriorDesignToggle(false);
     } 
     setExteriorDesignToggle(!exteriorDesignToggle);
   }
-  function activeInterior() {
+  const activeInterior = () => {
     if (!interiorDesignToggle) setExteriorDesignToggle(false);
     setInteriorDesignToggle(!interiorDesignToggle);
   }
@@ -179,7 +179,7 @@ export const Configurator = () => {
                   <div className="w-full flex justify-center">
                     <div className="flex justify-between mt-4 w-[25rem]">
                       {Object.keys(primaryColorOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
-                        <div 
+                        <div key={option}
                           className={`flex h-12 w-6 ${option}Gradient cursor-pointer 
                           ${primaryColor === primaryColorOptions[option] && "border-b-4"}`}
                           onClick={() => setPrimaryColor(primaryColorOptions[option])}
@@ -200,7 +200,7 @@ export const Configurator = () => {
                   <div className="w-full flex justify-center">
                     <div className="flex justify-between mt-4 w-[25rem]">
                       {Object.keys(secondaryColorOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
-                        <div 
+                        <div key={option}
                           className={`flex h-12 w-6 ${option}Gradient cursor-pointer 
                           ${secondaryColor === secondaryColorOptions[option] && "border-b-4"}`}
                           onClick={() => setSecondaryColor(secondaryColorOptions[option])}
@@ -221,7 +221,7 @@ export const Configurator = () => {
                   <div className="w-full flex justify-center">
                     <div className="flex justify-between mt-4 w-[25rem]">
                       {Object.keys(wheelOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
-                        <div 
+                        <div key={option}
                           className={`${wheel === wheelOptions[option] && 'border-b-4 border-yellow-primary'} font-space text-xs cursor-pointer pb-1`}
                           onClick={() => setWheel(wheelOptions[option])}
                         >
@@ -249,7 +249,7 @@ export const Configurator = () => {
                   <div className="w-full flex justify-center">
                     <div className="flex justify-between mt-4 w-[25rem]">
                       {Object.keys(brakeColorOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
-                        <div 
+                        <div key={option}
                           className={`flex h-12 w-6 ${option}Gradient cursor-pointer 
                           ${brakesColor === brakeColorOptions[option] && "border-b-4"}`}
                           onClick={() => setBrakeColor(brakeColorOptions[option])}
@@ -268,7 +268,7 @@ export const Configurator = () => {
             <span className="flex font-space text-xs">Leather color</span>
             <div className="flex justify-between mt-4">
               {Object.keys(leatherOptions).map((option) => ( // transforma as opções em um array com as chaves dos objetos
-                <div 
+                <div key={option}
                   className={`flex h-12 w-6 ${option}Texture cursor-pointer 
                   ${leatherColor === leatherOptions[option] && "border-b-4"}`}
                   onClick={() => setLeatherColor(leatherOptions[option])}

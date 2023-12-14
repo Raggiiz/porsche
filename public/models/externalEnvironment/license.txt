@@ -1,8 +1,0 @@
-Model Information:
-* title:	Autumn mountain road scene
-* source:	https://sketchfab.com/3d-models/autumn-mountain-road-scene-24947115dc3348f7915e1e155080ad5c
-* author:	99.Miles (https://sketchfab.com/99.Miles)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

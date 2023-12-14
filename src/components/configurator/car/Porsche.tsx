@@ -123,12 +123,12 @@ export default function Model({exteriorDesign, interiorDesign}: CarConfigs) {
 
   const primaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.primaryColor.value, roughness: 0.2, metalness: exteriorDesign.primaryColor.value === '#ffee05' || exteriorDesign.primaryColor.value === '#1a6dd9' ? 0.2 : 0.8, clearcoat: 1 });
   const secondaryColorMaterial = new THREE.MeshPhysicalMaterial({ color: exteriorDesign.secondaryColor.value === 'carbon' ? 'black' : exteriorDesign.secondaryColor.value, roughness: 0.2, metalness: exteriorDesign.secondaryColor.value === '#ffee05' || exteriorDesign.secondaryColor.value === '#1a6dd9' ? 0.2 : 0.8, clearcoat: 1 });
-  const wheelMaterial = new THREE.MeshStandardMaterial({ color: 'silver', roughness: 0.2, metalness: 0.8, side: THREE.DoubleSide  });
+  const wheelMaterial = new THREE.MeshStandardMaterial({ color: 'silver', roughness: 0.2, metalness: 0.8, side: THREE.DoubleSide  }); // Double side defini que as faces interiore e exterior serao renderezidas (default é front)
   const braksMaterial = new THREE.MeshStandardMaterial({ color: exteriorDesign.brakesColor.value, roughness: 0.2, metalness: 0.5, side: THREE.DoubleSide });
   
   const internalColorMaterial = new THREE.MeshStandardMaterial({ color: interiorDesign.leatherColor.value });
 
-  function wheelSeter(){
+  const wheelSeter = () => { // Seta a roda podendo ser o mesh original ou os componentes das outras rodas
     return exteriorDesign.wheelType.value === 'Original' && <mesh geometry={nodes.Object_42.geometry} material={wheelMaterial} /> 
     || exteriorDesign.wheelType.value === 'Type 01' && <Wheel /> 
     || exteriorDesign.wheelType.value === 'Type 02' && <Wheel2 />

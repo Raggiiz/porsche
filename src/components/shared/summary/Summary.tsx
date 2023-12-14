@@ -12,22 +12,22 @@ import { downloadSummary } from "../generatePdf";
 import { getPurchaseCode } from "../utils";
 
 interface SummaryProps {
-  handleUpdateEnvironment?: (data: boolean) => void,
+  handleUpdateEnvironment?: (data: boolean) => void, // Função que passa como paremetro um boolean e nao retorna nada
   configs: CarConfigs,
   loaded?: boolean,
   checkout?: boolean
 }
 
 export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: SummaryProps) => {
-  const [internal, setInternal] = useState(false);
-  const [modalSend, setModalSend] = useState(false);
+  const [internalEnv, setInternalEnv] = useState(false);
+  const [modalSendOpen, setModalSendOpen] = useState(false);
 
-  function updateInternal(data: boolean) {
-    setInternal(data)
+  const updateInternal = (data: boolean) => {
+    setInternalEnv(data)
     if(handleUpdateEnvironment) handleUpdateEnvironment(data)
   }
 
-  const getConfigsPrice = () => {
+  const getConfigsPrice = () => { // Soma as configs para pegar o preço
     return (
       configs.exteriorDesign.primaryColor.price +
       configs.exteriorDesign.secondaryColor.price +
@@ -37,36 +37,22 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
     );
   };
 
-  const getGradient = (value: string) => { // TODO remover essa funcao
-    switch (value) {
-      case '#ededed':
-        return 'silverGradient'
-      case '#000':
-        return 'blackGradient'
-      case '#1a6dd9':
-        return 'blueGradient'
-      case '#ff3838':
-        return 'redGradient'
-      case '#ffee05':
-        return 'yellowGradient'
-      case '#228067':
-        return 'greenGradient'
-      case 'carbon':
-        return 'carbonGradient'
-      case '#12ff4d':
-        return 'limeGradient'
-      case '#593915':
-        return 'coffeeLeatherTexture'
-      case '#c7b695':
-        return 'lightLeatherTexture'
-      case '#9c9a95':
-        return 'greyLeatherTexture'
-      case '#1a1a1a':
-        return 'blackLeatherTexture'
-      default:
-        break;
-    }
-  }
+  const gradientMap: {[key: string]: string} = {
+    '#ededed': 'silverGradient',
+    '#000': 'blackGradient',
+    '#1a6dd9': 'blueGradient',
+    '#ff3838': 'redGradient',
+    '#ffee05': 'yellowGradient',
+    '#228067': 'greenGradient',
+    'carbon': 'carbonGradient',
+    '#12ff4d': 'limeGradient',
+    '#593915': 'coffeeLeatherTexture',
+    '#c7b695': 'lightLeatherTexture',
+    '#9c9a95': 'greyLeatherTexture',
+    '#1a1a1a': 'blackLeatherTexture'
+  };
+
+  const getGradient = (value: string) => gradientMap[value] || ''; // Seleciona o valor da chave de acordo com o hex que passamos
 
   return (
     <>
@@ -84,8 +70,8 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
         (<div className="flex flex-col w-full max-lg:hidden">
           <strong className="font-inter font-semibold uppercase">view</strong>
           <div className={`flex font-inter uppercase font-medium text-xs mt-4 cursor-pointer ${!loaded && 'disabled-btn'}`}>
-            <div className={`flex justify-center rounded-s-[10px] w-full border border-yellow-primary ${internal && 'bg-yellow-primary'} py-[6px] px-6`} onClick={() => updateInternal(true)}>garage</div>
-            <div className={`flex justify-center rounded-e-[10px] w-full border border-yellow-primary ${!internal && 'bg-yellow-primary'} py-[6px] px-6`} onClick={() => updateInternal(false)}>road</div>
+            <div className={`environment-btn rounded-s-[10px] ${internalEnv && 'bg-yellow-primary'}`} onClick={() => updateInternal(true)}>garage</div>
+            <div className={`environment-btn rounded-e-[10px] ${!internalEnv && 'bg-yellow-primary'}`} onClick={() => updateInternal(false)}>road</div>
           </div>
         </div>)
       }
@@ -155,7 +141,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               <div className="w-px bg-[#7d7d7d] h-10 mt-4"></div>
             </div>
             <div className="flex flex-col flex-1">
-              <span className="font-inter text-sm ml-4">Exterior design</span>
+              <span className="font-inter text-sm ml-4">Interior design</span>
               <div className="flex justify-between items-center mt-8">
                 <div className="flex flex-row items-center relative">
                   <div className={`icon-holder left-[-16px]`}>
@@ -185,10 +171,10 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
           </div>
         </div>
       </div>
-      {!checkout && <div className={`primary-btn mt-6 ${!loaded && 'disabled-btn'}`} onClick={() => setModalSend(true)}>Send to dealer</div>}
+      {!checkout && <div className={`primary-btn mt-6 ${!loaded && 'disabled-btn'}`} onClick={() => setModalSendOpen(true)}>Send to dealer</div>}
     </div>
     <AnimatePresence>
-      {modalSend && <>
+      {modalSendOpen && <>
         <motion.div className="flex items-center justify-center bg-opacity-50 h-screen w-screen fixed left-0 top-0 bottom-0 z-40" 
           animate={{background: '#00000080'}} 
           initial={{background: '#00000000'}} 
@@ -209,8 +195,8 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
               </span>
             </p>
             <div className="flex items-center justify-between">
-              <span className="py-3 px-8 text-white font-inter text-sm cursor-pointer" onClick={() => setModalSend(false)}>Close</span>
-              <div className="primary-btn" onClick={() => {downloadSummary(configs); setModalSend(false)}}>
+              <span className="py-3 px-8 text-white font-inter text-sm cursor-pointer" onClick={() => setModalSendOpen(false)}>Close</span>
+              <div className="primary-btn" onClick={() => {downloadSummary(configs); setModalSendOpen(false)}}>
                 PDF
                 <div className="ml-3">
                   <DownloadIcon />

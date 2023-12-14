@@ -74,6 +74,10 @@ body {
   .icon-holder {
     @apply bg-dark-primary p-1 absolute w-[21px]
   }
+
+  .environment-btn {
+    @apply flex justify-center w-full border border-yellow-primary py-[6px] px-6
+  }
 }
 
 @layer utilities {

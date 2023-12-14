@@ -18,13 +18,10 @@ import Door from "./Door";
 import { Lights } from "./Lights";
 
 export const Garage = (props: JSX.IntrinsicElements["group"]) => {
-  const textureWall1 = useLoader(THREE.TextureLoader, textureWall);
+  const textureWall1 = useLoader(THREE.TextureLoader, textureWall); // carrega texturas a partir de um jpg
   const textureFloor1 = useLoader(THREE.TextureLoader, textureFloor);
   const textureBricks = useLoader(THREE.TextureLoader, textureBrick);
-  const textureBricksGraffiti = useLoader(
-    THREE.TextureLoader,
-    textureBrickGraffiti
-  );
+  const textureBricksGraffiti = useLoader(THREE.TextureLoader, textureBrickGraffiti);
 
   const SteelDoor = useLoader(THREE.TextureLoader, steelDoor);
   const Roof = useLoader(THREE.TextureLoader, roof);

@@ -130,7 +130,7 @@ export const brakeColorOptions: { [key: string]: Item } = {
         price: 1250,
         code: 'd'
     },
-    green: {
+    lime: {
         value: '#12ff4d',
         price: 1500,
         code: 'e'
