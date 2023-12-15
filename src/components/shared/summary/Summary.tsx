@@ -57,7 +57,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
   return (
     <>
     
-    <div className={`flex flex-col bg-dark-primary items-center py-8 text-white w-80 ${checkout ? 'rounded-[10px] px-8 max-lg:w-full' : 'px-12 lg:max-2xl:h-[calc(100vh-72px)] lg:max-2xl:overflow-y-auto'}`}>
+    <div className={`flex flex-col bg-dark-primary items-center py-8 text-white w-80 ${checkout ? 'rounded-[10px] px-8 max-lg:w-full' : 'px-12 lg:max-2xl:h-[calc(100vh-3.625rem)] lg:max-2xl:overflow-y-auto'}`}>
       {loaded &&
         <div className="flex items-center justify-center w-screen py-8 bg-dark-primary lg:hidden"> 
           <div className="flex flex-col cursor-pointer absolute">

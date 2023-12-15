@@ -12,6 +12,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "porschenext";
+  src: url("assets/fonts/PorscheNext-Regular.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -53,7 +60,7 @@ body {
     @apply py-3 px-8 max-sm:px-7 max-sm:py-2 text-white bg-yellow-primary w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
   }
   .secondary-btn {
-    @apply py-3 px-8 max-sm:px-7 max-sm:py-2 text-white border-yellow-primary border w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter;
+    @apply py-3 px-8 max-sm:px-7 max-sm:py-2 text-white border-yellow-primary border w-fit text-sm rounded-[0.625rem] flex justify-center items-center cursor-pointer font-inter transition-all duration-500 hover:bg-yellow-primary;
   }
   .primary-btn .arrow, .secondary-btn .arrow {
     @apply ml-2;
@@ -80,15 +87,13 @@ body {
   }
 }
 
-@layer utilities {
-  .clip-path {
-    clip-path: polygon(0 0, 70% 0, 70% 20%, 100% 20%, 100% 100%, 0 100%);
-  }
+.secondary-btn::before {
+  animation: ease 1s ease-in-out;
 }
 
-/* .main-content{
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
-} */
+.clip-path {
+  clip-path: polygon(0 0, 70% 0, 70% 20%, 100% 20%, 100% 100%, 0 100%);
+}
 
 video::-webkit-media-controls {
   display: none;

@@ -79,7 +79,7 @@ export const Configurator = () => {
 
   return (
     <motion.div
-      className="w-full lg:h-[calc(100vh-72px)] max-lg:mt-[72px] bg-dark-primary flex justify-center relative"
+      className="w-full lg:h-[calc(100vh-3.625rem)] max-lg:mt-[3.625rem] bg-dark-primary flex justify-center relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}

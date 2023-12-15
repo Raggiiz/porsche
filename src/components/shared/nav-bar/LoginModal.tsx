@@ -67,7 +67,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
       {loginModal && (
         <>
           <motion.div
-            className="h-screen bg-dark-primary absolute right-0 top-0 bottom-0 shadow-xl z-10 flex flex-col items-center justify-between p-14"
+            className="h-screen bg-dark-secondary absolute right-0 top-0 bottom-0 shadow-xl z-10 flex flex-col items-center justify-between p-14"
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: `${window.innerWidth > 768 ? '28vw' : '80vw'}`, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
