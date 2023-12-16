@@ -123,12 +123,12 @@ export const Home = () => {
         ref={videoRef}
         className="absolute left-0 right-0 top-0 bottom-0 h-screen w-screen object-cover -z-10 pointer-events-none"
         disablePictureInPicture={true}
-        autoPlay
+        autoPlay={true}
         muted
         loop={false}
         id="myVideo"
         onEnded={handleVideoEnded}
-        playsInline
+        playsInline={true}
         key={videoKey}
       >
         <source src={videos[currentVideoIndex]} type="video/mp4" />
