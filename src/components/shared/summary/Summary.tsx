@@ -180,7 +180,7 @@ export const Summary = ({handleUpdateEnvironment, configs, loaded, checkout}: Su
           initial={{background: '#00000000'}} 
           exit={{background: '#00000000'}}
         >
-          <motion.div className="flex absolute flex-col justify-between z-50 bg-[#1C1C1C] rounded-[10px] p-4 overflow-hidden shadow-md" 
+          <motion.div className="flex absolute flex-col justify-between z-50 bg-[#1C1C1C] rounded-[10px] p-4 overflow-hidden" 
             animate={{height: `${window.innerWidth > 768 ? '220px' : '240px'}`, width: `${window.innerWidth > 768 ? '375px' : '290px'}`, opacity: 1}} 
             initial={{height: 0, width: 0, opacity: 0}} 
             exit={{height: 0, width: 0, opacity: 0}} 

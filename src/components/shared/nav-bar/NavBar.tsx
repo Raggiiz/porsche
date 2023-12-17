@@ -26,7 +26,7 @@ export const NavBar = () => {
       </div>
       {/* Declaramos aqui a side bar e o modal de login */}
       <SideBar sideBarOpen={sideBarOpen} setSideBarOpen={setSideBarOpen}/>
-      <LoginModal loginModal={loginModalOpen} setLoginModal={setLoginModalOpen}/>
+      <LoginModal loginModalOpen={loginModalOpen} setLoginModalOpen={setLoginModalOpen}/>
     </div>
   );
 };

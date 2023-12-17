@@ -85,6 +85,14 @@ body {
   .environment-btn {
     @apply flex justify-center w-full border border-yellow-primary py-[6px] px-6
   }
+
+  .vehicle-model {
+    @apply flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out
+  }
+
+  .vehicle-model img {
+    @apply w-48 md:max-xl:w-36
+  }
 }
 
 .secondary-btn::before {

@@ -4,16 +4,15 @@ import React, { SetStateAction, useEffect, useState } from 'react'
 import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
 
 interface LoginModalInterface {
-  loginModal: boolean,
-  setLoginModal: (data: boolean) => void
+  loginModalOpen: boolean,
+  setLoginModalOpen: (data: boolean) => void
 }
 
-export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) => {
+export const LoginModal = ({ loginModalOpen, setLoginModalOpen }: LoginModalInterface) => {
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState(''); // varivavel para o campo user
   const [password, setPassword] = useState(''); // variavel para o campo senha
   const [loginError, setloginError] = useState(false);
@@ -23,33 +22,26 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
     password: 'admin123'
   }
 
-  useEffect(() => { // Verifica login pelo local storage quando inicia o componente
-    setIsLogged(localStorage.getItem('porschaLogin') === 'true')
-  }, []);
-
   useEffect(() => { 
     const handleTouchMove = (event: { preventDefault: () => void; }) => {
-      if (loginModal) {
-        event.preventDefault();
-      }
+      if (loginModalOpen)  event.preventDefault(); // Se o modal estiver aberto bloqueia
     };
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false }); // Escuta sempre que o usuario mover o dedo para escrolar no mobile
     return () => {
       window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [loginModal]);
+  }, [loginModalOpen]); // escuta sempre que o modal abrir
 
   const login = () => {
-    setloginError(false);
+    setloginError(false); // toda vez que tenta logar seta os error do login pra falso
 
-    if(user !== credentials.user || password !== credentials.password) { // 
+    if(user !== credentials.user || password !== credentials.password) { // se email ou senha estiverem errados seta o erro pra true
       setloginError(true);
       return;
     }
 
-    localStorage.setItem('porschaLogin', 'true');
-    setIsLogged(true);
-    setLoginModal(false);
+    localStorage.setItem('porschaLogin', 'true'); // seta o storage
+    setLoginModalOpen(false); // fecha o modal
     setTimeout(() => {
       navigate('/checkout');
     }, 200)
@@ -57,35 +49,35 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
 
   const logOut = () => {
     localStorage.removeItem('porschaLogin');
-    setIsLogged(false);
-    setLoginModal(false);
+    setLoginModalOpen(false);
     if(location.pathname === '/checkout') navigate('/');
   }
 
   return (
     <AnimatePresence>
-      {loginModal && (
+      {loginModalOpen && (
         <>
           <motion.div
-            className="h-screen bg-dark-secondary absolute right-0 top-0 bottom-0 shadow-xl z-10 flex flex-col items-center justify-between p-14"
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: `${window.innerWidth > 768 ? '28vw' : '80vw'}`, opacity: 1 }}
-            exit={{ width: 0, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 250, damping: 24 }}
+            className="h-screen bg-dark-secondary absolute right-0 top-0 bottom-0 z-10 flex flex-col items-center justify-between p-14 w-[28vw] max-md:w-[80vw]"
+            initial={{ x: 550, opacity: .5 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 550, opacity: .5 }}
+            transition={{ ease: "easeInOut"}}
           >
-            <img src={Logo} alt="Logo" className="h-16 w-[118.63px]" />
-            {isLogged ? (
-              <p className='font-montserrat text-white text-base text-center max-h-[5rem] overflow-hidden'>
+            <img src={Logo} alt="Logo" className="h-16" />
+            {localStorage.getItem('porschaLogin') === 'true' ? (
+              <p className='font-montserrat text-white text-base text-center'>
                 You're already logged in. <br/>
-                Go to <Link to={'/checkout'} onClick={() => setLoginModal(false)} className='text-yellow-primary'>Checkout page</Link> or <span className='cursor-pointer text-yellow-primary' onClick={logOut}>Log out</span>
+                Go to<Link to={'/checkout'} onClick={() => setLoginModalOpen(false)} className='text-yellow-primary'> Checkout page </Link>
+                or <span className='cursor-pointer text-yellow-primary' onClick={logOut}>Log out</span>
               </p>
             ) : (
               <div className="flex flex-col w-full">
                 <h4 className="text-white font-inter uppercase font-medium">
                   dealer login
                 </h4>
-                <p className="font-montserrat text-[#7d7d7d] text-sm mt-3 h-10">
-                  Enter your details to sign in you to your account!
+                <p className="font-montserrat text-[#7d7d7d] text-sm mt-3">
+                  Enter your details to sign in!
                 </p>
                 <form className="flex flex-col mt-8" onSubmit={login}>
                   <div className="flex flex-col">
@@ -121,7 +113,7 @@ export const LoginModal = ({ loginModal, setLoginModal }: LoginModalInterface) =
             animate={{ opacity: 0.5 }}
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
-            onClick={() => setLoginModal(false)}
+            onClick={() => setLoginModalOpen(false)}
           />
         </>
       )}

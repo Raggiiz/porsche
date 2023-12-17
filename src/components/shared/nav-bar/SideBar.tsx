@@ -15,43 +15,42 @@ export const SideBar = ({ sideBarOpen, setSideBarOpen }: SideBarInterface) => {
 
   useEffect(() => {
     const handleTouchMove = (event: { preventDefault: () => void; }) => {
-      if (sideBarOpen) {
-        event.preventDefault();
-      }
+      if (sideBarOpen) event.preventDefault();  // Se o modal estiver aberto bloqueia
+      
     };
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false }); // Escuta sempre que o usuario mover o dedo para escrolar no mobile
     return () => {
       window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [sideBarOpen]);
+  }, [sideBarOpen]); // escuta sempre que o modal abrir
 
   return (
     <AnimatePresence>
       {sideBarOpen && (
         <>
           <motion.div
-            className="h-screen bg-dark-secondary absolute left-0 top-0 bottom-0 shadow-xl z-10 flex flex-col p-12"
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: `${window.innerWidth > 768 ? '28vw' : '80vw'}`, opacity: 1 }}
-            exit={{ width: 0, opacity: 0 }}
-            transition={{type: "spring",stiffness: 250,damping: 24}}
+            className="h-screen bg-dark-secondary absolute left-0 top-0 bottom-0 w-[28vw] max-md:w-[80vw] z-10 flex flex-col p-12"
+            initial={{ x: -550, opacity: .5 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -550, opacity: .5 }}
+            transition={{ ease: "easeInOut"}}
           >
             <span className="text-white font-inter uppercase font-medium">models</span>
-            <div className="mt-8">
-              <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={p911} alt="" className="w-48 md:max-xl:w-36" />
+            <div className="flex flex-col mt-8 gap-4">
+              <div className="vehicle-model">
+                <img src={p911} alt="" />
               </div>
-              <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={p718} alt="" className="w-48 md:max-xl:w-36" />
+              <div className="vehicle-model">
+                <img src={p718} alt="" />
               </div>
-              <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={cayenne} alt="" className="w-48 md:max-xl:w-36" />
+              <div className="vehicle-model">
+                <img src={cayenne} alt="" />
               </div>
-              <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={macan} alt="" className="w-48 md:max-xl:w-36" />
+              <div className="vehicle-model">
+                <img src={macan} alt="" />
               </div>
-              <div className="flex justify-center items-center rounded-[10px] p-4 w-full hover:bg-neutral-800 cursor-pointer transition ease-in-out mb-4">
-                <img src={panamera} alt="" className="w-48 md:max-xl:w-36" />
+              <div className="vehicle-model">
+                <img src={panamera} alt="" />
               </div>
             </div>
           </motion.div>
