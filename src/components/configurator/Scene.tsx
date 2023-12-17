@@ -2,9 +2,8 @@ import {
   Environment,
   OrbitControls,
   PerspectiveCamera,
-  useHelper,
 } from "@react-three/drei";
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
 import { Suspense } from "react";
 import Road from "./road/Road";

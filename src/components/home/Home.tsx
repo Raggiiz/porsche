@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import video1 from "../../assets/video/video1.mp4";
 import video2 from "../../assets/video/video2.mp4";
 import video3 from "../../assets/video/video3.mp4";
@@ -6,10 +6,7 @@ import video4 from "../../assets/video/video4.mp4";
 import video5 from "../../assets/video/video5.mp4";
 import video6 from "../../assets/video/video6.mp4";
 import video7 from "../../assets/video/video7.mp4";
-import ArrowRight from "../../assets/icons/arrow-right.svg";
-import Cup from "../../assets/icons/cup.svg";
 import { Link, Outlet } from "react-router-dom";
-import CustomCar from "../../assets/custom-car.png";
 import { motion } from "framer-motion";
 
 export const Home = () => {

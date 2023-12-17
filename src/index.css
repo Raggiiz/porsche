@@ -148,31 +148,31 @@ video::-webkit-media-controls {
 }
 
 .carbonGradient{
-  background: url(/textures/carbon.jpg);
+  background: url(assets/config-thumbs/carbon.jpg);
   background-size: cover;
   border-color: #E2B558;
 }
 
 .blackLeatherTexture{
-  background: url(/textures/black-leather.png);
+  background: url(assets/config-thumbs/black-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
 .lightLeatherTexture{
-  background: url(/textures/light-leather.png);
+  background: url(assets/config-thumbs/light-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
 .coffeeLeatherTexture{
-  background: url(/textures/coffee-leather.png);
+  background: url(assets/config-thumbs/coffee-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }
 
 .greyLeatherTexture{
-  background: url(/textures/grey-leather.png);
+  background: url(assets/config-thumbs/grey-leather.png);
   background-size: cover;
   border-color: #E2B558;
 }

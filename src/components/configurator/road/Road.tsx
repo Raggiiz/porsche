@@ -50,7 +50,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function Road({highQuality}: {highQuality: boolean}) {
-  const { nodes, materials } = useGLTF('/models/externalEnvironment/scene.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('/models/road/scene.gltf') as GLTFResult
 
   const spotlight = useMemo(() => new THREE.SpotLight("#ede7d3"), []); // Ponto de luz para simular o sol
 
@@ -103,4 +103,4 @@ export default function Road({highQuality}: {highQuality: boolean}) {
   )
 }
 
-useGLTF.preload('/models/externalEnvironment/scene.gltf')
+useGLTF.preload('/models/road/scene.gltf')
